@@ -31,7 +31,7 @@ public class Entity {
     public void followTarget(Vector2 targetPosition, float speed) {
         Vector2 processedPosition = new Vector2(targetPosition.x - position.x, (Gdx.graphics.getHeight() - targetPosition.y) - position.y);
         double dir = Math.atan2(processedPosition.y, processedPosition.x);
-        position.x += Math.cos(dir);
-        position.y += Math.sin(dir);
+        position.x += Math.cos(dir) * speed;
+        position.y += Math.sin(dir) * speed;
     }
 }
