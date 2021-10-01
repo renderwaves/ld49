@@ -1,0 +1,38 @@
+Unstable:
+- Skákačka kde se platformy propadají.
+- Nestabilní reaktor
+Making connections:
+- Propojení cest co nejefektivněji
+One tool, many uses:
+- Zbraň s kterou se může hráč pohybovat a zabíjet enemáky
+Decay:
+- Rozpadávající se loď kterou musí hráč zachránit
+On / Off:
+- Enemáci se nemůžou pohybovat když nesvítí světlo
+- Zajíštovaní energie aby hráč neumřel
+Delay the inevitable:
+- Přežij na ostrově který má limitované zdroje co nejdéle
+Keep your distance:
+- Utěk před enemáky. Enemáci by byli nesmrtelní.
+Delivery:
+- Pošták
+- Software delivery simulator
+The environment changes you:
+- V jiných prostředích se mění tvé vlastnosti např v teple si rychlejší a v zimě pomalejší, ale zase si méně slyšet. STEALTH
+Leave something behind:
+- Limitovaný inventář který musíme nějak vyčistit.
+- Zanechávat kusy sebe za sebou výměnou za něco
+Everything changes at night:
+- Přes den se musíš připravit na noc a v noci vyjdou zombíci
+- Safe house kde se musí hráč schovat přes noc a ráno když výjde tak se změní prostředí
+3 rules:
+- Hráč si může vybrat pravidla jako např že si může vybrat že nemůže chodit do leva a další tři. Cíl je dojít co nejdále. Postupně generovaný level.
+Replication
+- Replikace armády aby si mohl bojovat
+Strength in numbers:
+
+Summoning:
+- Endless tower defense. Kde by si mohl vyvolávat nové budovy atd...
+It follows you:
+- FNAF clone
+- Hráče je otravován náhodnýma věcma, aby se nemohl dostat do cíle.
