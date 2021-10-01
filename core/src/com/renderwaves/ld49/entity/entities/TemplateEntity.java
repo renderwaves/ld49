@@ -16,7 +16,7 @@ public class TemplateEntity extends TexturedEntity {
     @Override
     public void update() {
         super.update();
-        followTarget(new Vector2(Gdx.input.getX(), Gdx.input.getY()), 10 * Gdx.graphics.getDeltaTime());
+        followTarget(new Vector2(Gdx.input.getX(), Gdx.input.getY()), 100 * Gdx.graphics.getDeltaTime());
     }
 
     @Override
