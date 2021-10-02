@@ -19,6 +19,8 @@ public class TextureManager {
     public static Texture shipIndicator = new Texture("textures/ui/ship_indicator.png");
     public static Texture closedDoorTile = new Texture("textures/tiles/doorTileClosed.png");
     public static Texture fireExtinguisher = new Texture("textures/entities/fire_extinguisher.png");
+    public static Texture comms = new Texture("textures/entities/transmitter.png");
+    public static Texture engine = new Texture("textures/entities/enginecontrollmodule.png");
 
     public static void disposeAllTextures() {
         img.dispose();
@@ -37,5 +39,7 @@ public class TextureManager {
         wallTile.dispose();
         fireExtinguisher.dispose();
         closedDoorTile.dispose();
+        comms.dispose();
+        engine.dispose();
     }
 }

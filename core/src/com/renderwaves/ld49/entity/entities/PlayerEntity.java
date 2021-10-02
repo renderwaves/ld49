@@ -31,6 +31,8 @@ public class PlayerEntity extends TexturedEntity {
     private boolean nearMedBay = false;
     private boolean nearSpacesuit = false;
     private boolean nearFireExtanguisher = false;
+    private boolean nearComms = false;
+    private boolean nearEngine = false;
 
     private boolean hasSpacesuit = false;
     private boolean hasFireExtinguisher = false;
@@ -132,6 +134,8 @@ public class PlayerEntity extends TexturedEntity {
     private LifeSupport lifeSupport;
     private MedBay medBay;
     private FireExtinguisher fireExtinguisher;
+    private Comms comms;
+    private Engine engine;
 
     private void collision() {
         if(generator == null && spacesuit == null) {
@@ -150,6 +154,12 @@ public class PlayerEntity extends TexturedEntity {
                  }
                 else if(entityManager.get(i) instanceof  FireExtinguisher){
                     fireExtinguisher = (FireExtinguisher) entityManager.get(i);
+                }
+                else if(entityManager.get(i) instanceof  Comms){
+                    comms = (Comms) entityManager.get(i);
+                }
+                else if(entityManager.get(i) instanceof  Engine){
+                    engine = (Engine) entityManager.get(i);
                 }
             }
         }
@@ -186,6 +196,18 @@ public class PlayerEntity extends TexturedEntity {
             }
             else {
                 nearFireExtanguisher = false;
+            }
+            if(comms.rectangle.overlaps((rectangle))){
+                nearComms = true;
+            }
+            else {
+                nearComms = false;
+            }
+            if(engine.rectangle.overlaps((rectangle))){
+                nearEngine = true;
+            }
+            else {
+                nearEngine = false;
             }
         }
     }

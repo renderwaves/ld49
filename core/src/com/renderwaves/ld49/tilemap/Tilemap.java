@@ -122,15 +122,15 @@ public class Tilemap {
     }
 
     public Vector2 globalPositionToTilemapPosition(float x, float y) {
-        double processedX = Math.floor((x-offset.x) / TILE_SIZE);
-        double processedY = Math.floor((y-offset.y) / TILE_SIZE);
+        double processedX = Math.floor((x-(offset.x - this.textureMap.getWidth()/2)) / TILE_SIZE);
+        double processedY = Math.floor((y-(offset.y - this.textureMap.getHeight()/2)) / TILE_SIZE);
 
         return new Vector2((float)processedX, (float)processedY);
     }
 
     public Vector2 tilemapPositionToGlobalPosition(float x, float y) {
-        double processedX = (x+offset.x) * TILE_SIZE;
-        double processedY = (y+offset.y) * TILE_SIZE;
+        double processedX = (x+(offset.x - this.textureMap.getWidth()/2)) * TILE_SIZE;
+        double processedY = (y+(offset.y - this.textureMap.getHeight()/2)) * TILE_SIZE;
 
         return new Vector2((float)processedX, (float)processedY);
     }
@@ -143,7 +143,7 @@ public class Tilemap {
                     float y = i * TILE_SIZE + (offset.y - this.textureMap.getHeight()/2);
 
                     if(map[i * width + j].tileID == Tile.ReactorTile.tileID){
-                        Game.entityManager.addEntity(new Generator(new Vector2(x+25, y-10), new Vector2(4, 4)));
+                        Game.entityManager.addEntity(new Generator(new Vector2(x, y), new Vector2(1, 1)));
                     }
                     else if(map[i * width + j].tileID == Tile.LifeSupportTile.tileID){
                         Game.entityManager.addEntity(new LifeSupport(new Vector2(x+8, y-16), new Vector2(2, 2)));
@@ -159,6 +159,12 @@ public class Tilemap {
                     }
                     else if(map[i * width + j].tileID == Tile.PlayerTile.tileID){
                         Game.entityManager.addEntity(new PlayerEntity(new Vector2(x, y), new Vector2(2, 2)));
+                    }
+                    else if(map[i * width + j].tileID == Tile.EngineTile.tileID){
+                        Game.entityManager.addEntity(new Engine(new Vector2(x+10, y+5), new Vector2(2, 2)));
+                    }
+                    else if(map[i * width + j].tileID == Tile.CommsTile.tileID){
+                        Game.entityManager.addEntity(new Comms(new Vector2(x+5, y), new Vector2(2, 2)));
                     }
                 }
             }
