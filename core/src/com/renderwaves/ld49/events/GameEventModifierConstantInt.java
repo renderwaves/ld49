@@ -2,14 +2,14 @@ package com.renderwaves.ld49.events;
 
 /*
  */
-public class EventModifierConstantInt extends GameEventModifier<Integer> {
+public class GameEventModifierConstantInt extends GameEventModifier<Integer> {
 
     private String name;
     private Integer value;
 
     /*
      */
-    public EventModifierConstantInt(String friendlyName, Integer value) {
+    public GameEventModifierConstantInt(String friendlyName, Integer value) {
         this.name = friendlyName;
         this.value = value;
         this.setName(friendlyName);
@@ -28,6 +28,26 @@ public class EventModifierConstantInt extends GameEventModifier<Integer> {
 
     @Override
     void onStop() {
+
+    }
+
+    @Override
+    void onColision() {
+
+    }
+
+    @Override
+    void onMovement() {
+
+    }
+
+    @Override
+    void onAction() {
+
+    }
+
+    @Override
+    void onRender() {
 
     }
 }

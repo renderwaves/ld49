@@ -1,7 +1,6 @@
 package com.renderwaves.ld49.testobjects;
 
-import com.renderwaves.ld49.events.EventModifierConstantInt;
-import com.renderwaves.ld49.events.GameEvent;
+import com.renderwaves.ld49.events.GameEventModifierConstantInt;
 import com.renderwaves.ld49.events.GameEventSystem;
 import com.renderwaves.ld49.logic.GlobalHealthEvent;
 
@@ -14,17 +13,17 @@ public class TestShipEntity {
     private GameEventSystem mBaseEvent;
     private GlobalHealthEvent mHealthEvent;
 
-    private EventModifierConstantInt mOutsideDmg;
-    private EventModifierConstantInt mRepair;
+    private GameEventModifierConstantInt mDamage;
+    private GameEventModifierConstantInt mRepair;
 
     /*
      */
     public TestShipEntity() {
-        mOutsideDmg = new EventModifierConstantInt(String.format("%s : Outside Damage", TAG).toString(), -25);
-        mRepair = new EventModifierConstantInt(String.format("%s: Repair", TAG).toString(), 5);
+        mDamage = new GameEventModifierConstantInt(String.format("%s : Outside Damage", TAG).toString(), -25);
+        mRepair = new GameEventModifierConstantInt(String.format("%s: Repair", TAG).toString(), 5);
 
         mHealthEvent = new GlobalHealthEvent(String.format("%s: Global Health", TAG).toString());
-        mHealthEvent.addModifier(mOutsideDmg);
+        mHealthEvent.addModifier(mDamage);
         mHealthEvent.addModifier(mRepair);
 
         mBaseEvent = new GameEventSystem();
@@ -36,7 +35,7 @@ public class TestShipEntity {
     }
 
     public void update() {
-        mHealthEvent.progress();
+        //mHealthEvent.progress();
         mBaseEvent.update();
     }
 

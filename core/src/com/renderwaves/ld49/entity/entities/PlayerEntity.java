@@ -20,6 +20,7 @@ import com.renderwaves.ld49.tilemap.Tile;
 import static com.renderwaves.ld49.Game.entityManager;
 
 public class PlayerEntity extends TexturedEntity {
+
     private float movementSpeed = 100.0f;
     private float sprint = 1.0f;
     private Vector2 velocity;

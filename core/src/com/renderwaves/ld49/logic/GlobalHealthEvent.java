@@ -1,6 +1,6 @@
 package com.renderwaves.ld49.logic;
 
-import com.renderwaves.ld49.events.EventModifierConstantInt;
+import com.renderwaves.ld49.events.GameEventModifierConstantInt;
 import com.renderwaves.ld49.events.GameEvent;
 import com.renderwaves.ld49.events.GameEventModifier;
 
@@ -14,29 +14,9 @@ public class GlobalHealthEvent extends GameEvent {
     /*
      */
     public GlobalHealthEvent(String friendlyName) {
-        this.mHealth = 100;
+        this.setValueI(100);
     }
-
     public GlobalHealthEvent(Integer health) {
-        this.mHealth = health;
+        this.setValueI(health);
     }
-
-    public void progress() {
-        if (mHealth <= 0) return;
-
-        for (int i = 0; i < getNumModifiers(); i++) {
-
-            if (getModifier(i) instanceof EventModifierConstantInt) {
-                GameEventModifier<Integer> mod = (EventModifierConstantInt)getModifier(i);
-                mHealth = mHealth + mod.get();
-                System.out.println(String.format("progress(): modifier '%s' hit value %d", mod.getName(), mod.get()));
-            }
-
-
-            System.out.println(String.format("render(): ship health!: %d", mHealth));
-
-            if (mHealth <= 0) break;
-        }
-    }
-
 }

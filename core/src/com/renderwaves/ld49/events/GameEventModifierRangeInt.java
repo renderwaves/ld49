@@ -1,6 +1,6 @@
 package com.renderwaves.ld49.events;
 
-public class EventModifierRangeInt extends GameEventModifier<Integer> {
+public class GameEventModifierRangeInt extends GameEventModifier<Integer> {
 
     private int start;
     private int end;
@@ -8,12 +8,14 @@ public class EventModifierRangeInt extends GameEventModifier<Integer> {
 
     /*
      */
-    public EventModifierRangeInt(String friendlyname, int start, int end) {
+    public GameEventModifierRangeInt(String friendlyname, int start, int end) {
+        this.setName(friendlyname);
+
         this.start = start;
         this.end = end;
         this.progress = start;
 
-        this.setName(friendlyname);
+        set(progress);
     }
 
     @Override
@@ -27,7 +29,9 @@ public class EventModifierRangeInt extends GameEventModifier<Integer> {
         } else {
 
         }
-        System.out.println(String.format("render(): modifier '%s' progress %d", getName(), progress));
+        set(progress);
+
+        System.out.println(String.format("eachTick(): modifier '%s' progress %d", getName(), get()));
     }
 
     @Override
@@ -37,6 +41,26 @@ public class EventModifierRangeInt extends GameEventModifier<Integer> {
 
     @Override
     void onStop() {
+
+    }
+
+    @Override
+    void onColision() {
+
+    }
+
+    @Override
+    void onMovement() {
+
+    }
+
+    @Override
+    void onAction() {
+
+    }
+
+    @Override
+    void onRender() {
 
     }
 }

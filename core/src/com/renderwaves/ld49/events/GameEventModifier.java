@@ -19,9 +19,16 @@ public abstract class GameEventModifier<Type> {
     abstract void eachTick();
     abstract void onStart();
     abstract void onStop();
+    abstract void onColision();
+    abstract void onMovement();
+    abstract void onAction();
+    abstract void onRender();
 
     public void update() {
         eachTick();
+        onMovement();
+        onColision();
+        onAction();
     }
 
     public void set(Type value) {
