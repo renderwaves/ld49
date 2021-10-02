@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.renderwaves.ld49.Game;
+import com.renderwaves.ld49.entity.EntityManager;
+import com.renderwaves.ld49.entity.entities.*;
 import com.renderwaves.ld49.scenes.TemplateScene;
 
 import javax.imageio.ImageIO;
@@ -22,10 +25,11 @@ import static com.renderwaves.ld49.managers.TextureManager.doorTile;
 public class Tilemap {
     public static final int TILE_SIZE = 32;
 
-    public Vector2 offset = new Vector2(Gdx.graphics.getWidth()/8, Gdx.graphics.getHeight()/4);
+    public Vector2 offset = new Vector2(Gdx.graphics.getWidth()/4, Gdx.graphics.getHeight()/6);
 
     private int width, height;
     public Tile map[];
+    private boolean entitiesGenerated = false;
 
     public class DoorInstance {
         public float timer;
@@ -48,9 +52,10 @@ public class Tilemap {
         this.map = map;
     }
 
+    private Texture textureMap;
     public Tilemap(String path) {
         Texture texture = new Texture(path);
-
+        this.textureMap = texture;
         this.width = texture.getWidth();
         this.height = texture.getHeight();
 
@@ -63,9 +68,6 @@ public class Tilemap {
         for(int i = 0; i < pixmap.getHeight(); i++) {
             for(int j = 0; j < pixmap.getWidth(); j++) {
                 Color c = new Color(pixmap.getPixel(j, i));
-                if(c.toString().equalsIgnoreCase( "0026FFFF")) {
-                    System.out.println(c.g);
-                }
 
                 if(c.equals(Tile.Air.color)) {
                     map[i * texture.getWidth() + j] = Tile.Air;
@@ -101,6 +103,12 @@ public class Tilemap {
                 else if(c.equals(Tile.SuitTile.color)) {
                     map[i * texture.getWidth() + j] = Tile.SuitTile;
                 }
+                else if(c.equals(Tile.FireExtinguisherTile.color)) {
+                    map[i * texture.getWidth() + j] = Tile.FireExtinguisherTile;
+                }
+                else if(c.equals(Tile.PlayerTile.color)) {
+                    map[i * texture.getWidth() + j] = Tile.PlayerTile;
+                }
             }
         }
     }
@@ -127,11 +135,43 @@ public class Tilemap {
         return new Vector2((float)processedX, (float)processedY);
     }
 
+    public void generateEntities(){
+        for(int i = 0; i < height; i++) {
+            for(int j = 0; j < width; j++) {
+                if(map[i * width + j] != null) {
+                    float x = j * TILE_SIZE + (offset.x - this.textureMap.getWidth()/2);
+                    float y = i * TILE_SIZE + (offset.y - this.textureMap.getHeight()/2);
+
+                    if(map[i * width + j].tileID == Tile.ReactorTile.tileID){
+                        Game.entityManager.addEntity(new Generator(new Vector2(x+25, y-10), new Vector2(4, 4)));
+                    }
+                    else if(map[i * width + j].tileID == Tile.LifeSupportTile.tileID){
+                        Game.entityManager.addEntity(new LifeSupport(new Vector2(x+8, y-16), new Vector2(2, 2)));
+                    }
+                    else if(map[i * width + j].tileID == Tile.SuitTile.tileID){
+                        Game.entityManager.addEntity(new Spacesuit(new Vector2(x+5, y+10), new Vector2(2, 2)));
+                    }
+                    else if(map[i * width + j].tileID == Tile.MedicTile.tileID){
+                        Game.entityManager.addEntity(new MedBay(new Vector2(x, y-32), new Vector2(1, 1)));
+                    }
+                    else if(map[i * width + j].tileID == Tile.FireExtinguisherTile.tileID){
+                        Game.entityManager.addEntity(new FireExtinguisher(new Vector2(x, y), new Vector2(1.5f, 2.0f)));
+                    }
+                    else if(map[i * width + j].tileID == Tile.PlayerTile.tileID){
+                        Game.entityManager.addEntity(new PlayerEntity(new Vector2(x, y), new Vector2(2, 2)));
+                    }
+                }
+            }
+        }
+        entitiesGenerated = true;
+
+    }
+
     public void render(SpriteBatch batch) {
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
                 if(map[i * width + j] != null) {
-                    map[i * width + j].render(batch, j * TILE_SIZE + offset.x, i * TILE_SIZE + offset.y);
+                    map[i * width + j].render(batch, j * TILE_SIZE + (offset.x - this.textureMap.getWidth()/2), i * TILE_SIZE + (offset.y - this.textureMap.getHeight()/2));
                 }
             }
         }
@@ -144,6 +184,8 @@ public class Tilemap {
                 doorHandler.get(i).closed = true;
             }
         }
+
+        //if(!entitiesGenerated) generateEntities();
     }
 
     public void setTile(int x, int y, Tile tile) {
