@@ -2,6 +2,8 @@ package com.renderwaves.ld49.events;
 
 import java.util.ArrayList;
 
+/*
+ */
 public class GameEventSystem {
 
     private ArrayList<GameEvent> events;
@@ -16,7 +18,6 @@ public class GameEventSystem {
      */
     public void update() {
         if (events.size() <= 0) return;
-
         for (GameEvent event: events) {
             event.update();
         }
@@ -28,13 +29,14 @@ public class GameEventSystem {
 
     public void removeEvent() {
         for (GameEvent event : this.events) {
-            if (event.isComplete()) events.remove(event);
+            if (event.isComplete())
+                event.onEnd();
+                events.remove(event);
         }
     }
 
     public GameEvent getEvent(int id) {
         if (id > events.size() || id < 0) return null;
-
         GameEvent event = events.get(id);
         if (event == null) return null;
         return event;

@@ -2,14 +2,10 @@ package com.renderwaves.ld49.entity.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
-import com.renderwaves.ld49.Game;
 import com.renderwaves.ld49.GlobalShipVariables;
-import com.renderwaves.ld49.entity.EntityManager;
 import com.renderwaves.ld49.entity.TexturedEntity;
 import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.InputManager;
@@ -21,6 +17,8 @@ import static com.renderwaves.ld49.Game.entityManager;
 
 public class PlayerEntity extends TexturedEntity {
 
+    private String TAG = PlayerEntity.class.getName();
+
     private float movementSpeed = 100.0f;
     private float sprint = 1.0f;
     private Vector2 velocity;
@@ -30,6 +28,8 @@ public class PlayerEntity extends TexturedEntity {
     private boolean hasSpacesuit = false;
     private boolean nearSpacesuit = false;
 
+    /*
+     */
     public PlayerEntity(Vector2 position, Vector2 scale) {
         super(position, scale, TextureManager.playerEntity);
         velocity = new Vector2(0, 0);

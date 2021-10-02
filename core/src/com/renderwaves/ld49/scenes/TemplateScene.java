@@ -17,6 +17,7 @@ import com.renderwaves.ld49.Game;
 import com.renderwaves.ld49.entity.Entity;
 import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.entity.entities.*;
+import com.renderwaves.ld49.events.*;
 import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.ProgressManager;
 import com.renderwaves.ld49.managers.TextureManager;
@@ -28,24 +29,28 @@ import java.awt.*;
 
 public class TemplateScene implements Screen {
     Game game;
+    GameEventSystem gameEventSystem;
     Sprite sprite;
 
     Stage stage;
-
     SpriteBatch batch;
 
     TemplateEntity templateEntity;
-    ShipEntity shipEntity = new ShipEntity();
 
     public static Tilemap shipTilemap;
     private StatusBar statusBar;
     private ShapeRenderer shapeRenderer;
     private ProgressManager progressManager;
 
+    private float ingameTime = 0f;
+    private float period = 0.001f;
+
     /*
      */
     public TemplateScene(Game game) {
         this.game = game;
+        this.gameEventSystem = new GameEventSystem();
+
         this.batch = game.batch;
 
         progressManager = new ProgressManager(50.0f, new Sprite(TextureManager.shipIndicator));
@@ -74,14 +79,43 @@ public class TemplateScene implements Screen {
         sprite = new Sprite(TextureManager.img);
     }
 
-    @Override
-    public void render(float delta) {
+    /*
+     */
+    public void update(float delta) {
+
         if(GlobalShipVariables.shipHealth > 1.0f) GlobalShipVariables.shipHealth = 1.0f;
         else if(GlobalShipVariables.shipHealth < 0.0f) GlobalShipVariables.shipHealth = 0.0f;
 
+        int min = -16;
+        int max = 16;
+        int gameState = (int)(Math.random()*(max-min+1)+min);
+        switch(gameState) {
+            case 0: gameEventSystem.addEvent(new CommsEvent()); break; // comms failure
+            case 1: gameEventSystem.addEvent(new LifesupportEvent()); break; // lifesupport, oxygen failure (space suit)
+            case 2: gameEventSystem.addEvent(new GeneratorEvent()); break; // generator failure
+            case 3: gameEventSystem.addEvent(new NavigationEvent()); break; // navigation failure
+            case 4: gameEventSystem.addEvent(new EngineEvent()); break; // engine failure
+            case 5: gameEventSystem.addEvent(new FireEvent()); break; // fire in hull
+            case 6: gameEventSystem.addEvent(new DoorEvent()); break; // door failure
+            default:
+                System.out.println("nothing is hapenning");
+                // nothing is hapenning
+                break;
+        }
 
-        // update entities
-        shipEntity.update();
+    }
+
+    @Override
+    public void render(float delta) {
+        period = (float)(Math.random()*(1.0f-0.01f + 1.0f)+1.0f);
+
+        ingameTime += Gdx.graphics.getRawDeltaTime();
+        if (ingameTime > period) {
+            ingameTime -= period;
+            update(delta);
+        }
+
+        gameEventSystem.update();
 
         ScreenUtils.clear(0, 0, 0, 1);
         batch.begin();
