@@ -12,6 +12,8 @@ import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.ui.StatusBar;
 
 import java.awt.*;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import java.util.ArrayList;
 
 /*
@@ -58,6 +60,11 @@ public class GameEventSystem {
     public void render(SpriteBatch batch) {
 
         if (progress_sl.size() < 0) return;
+
+        for (GameEvent event: events) {
+            event.render(batch);
+        }
+
 
         // render sliders
         for (int slider = 0; slider < progress_sl.size(); slider++) {

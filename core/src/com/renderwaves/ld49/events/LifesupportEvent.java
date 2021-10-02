@@ -1,5 +1,7 @@
 package com.renderwaves.ld49.events;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 /*
  */
 public class LifesupportEvent extends GameEvent {
@@ -28,6 +30,11 @@ public class LifesupportEvent extends GameEvent {
 
     @Override
     public void onRender() {
+
+    }
+
+    @Override
+    public void onRender(SpriteBatch batch) {
 
     }
 }

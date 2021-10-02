@@ -31,9 +31,10 @@ public class Game extends com.badlogic.gdx.Game {
 	
 	@Override
 	public void create () {
+		FontManager.generateFonts();
+
 		batch = new SpriteBatch();
 		this.setScreen(new TemplateScene(this));
-		FontManager.generateFonts();
 	}
 
 	@Override

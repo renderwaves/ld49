@@ -1,5 +1,7 @@
 package com.renderwaves.ld49.events;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 public class CommsEvent extends GameEvent {
 
     public CommsEvent()  {
@@ -26,6 +28,11 @@ public class CommsEvent extends GameEvent {
 
     @Override
     public void onRender() {
+
+    }
+
+    @Override
+    public void onRender(SpriteBatch batch) {
 
     }
 }

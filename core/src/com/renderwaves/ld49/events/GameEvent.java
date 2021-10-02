@@ -1,5 +1,7 @@
 package com.renderwaves.ld49.events;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import java.util.ArrayList;
 
 /*
@@ -8,6 +10,7 @@ public abstract class GameEvent {
 
     protected String eventName;
     protected Integer uniqueId;
+    protected SpriteBatch parentBatch;
     private boolean isComplete;
 
     protected Integer progressI;
@@ -20,7 +23,14 @@ public abstract class GameEvent {
 
     public void update() {
         onUpdate();
+    }
+
+    public void render() {
         onRender();
+    }
+
+    public void render(SpriteBatch batch) {
+        onRender(batch);
     }
 
     public String info() {
@@ -33,5 +43,6 @@ public abstract class GameEvent {
     public abstract void onEnd();
     public abstract void onUpdate();
     public abstract void onRender();
+    public abstract void onRender(SpriteBatch batch);
 
 }

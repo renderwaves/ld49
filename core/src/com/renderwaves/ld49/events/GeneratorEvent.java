@@ -3,6 +3,8 @@ package com.renderwaves.ld49.events;
 import com.badlogic.gdx.Gdx;
 import com.renderwaves.ld49.GlobalShipVariables;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 /*
  */
 public class GeneratorEvent extends GameEvent {
@@ -41,6 +43,11 @@ public class GeneratorEvent extends GameEvent {
 
     @Override
     public void onRender() {
+
+    }
+
+    @Override
+    public void onRender(SpriteBatch batch) {
 
     }
 }
