@@ -18,6 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.renderwaves.ld49.entity.EntityManager;
+import com.renderwaves.ld49.managers.FontManager;
+import com.renderwaves.ld49.managers.InputManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 
@@ -25,10 +27,11 @@ public class Game extends com.badlogic.gdx.Game {
 	public SpriteBatch batch;
 
 	public static final EntityManager entityManager = new EntityManager();
-	
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+		FontManager.generateFonts();
 		this.setScreen(new TemplateScene(this));
 	}
 

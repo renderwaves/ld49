@@ -2,20 +2,24 @@ package com.renderwaves.ld49.scenes;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.renderwaves.ld49.Game;
+import com.renderwaves.ld49.entity.entities.PlayerEntity;
 import com.renderwaves.ld49.entity.entities.TemplateEntity;
+import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.TextureManager;
+import com.renderwaves.ld49.tilemap.Tilemap;
+import com.renderwaves.ld49.ui.StatusBar;
 
 public class TemplateScene implements Screen {
     Game game;
@@ -27,14 +31,22 @@ public class TemplateScene implements Screen {
 
     TemplateEntity templateEntity;
 
+    public static Tilemap shipTilemap;
+
+    private StatusBar statusBar;
+
+    private ShapeRenderer shapeRenderer;
+
     public TemplateScene(Game game) {
         this.game = game;
         this.batch = game.batch;
+        shapeRenderer = new ShapeRenderer();
 
-        game.entityManager.addEntity(new TemplateEntity(new Vector2(1, 1), new Vector2(1, 1)));
-        game.entityManager.addEntity(new TemplateEntity(new Vector2(100, 1), new Vector2(1, 1)));
-        game.entityManager.addEntity(new TemplateEntity(new Vector2(1, 100), new Vector2(1, 1)));
+        Game.entityManager.addEntity(new PlayerEntity(new Vector2(150, 200), new Vector2(2, 2)));
 
+        shipTilemap = new Tilemap("maps/ship.bmp");
+
+        statusBar = new StatusBar(new Vector2(10, 10), new Vector2(128, 64), 1.0f, new Color(255, 255, 255, 255), new Color(255, 0, 0, 255), TextureManager.energyTexture, new Vector2(2, 2));
     }
 
     @Override
@@ -46,7 +58,7 @@ public class TemplateScene implements Screen {
 
         final TextButton button1 = new TextButton("Button 1", uiSkin);
         button1.setPosition(300, 100);
-        stage.addActor(button1);
+        //stage.addActor(button1);
 
         button1.addListener(new ClickListener() {
             @Override
@@ -57,16 +69,24 @@ public class TemplateScene implements Screen {
         });
 
         sprite = new Sprite(TextureManager.img);
-
-        templateEntity = new TemplateEntity(new Vector2(1, 1), new Vector2(1, 1));
     }
 
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0, 0, 0, 1);
         batch.begin();
+        shipTilemap.render(batch);
         game.entityManager.handleEntities(batch);
+        statusBar.renderSprite(batch);
+        statusBar.status -= Gdx.graphics.getDeltaTime() / 5;
+        if(statusBar.status <= 0) statusBar.status = 1.0f;
+        FontManager.font_arial_20.setColor(Color.WHITE);
+        FontManager.font_arial_20.draw(batch, "Hello World!", 10, 400);
         batch.end();
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        statusBar.renderShape(shapeRenderer);
+        shapeRenderer.end();
 
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
