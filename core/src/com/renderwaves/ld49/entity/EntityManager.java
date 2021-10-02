@@ -14,11 +14,11 @@ public class EntityManager extends ArrayList<Entity> {
 
     public void handleEntities(SpriteBatch batch) {
         for (int i = 0; i < this.size(); i++) {
-            get(i).render(batch);
+            get(i).update();
         }
 
         for (int i = 0; i < this.size(); i++) {
-            get(i).update();
+            get(i).render(batch);
         }
     }
 

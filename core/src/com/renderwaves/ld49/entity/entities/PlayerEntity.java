@@ -84,6 +84,7 @@ public class PlayerEntity extends TexturedEntity {
 
     private Generator generator;
     private Spacesuit spacesuit;
+
     private void collision() {
         if(generator == null && spacesuit == null) {
             for(int i = 0; i < entityManager.size(); i++) {

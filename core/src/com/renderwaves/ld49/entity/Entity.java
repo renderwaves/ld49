@@ -5,10 +5,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.renderwaves.ld49.Game;
+import com.renderwaves.ld49.events.GameEvent;
+import com.renderwaves.ld49.events.GameEventSystem;
 
 public class Entity {
+
     public Vector2 position, scale;
     public int uniqueID;
+
+    private GameEventSystem entityEventSystem = new GameEventSystem();
 
     public Rectangle rectangle;
 
@@ -26,10 +31,23 @@ public class Entity {
         rectangle = new Rectangle(position.x, position.y, scale.x, scale.y);
     }
 
-    public void render(SpriteBatch spriteBatch) {}
+    public Entity(Vector2 position, Vector2 scale, GameEvent event) {
+        if (event != null) entityEventSystem.addEvent(event);
+        this.position = position;
+        this.scale = scale;
+    }
+
+    public void addEvent(GameEvent event) {
+        if (event == null) return;
+        this.entityEventSystem.addEvent(event);
+    }
+
+    public void render(SpriteBatch spriteBatch) {  }
+
     public void update() {
         rectangle.x = position.x;
         rectangle.y = position.y;
+        entityEventSystem.update();
     }
 
     public void destroySelf() {

@@ -16,10 +16,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.renderwaves.ld49.Game;
 import com.renderwaves.ld49.entity.Entity;
 import com.renderwaves.ld49.GlobalShipVariables;
-import com.renderwaves.ld49.entity.entities.Generator;
-import com.renderwaves.ld49.entity.entities.PlayerEntity;
-import com.renderwaves.ld49.entity.entities.Spacesuit;
-import com.renderwaves.ld49.entity.entities.TemplateEntity;
+import com.renderwaves.ld49.entity.entities.*;
 import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.ProgressManager;
 import com.renderwaves.ld49.managers.TextureManager;
@@ -38,18 +35,20 @@ public class TemplateScene implements Screen {
     SpriteBatch batch;
 
     TemplateEntity templateEntity;
+    ShipEntity shipEntity = new ShipEntity();
 
     public static Tilemap shipTilemap;
-
     private StatusBar statusBar;
-
     private ShapeRenderer shapeRenderer;
-
     private ProgressManager progressManager;
 
+    /*
+     */
     public TemplateScene(Game game) {
         this.game = game;
         this.batch = game.batch;
+
+        progressManager = new ProgressManager(50.0f, new Sprite(TextureManager.shipIndicator));
         shapeRenderer = new ShapeRenderer();
 
         Game.entityManager.addEntity(new PlayerEntity(new Vector2(820, 400), new Vector2(2, 2)));
@@ -70,18 +69,6 @@ public class TemplateScene implements Screen {
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
 
-        final TextButton button1 = new TextButton("Button 1", uiSkin);
-        button1.setPosition(300, 100);
-        //stage.addActor(button1);
-
-        button1.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                button1.setText("CLICKED");
-            }
-        });
-
         sprite = new Sprite(TextureManager.img);
     }
 
@@ -90,11 +77,16 @@ public class TemplateScene implements Screen {
         if(GlobalShipVariables.shipHealth > 1.0f) GlobalShipVariables.shipHealth = 1.0f;
         else if(GlobalShipVariables.shipHealth < 0.0f) GlobalShipVariables.shipHealth = 0.0f;
 
+
+        // update entities
+        shipEntity.update();
+
         ScreenUtils.clear(0, 0, 0, 1);
         batch.begin();
         shipTilemap.render(batch);
         game.entityManager.handleEntities(batch);
         statusBar.renderSprite(batch);
+
         GlobalShipVariables.shipHealth -= Gdx.graphics.getDeltaTime() / 5;
         statusBar.status = GlobalShipVariables.shipHealth;
         progressManager.renderSprites(batch);
