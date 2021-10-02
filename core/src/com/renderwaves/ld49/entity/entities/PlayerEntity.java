@@ -7,30 +7,50 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
+import com.renderwaves.ld49.Game;
+import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.entity.EntityManager;
 import com.renderwaves.ld49.entity.TexturedEntity;
+import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.InputManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.tilemap.Tile;
 
+import static com.renderwaves.ld49.Game.entityManager;
+
 public class PlayerEntity extends TexturedEntity {
     private float movementSpeed = 100.0f;
     private float sprint = 1.0f;
     private Vector2 velocity;
+    private boolean nearGenerator = false;
+    private boolean hasSpacesuit = false;
+    private boolean nearSpacesuit = false;
 
     public PlayerEntity(Vector2 position, Vector2 scale) {
         super(position, scale, TextureManager.playerEntity);
         velocity = new Vector2(0, 0);
+
+        rectangle = new Rectangle(position.x, position.y, texture.getWidth() * scale.x, texture.getHeight() * scale.y);
     }
 
     @Override
     public void render(SpriteBatch spriteBatch) {
         super.render(spriteBatch);
+
+        if(nearGenerator) {
+            FontManager.font_arial_20.draw(spriteBatch, "ADDING FUEL TO GENERATOR", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100);
+            GlobalShipVariables.shipHealth += Gdx.graphics.getDeltaTime() / 2;
+        }
+        else if(nearSpacesuit) {
+            FontManager.font_arial_20.draw(spriteBatch, (hasSpacesuit ? "PUT BACK" : "TAKE") + " SPACESUIT <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100);
+        }
     }
 
-    @Override
-    public void update() {
-        super.update();
+    private void movement() {
+        rectangle.x = position.x;
+        rectangle.y = position.y;
+
         if(Gdx.input.isKeyPressed(InputManager.Sprint.key1) || Gdx.input.isKeyPressed(InputManager.Sprint.key2)) {
             sprint = 2.0f;
         }
@@ -60,6 +80,56 @@ public class PlayerEntity extends TexturedEntity {
 
         velocity.x = 0;
         velocity.y = 0;
+    }
+
+    private Generator generator;
+    private Spacesuit spacesuit;
+    private void collision() {
+        if(generator == null && spacesuit == null) {
+            for(int i = 0; i < entityManager.size(); i++) {
+                if(entityManager.get(i) instanceof Generator) {
+                    generator = (Generator) entityManager.get(i);
+                }
+                else if(entityManager.get(i) instanceof Spacesuit) {
+                    spacesuit = (Spacesuit) entityManager.get(i);
+                }
+            }
+        }
+        else {
+            if(generator.rectangle.overlaps(rectangle)) {
+                nearGenerator = true;
+            }
+            else {
+                nearGenerator = false;
+            }
+
+            if(spacesuit.rectangle.overlaps(rectangle)) {
+                nearSpacesuit = true;
+            }
+            else {
+                nearSpacesuit = false;
+            }
+        }
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        movement();
+        collision();
+
+        if(nearSpacesuit) {
+            if(Gdx.input.isKeyJustPressed(InputManager.TakeSpacesuit.key1)) {
+                hasSpacesuit = !hasSpacesuit;
+                spacesuit.spacesuitTaken = hasSpacesuit;
+                if(hasSpacesuit) {
+                    sprite.setTexture(TextureManager.spacesuitTexture);
+                }
+                else {
+                    sprite.setTexture(TextureManager.playerEntity);
+                }
+            }
+        }
 
         sprint = 1.0f;
     }

@@ -22,9 +22,10 @@ public class EntityManager extends ArrayList<Entity> {
         }
     }
 
-    public void addEntity(Entity entity) {
+    public Entity addEntity(Entity entity) {
         indexOfCreatedEntities++;
         entity.uniqueID = indexOfCreatedEntities;
         add(entity);
+        return entity;
     }
 }

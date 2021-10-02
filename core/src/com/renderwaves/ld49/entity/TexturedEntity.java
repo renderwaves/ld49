@@ -14,6 +14,7 @@ public class TexturedEntity extends Entity {
         this.texture = texture;
         sprite = new Sprite(texture);
         sprite.setScale(scale.x, scale.y);
+        sprite.setPosition(position.x, position.y);
     }
 
     @Override

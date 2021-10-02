@@ -27,6 +27,7 @@ public class StatusBar {
 
     public void renderShape(ShapeRenderer sr) {
         if(status < 0) status = 0;
+        else if(status > 1) status = 1;
 
         sr.setColor(borderColor);
         sr.rect(position.x + sprite.getWidth() * sprite.getScaleX(), position.y, 128, 32);

@@ -9,7 +9,9 @@ public enum InputManager {
     MoveLeft(Input.Keys.A, Input.Keys.LEFT, "Move Left"),
     MoveRight(Input.Keys.D, Input.Keys.RIGHT, "Move Right"),
 
-    Sprint(Input.Keys.SHIFT_LEFT, Input.Keys.R, "Sprint");
+    Sprint(Input.Keys.SHIFT_LEFT, Input.Keys.R, "Sprint"),
+
+    TakeSpacesuit(Input.Keys.E, -1, "Take Spacesuit");
 
     public int key1, key2;
     public String name;

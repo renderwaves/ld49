@@ -14,13 +14,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.renderwaves.ld49.Game;
+import com.renderwaves.ld49.entity.Entity;
+import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.entity.entities.Generator;
 import com.renderwaves.ld49.entity.entities.PlayerEntity;
+import com.renderwaves.ld49.entity.entities.Spacesuit;
 import com.renderwaves.ld49.entity.entities.TemplateEntity;
 import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.ProgressManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.tilemap.Tilemap;
 import com.renderwaves.ld49.ui.StatusBar;
+import sun.jvm.hotspot.gc.shared.Space;
 
 import java.awt.*;
 
@@ -48,6 +53,8 @@ public class TemplateScene implements Screen {
         shapeRenderer = new ShapeRenderer();
 
         Game.entityManager.addEntity(new PlayerEntity(new Vector2(820, 400), new Vector2(2, 2)));
+        Game.entityManager.addEntity(new Generator(new Vector2(200, 220), new Vector2(2, 2)));
+        Game.entityManager.addEntity(new Spacesuit(new Vector2(550, 250), new Vector2(2, 2)));
 
         shipTilemap = new Tilemap("maps/ship_new.png");
         Sprite shipIndicator = new Sprite(TextureManager.shipIndicator);
@@ -80,15 +87,16 @@ public class TemplateScene implements Screen {
 
     @Override
     public void render(float delta) {
+        if(GlobalShipVariables.shipHealth > 1.0f) GlobalShipVariables.shipHealth = 1.0f;
+        else if(GlobalShipVariables.shipHealth < 0.0f) GlobalShipVariables.shipHealth = 0.0f;
+
         ScreenUtils.clear(0, 0, 0, 1);
         batch.begin();
         shipTilemap.render(batch);
         game.entityManager.handleEntities(batch);
         statusBar.renderSprite(batch);
-        statusBar.status -= Gdx.graphics.getDeltaTime() / 5;
-        if(statusBar.status <= 0) statusBar.status = 1.0f;
-        FontManager.font_arial_20.setColor(Color.WHITE);
-        FontManager.font_arial_20.draw(batch, "Hello World!", 10, 400);
+        GlobalShipVariables.shipHealth -= Gdx.graphics.getDeltaTime() / 5;
+        statusBar.status = GlobalShipVariables.shipHealth;
         progressManager.renderSprites(batch);
         if(progressManager.getProgress() >= 1.0f) progressManager.setProgress(0.0f);
         progressManager.setProgress(progressManager.getProgress() + delta / 5);
