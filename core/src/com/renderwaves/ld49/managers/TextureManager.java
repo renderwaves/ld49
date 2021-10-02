@@ -11,6 +11,9 @@ public class TextureManager {
     public static Texture playerEntity = new Texture("textures/entities/player.png");
     public static Texture energyTexture = new Texture("textures/ui/energy.png");
     public static Texture generatorTexture = new Texture("textures/entities/generator.png");
+    public static Texture lifeSupportTexture = new Texture("textures/entities/life_support.png");
+    public static Texture medBay0Texture = new Texture("textures/entities/medbay_0.png");
+    public static Texture medBay1Texture = new Texture("textures/entities/medbay_1.png");
     public static Texture reactorTexture = new Texture("textures/entities/reactor.png");
     public static Texture spacesuitTexture = new Texture("textures/entities/spacesuit.png");
     public static Texture shipIndicator = new Texture("textures/ui/ship_indicator.png");

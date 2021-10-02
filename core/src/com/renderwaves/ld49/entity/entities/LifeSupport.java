@@ -7,9 +7,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.renderwaves.ld49.entity.TexturedEntity;
 import com.renderwaves.ld49.managers.TextureManager;
 
-public class Generator extends TexturedEntity {
-    public Generator(Vector2 position, Vector2 scale) {
-        super(position, scale, TextureManager.reactorTexture);
+public class LifeSupport extends TexturedEntity {
+    public LifeSupport(Vector2 position, Vector2 scale) {
+        super(position, scale, TextureManager.lifeSupportTexture);
         rectangle = new Rectangle(position.x, position.y, texture.getWidth() * scale.x * 2, texture.getHeight() * scale.y);
     }
 

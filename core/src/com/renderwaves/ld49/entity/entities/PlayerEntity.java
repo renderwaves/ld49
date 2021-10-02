@@ -25,6 +25,8 @@ public class PlayerEntity extends TexturedEntity {
     private float sprint = 1.0f;
     private Vector2 velocity;
     private boolean nearGenerator = false;
+    private boolean nearLifeSupport = false;
+    private boolean nearMedBay = false;
     private boolean hasSpacesuit = false;
     private boolean nearSpacesuit = false;
 
@@ -85,6 +87,8 @@ public class PlayerEntity extends TexturedEntity {
 
     private Generator generator;
     private Spacesuit spacesuit;
+    private LifeSupport lifeSupport;
+    private MedBay medBay;
 
     private void collision() {
         if(generator == null && spacesuit == null) {
@@ -95,6 +99,12 @@ public class PlayerEntity extends TexturedEntity {
                 else if(entityManager.get(i) instanceof Spacesuit) {
                     spacesuit = (Spacesuit) entityManager.get(i);
                 }
+                else if(entityManager.get(i) instanceof  LifeSupport){
+                    lifeSupport = (LifeSupport) entityManager.get(i);
+                 }
+                else if(entityManager.get(i) instanceof  MedBay){
+                    medBay = (MedBay) entityManager.get(i);
+                 }
             }
         }
         else {
@@ -110,6 +120,20 @@ public class PlayerEntity extends TexturedEntity {
             }
             else {
                 nearSpacesuit = false;
+            }
+
+            if(lifeSupport.rectangle.overlaps(rectangle)){
+                nearLifeSupport = true;
+            }
+            else{
+                nearLifeSupport = false;
+            }
+
+            if(medBay.rectangle.overlaps(rectangle)){
+                nearMedBay = true;
+            }
+            else{
+                nearMedBay = false;
             }
         }
     }
