@@ -17,9 +17,12 @@ import com.renderwaves.ld49.Game;
 import com.renderwaves.ld49.entity.entities.PlayerEntity;
 import com.renderwaves.ld49.entity.entities.TemplateEntity;
 import com.renderwaves.ld49.managers.FontManager;
+import com.renderwaves.ld49.managers.ProgressManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.tilemap.Tilemap;
 import com.renderwaves.ld49.ui.StatusBar;
+
+import java.awt.*;
 
 public class TemplateScene implements Screen {
     Game game;
@@ -37,14 +40,18 @@ public class TemplateScene implements Screen {
 
     private ShapeRenderer shapeRenderer;
 
+    private ProgressManager progressManager;
+
     public TemplateScene(Game game) {
         this.game = game;
         this.batch = game.batch;
         shapeRenderer = new ShapeRenderer();
 
-        Game.entityManager.addEntity(new PlayerEntity(new Vector2(150, 200), new Vector2(2, 2)));
+        Game.entityManager.addEntity(new PlayerEntity(new Vector2(820, 400), new Vector2(2, 2)));
 
-        shipTilemap = new Tilemap("maps/ship.bmp");
+        shipTilemap = new Tilemap("maps/ship_new.png");
+        Sprite shipIndicator = new Sprite(TextureManager.shipIndicator);
+        progressManager = new ProgressManager(50.0f, shipIndicator);
 
         statusBar = new StatusBar(new Vector2(10, 10), new Vector2(128, 64), 1.0f, new Color(255, 255, 255, 255), new Color(255, 0, 0, 255), TextureManager.energyTexture, new Vector2(2, 2));
     }
@@ -82,11 +89,20 @@ public class TemplateScene implements Screen {
         if(statusBar.status <= 0) statusBar.status = 1.0f;
         FontManager.font_arial_20.setColor(Color.WHITE);
         FontManager.font_arial_20.draw(batch, "Hello World!", 10, 400);
+        progressManager.renderSprites(batch);
+        if(progressManager.getProgress() >= 1.0f) progressManager.setProgress(0.0f);
+        progressManager.setProgress(progressManager.getProgress() + delta / 5);
         batch.end();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         statusBar.renderShape(shapeRenderer);
+        progressManager.renderShapes(shapeRenderer);
         shapeRenderer.end();
+
+        // overlay fonts
+        batch.begin();
+        progressManager.renderFonts(FontManager.font_droidBb_18, batch);
+        batch.end();
 
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();

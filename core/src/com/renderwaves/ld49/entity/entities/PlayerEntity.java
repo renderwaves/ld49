@@ -49,7 +49,8 @@ public class PlayerEntity extends TexturedEntity {
         }
 
         Vector2 playerPositionOnTilemap = TemplateScene.shipTilemap.globalPositionToTilemapPosition(position.x+8 + velocity.x, position.y-4 + velocity.y);
-        if(TemplateScene.shipTilemap.getTileByPosition((int)playerPositionOnTilemap.x, (int)playerPositionOnTilemap.y).tileID == Tile.Air.tileID) {
+        int tileID = TemplateScene.shipTilemap.getTileByPosition((int)playerPositionOnTilemap.x, (int)playerPositionOnTilemap.y).tileID;
+        if(tileID == Tile.Air.tileID|| tileID == Tile.WallTile.tileID) {
             velocity.x = 0;
             velocity.y = 0;
         }

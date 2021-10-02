@@ -43,11 +43,42 @@ public class Tilemap {
         for(int i = 0; i < pixmap.getHeight(); i++) {
             for(int j = 0; j < pixmap.getWidth(); j++) {
                 Color c = new Color(pixmap.getPixel(j, i));
+                if(c.toString().equalsIgnoreCase( "0026FFFF")) {
+                    System.out.println(c.g);
+                }
+
                 if(c.equals(Tile.Air.color)) {
                     map[i * texture.getWidth() + j] = Tile.Air;
                 }
+                else if(c.toIntBits() == Tile.DoorTile.color.toIntBits()){
+                    map[i * texture.getWidth() + j] = Tile.DoorTile;
+                }
                 else if(c.equals(Tile.GroundTile.color)) {
                     map[i * texture.getWidth() + j] = Tile.GroundTile;
+                }
+                else if(c.equals(Tile.WallTile.color)) {
+                    map[i * texture.getWidth() + j] = Tile.WallTile;
+                }
+                else if(c.equals(Tile.ReactorTile.color)) {
+                    map[i * texture.getWidth() + j] = Tile.ReactorTile;
+                }
+                else if(c.equals(Tile.LifeSupportTile.color)) {
+                    map[i * texture.getWidth() + j] = Tile.LifeSupportTile;
+                }
+                else if(c.equals(Tile.EngineTile.color)) {
+                    map[i * texture.getWidth() + j] = Tile.EngineTile;
+                }
+                else if(c.equals(Tile.NavTile.color)) {
+                    map[i * texture.getWidth() + j] = Tile.NavTile;
+                }
+                else if(c.equals(Tile.CommsTile.color)) {
+                    map[i * texture.getWidth() + j] = Tile.CommsTile;
+                }
+                else if(c.equals(Tile.MedicTile.color)) {
+                    map[i * texture.getWidth() + j] = Tile.MedicTile;
+                }
+                else if(c.equals(Tile.SuitTile.color)) {
+                    map[i * texture.getWidth() + j] = Tile.SuitTile;
                 }
             }
         }

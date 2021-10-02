@@ -21,6 +21,7 @@ import com.renderwaves.ld49.entity.EntityManager;
 import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.InputManager;
 import com.renderwaves.ld49.managers.TextureManager;
+
 import com.renderwaves.ld49.scenes.TemplateScene;
 
 public class Game extends com.badlogic.gdx.Game {
