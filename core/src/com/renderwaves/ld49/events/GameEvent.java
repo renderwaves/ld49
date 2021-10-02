@@ -10,7 +10,8 @@ public abstract class GameEvent {
     protected Integer uniqueId;
     private boolean isComplete;
 
-    protected Integer progress;
+    protected Integer progressI;
+    protected float progressF;
 
     public boolean isComplete() { return this.isComplete; }
     public void setComplete(boolean s) { this.isComplete = s; }

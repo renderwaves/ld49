@@ -10,7 +10,7 @@ public class NavigationEvent extends GameEvent {
 
     @Override
     public void onStart() {
-        this.progress = 0;
+        this.progressI = 0;
         System.out.println(String.format("%s is Active!", this.info(), this.eventName));
     }
 

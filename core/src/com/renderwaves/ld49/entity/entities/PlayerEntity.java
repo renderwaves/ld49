@@ -80,7 +80,7 @@ public class PlayerEntity extends TexturedEntity {
                 float distance = (float)Math.sqrt(Math.pow(instance.x - pPosition.x, 2) + Math.pow(instance.y - pPosition.y, 2));
 
                 if(distance <= 2) {
-                    System.out.println(pPosition.y - instance.y);
+                    //System.out.println(pPosition.y - instance.y);
                     FontManager.font_droidBb_18.draw(spriteBatch, "OPEN DOOR USING <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">", Gdx.graphics.getWidth() / 2 - "OPEN DOOR USING <E>".length() * 7, 100);
                     if(useKeyPressed) {
                         TemplateScene.shipTilemap.setTile(x, y, Tile.DoorTileOpened);
