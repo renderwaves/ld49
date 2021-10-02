@@ -6,13 +6,18 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.renderwaves.ld49.scenes.TemplateScene;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
+
+import static com.renderwaves.ld49.managers.TextureManager.doorTile;
 
 public class Tilemap {
     public static final int TILE_SIZE = 32;
@@ -21,6 +26,21 @@ public class Tilemap {
 
     private int width, height;
     public Tile map[];
+
+    public class DoorInstance {
+        public float timer;
+        public int x, y;
+        public boolean closed;
+
+        public DoorInstance(float timer, int x, int y, boolean closed) {
+            this.timer = timer;
+            this.x = x;
+            this.y = y;
+            this.closed = closed;
+        }
+    }
+
+    public ArrayList<DoorInstance> doorHandler = new ArrayList<DoorInstance>();
 
     public Tilemap(int width, int height, Tile map[]) {
         this.width = width;
@@ -50,8 +70,9 @@ public class Tilemap {
                 if(c.equals(Tile.Air.color)) {
                     map[i * texture.getWidth() + j] = Tile.Air;
                 }
-                else if(c.toIntBits() == Tile.DoorTile.color.toIntBits()){
+                else if(c.equals(Tile.DoorTile.color)){
                     map[i * texture.getWidth() + j] = Tile.DoorTile;
+                    doorHandler.add(new DoorInstance(5.0f, j, i, true));
                 }
                 else if(c.equals(Tile.GroundTile.color)) {
                     map[i * texture.getWidth() + j] = Tile.GroundTile;
@@ -99,6 +120,13 @@ public class Tilemap {
         return new Vector2((float)processedX, (float)processedY);
     }
 
+    public Vector2 tilemapPositionToGlobalPosition(float x, float y) {
+        double processedX = (x+offset.x) * TILE_SIZE;
+        double processedY = (y+offset.y) * TILE_SIZE;
+
+        return new Vector2((float)processedX, (float)processedY);
+    }
+
     public void render(SpriteBatch batch) {
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
@@ -107,6 +135,19 @@ public class Tilemap {
                 }
             }
         }
+
+        for(int i = 0; i < doorHandler.size(); i++) {
+            doorHandler.get(i).timer -= Gdx.graphics.getDeltaTime();
+            if(doorHandler.get(i).timer <= 0) {
+                setTile(doorHandler.get(i).x, doorHandler.get(i).y, Tile.DoorTile);
+                doorHandler.get(i).timer = 5.0f;
+                doorHandler.get(i).closed = true;
+            }
+        }
+    }
+
+    public void setTile(int x, int y, Tile tile) {
+        map[y * width + x] = tile;
     }
 
     public int getWidth() {

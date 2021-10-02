@@ -12,6 +12,10 @@ import com.renderwaves.ld49.managers.InputManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.tilemap.Tile;
+import com.renderwaves.ld49.tilemap.Tilemap;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.renderwaves.ld49.Game.entityManager;
 
@@ -62,6 +66,30 @@ public class PlayerEntity extends TexturedEntity {
         else if(nearFireExtanguisher){
             FontManager.font_droidBb_20.draw(spriteBatch, (hasFireExtinguisher ? "PUT DOWN" : "TAKE") + " FIRE EXTINGUISHER <" + Input.Keys.toString(InputManager.TakeFireExtinguisher.key1) + ">", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100 );
         }
+
+        boolean useKeyPressed = Gdx.input.isKeyJustPressed(Input.Keys.E);
+
+        for(int i = 0; i < TemplateScene.shipTilemap.doorHandler.size(); i++) {
+            Tilemap.DoorInstance instance = TemplateScene.shipTilemap.doorHandler.get(i);
+            if(instance.closed) {
+                int x = instance.x;
+                int y = instance.y;
+
+                Vector2 pPosition = TemplateScene.shipTilemap.globalPositionToTilemapPosition(position.x, position.y);
+
+                float distance = (float)Math.sqrt(Math.pow(instance.x - pPosition.x, 2) + Math.pow(instance.y - pPosition.y, 2));
+
+                if(distance <= 2) {
+                    System.out.println(pPosition.y - instance.y);
+                    FontManager.font_droidBb_18.draw(spriteBatch, "OPEN DOOR USING <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">", Gdx.graphics.getWidth() / 2 - "OPEN DOOR USING <E>".length() * 7, 100);
+                    if(useKeyPressed) {
+                        TemplateScene.shipTilemap.setTile(x, y, Tile.DoorTileOpened);
+                        instance.closed = false;
+                        instance.timer = 5.0f;
+                    }
+                }
+            }
+        }
     }
 
     private void movement() {
@@ -86,8 +114,8 @@ public class PlayerEntity extends TexturedEntity {
         }
 
         Vector2 playerPositionOnTilemap = TemplateScene.shipTilemap.globalPositionToTilemapPosition(position.x+8 + velocity.x, position.y-4 + velocity.y);
-        int tileID = TemplateScene.shipTilemap.getTileByPosition((int)playerPositionOnTilemap.x, (int)playerPositionOnTilemap.y).tileID;
-        if(tileID == Tile.Air.tileID|| tileID == Tile.WallTile.tileID) {
+        boolean collidable = TemplateScene.shipTilemap.getTileByPosition((int)playerPositionOnTilemap.x, (int)playerPositionOnTilemap.y).collidable;
+        if(collidable) {
             velocity.x = 0;
             velocity.y = 0;
         }

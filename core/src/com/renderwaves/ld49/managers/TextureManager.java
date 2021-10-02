@@ -17,6 +17,7 @@ public class TextureManager {
     public static Texture reactorTexture = new Texture("textures/entities/reactor.png");
     public static Texture spacesuitTexture = new Texture("textures/entities/spacesuit.png");
     public static Texture shipIndicator = new Texture("textures/ui/ship_indicator.png");
+    public static Texture closedDoorTile = new Texture("textures/tiles/doorTileClosed.png");
     public static Texture fireExtinguisher = new Texture("textures/entities/fire_extinguisher.png");
 
     public static void disposeAllTextures() {
@@ -35,5 +36,6 @@ public class TextureManager {
         doorTile.dispose();
         wallTile.dispose();
         fireExtinguisher.dispose();
+        closedDoorTile.dispose();
     }
 }
