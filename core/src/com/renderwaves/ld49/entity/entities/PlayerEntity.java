@@ -25,8 +25,11 @@ public class PlayerEntity extends TexturedEntity {
     private boolean nearGenerator = false;
     private boolean nearLifeSupport = false;
     private boolean nearMedBay = false;
-    private boolean hasSpacesuit = false;
     private boolean nearSpacesuit = false;
+    private boolean nearFireExtanguisher = false;
+
+    private boolean hasSpacesuit = false;
+    private boolean hasFireExtinguisher = false;
 
     /*
      */
@@ -51,10 +54,13 @@ public class PlayerEntity extends TexturedEntity {
         }
         else if(nearMedBay) {
             FontManager.font_droidBb_20.draw(spriteBatch, "HEALING", Gdx.graphics.getWidth() / 2 - "HEALING".length() * 7, 100);
-            GlobalShipVariables.shipHealth += Gdx.graphics.getDeltaTime() / 2;
+            //GlobalShipVariables.shipHealth += Gdx.graphics.getDeltaTime() / 2;
         }
         else if(nearSpacesuit) {
             FontManager.font_droidBb_20.draw(spriteBatch, (hasSpacesuit ? "PUT BACK" : "TAKE") + " SPACESUIT <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100);
+        }
+        else if(nearFireExtanguisher){
+            FontManager.font_droidBb_20.draw(spriteBatch, (hasFireExtinguisher ? "PUT DOWN" : "TAKE") + " FIRE EXTINGUISHER <" + Input.Keys.toString(InputManager.TakeFireExtinguisher.key1) + ">", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100 );
         }
     }
 
@@ -97,6 +103,7 @@ public class PlayerEntity extends TexturedEntity {
     private Spacesuit spacesuit;
     private LifeSupport lifeSupport;
     private MedBay medBay;
+    private FireExtinguisher fireExtinguisher;
 
     private void collision() {
         if(generator == null && spacesuit == null) {
@@ -113,6 +120,9 @@ public class PlayerEntity extends TexturedEntity {
                 else if(entityManager.get(i) instanceof  MedBay){
                     medBay = (MedBay) entityManager.get(i);
                  }
+                else if(entityManager.get(i) instanceof  FireExtinguisher){
+                    fireExtinguisher = (FireExtinguisher) entityManager.get(i);
+                }
             }
         }
         else {
@@ -143,6 +153,12 @@ public class PlayerEntity extends TexturedEntity {
             else{
                 nearMedBay = false;
             }
+            if(fireExtinguisher.rectangle.overlaps((rectangle))){
+                nearFireExtanguisher = true;
+            }
+            else {
+                nearFireExtanguisher = false;
+            }
         }
     }
 
@@ -164,6 +180,12 @@ public class PlayerEntity extends TexturedEntity {
                 }
             }
         }
+        if(nearFireExtanguisher){
+            if(Gdx.input.isKeyJustPressed(InputManager.TakeFireExtinguisher.key1)){
+                hasFireExtinguisher = !hasFireExtinguisher;
+            }
+        }
+        if(hasFireExtinguisher) fireExtinguisher.setPosition(this.position.x + 10, this.position.y);
 
         sprint = 1.0f;
     }

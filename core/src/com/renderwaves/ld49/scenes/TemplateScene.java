@@ -56,11 +56,12 @@ public class TemplateScene implements Screen {
         progressManager = new ProgressManager(50.0f, new Sprite(TextureManager.shipIndicator));
         shapeRenderer = new ShapeRenderer();
 
-        Game.entityManager.addEntity(new PlayerEntity(new Vector2(820, 400), new Vector2(2, 2)));
         Game.entityManager.addEntity(new Generator(new Vector2(440, 430), new Vector2(4, 4)));
         Game.entityManager.addEntity(new LifeSupport(new Vector2(232, 420), new Vector2(2, 2)));
         Game.entityManager.addEntity(new MedBay(new Vector2(512, 244), new Vector2(1, 1)));
         Game.entityManager.addEntity(new Spacesuit(new Vector2(710, 250), new Vector2(2, 2)));
+        Game.entityManager.addEntity(new PlayerEntity(new Vector2(820, 400), new Vector2(2, 2)));
+        Game.entityManager.addEntity(new FireExtinguisher(new Vector2(450, 260), new Vector2(1.5f, 1.5f)));
 
         shipTilemap = new Tilemap("maps/ship_new.png");
         Sprite shipIndicator = new Sprite(TextureManager.shipIndicator);

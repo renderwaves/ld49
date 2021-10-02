@@ -33,4 +33,9 @@ public class TexturedEntity extends Entity {
         this.scale = scale;
         sprite.setScale(scale.x, scale.y);
     }
+
+    public void setPosition(float x, float y){
+        this.position = new Vector2(x, y);
+        sprite.setPosition(this.position.x, this.position.y);
+    }
 }
