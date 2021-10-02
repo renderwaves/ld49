@@ -21,8 +21,8 @@ public abstract class GameEvent {
 
     public String getName() { return eventName; }
 
-    public void update() {
-        onUpdate();
+    public void update(float timer) {
+        onUpdate(timer);
     }
 
     public void render() {
@@ -41,7 +41,7 @@ public abstract class GameEvent {
      */
     public abstract void onStart();
     public abstract void onEnd();
-    public abstract void onUpdate();
+    public abstract void onUpdate(float timer);
     public abstract void onRender();
     public abstract void onRender(SpriteBatch batch);
 

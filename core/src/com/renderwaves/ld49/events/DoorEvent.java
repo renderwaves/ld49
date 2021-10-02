@@ -22,7 +22,7 @@ public class DoorEvent extends GameEvent {
     }
 
     @Override
-    public void onUpdate() {
+    public void onUpdate(float timer) {
 
     }
 

@@ -46,11 +46,11 @@ public class GameEventSystem {
 
     /* deal with events
      */
-    public void update() {
+    public void update(float timer) {
         if (events.size() <= 0) return;
 
         for (GameEvent event: events) {
-            event.update();
+            event.update(timer);
         }
 
         // check for complete events

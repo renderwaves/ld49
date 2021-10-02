@@ -50,7 +50,9 @@ public class TemplateScene implements Screen {
     public TemplateScene(Game game) {
         this.game = game;
         this.gameEventSystem = new GameEventSystem();
+        gameEventSystem.addEvent(new GeneratorEvent());
         gameEventSystem.addEvent(new FireEvent());
+
         this.batch = game.batch;
 
         progressManager = new ProgressManager(50.0f, new Sprite(TextureManager.shipIndicator));
@@ -86,13 +88,10 @@ public class TemplateScene implements Screen {
     /*
      */
     public void update(float delta) {
-
-        if(GlobalShipVariables.shipHealth > 1.0f) GlobalShipVariables.shipHealth = 1.0f;
-        else if(GlobalShipVariables.shipHealth < 0.0f) GlobalShipVariables.shipHealth = 0.0f;
-
         int min = -16;
         int max = 16;
         int gameState = (int)(Math.random()*(max-min+1)+min);
+
         switch(gameState) {
             case 0: gameEventSystem.addEvent(new CommsEvent()); break; // comms failure
             case 1: gameEventSystem.addEvent(new LifesupportEvent()); break; // lifesupport, oxygen failure (space suit)
@@ -120,19 +119,17 @@ public class TemplateScene implements Screen {
                 update(delta);
         }
 
-        gameEventSystem.update();
+        gameEventSystem.update(ingameTime);
 
         ScreenUtils.clear(0, 0, 0, 1);
         batch.begin();
-        shipTilemap.render(batch);
-        game.entityManager.handleEntities(batch);
+            shipTilemap.render(batch);
+            game.entityManager.handleEntities(batch);
+            gameEventSystem.render(batch);
 
-        GlobalShipVariables.shipHealth -= Gdx.graphics.getDeltaTime() / 5;
-        statusBar.status = GlobalShipVariables.shipHealth;
-        progressManager.renderSprites(batch);
-        if(progressManager.getProgress() >= 1.0f) progressManager.setProgress(0.0f);
-        progressManager.setProgress(progressManager.getProgress() + delta / 5);
-        gameEventSystem.render(batch);
+            progressManager.renderSprites(batch);
+            if(progressManager.getProgress() >= 1.0f) progressManager.setProgress(0.0f);
+            progressManager.setProgress(progressManager.getProgress() + delta / 5);
         batch.end();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);

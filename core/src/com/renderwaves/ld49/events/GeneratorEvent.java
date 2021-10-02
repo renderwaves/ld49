@@ -30,8 +30,8 @@ public class GeneratorEvent extends GameEvent {
 
 
     @Override
-    public void onUpdate() {
-        if(GlobalShipVariables.shipHealth > 1.0f) GlobalShipVariables.shipHealth = 1.0f;
+    public void onUpdate(float timer) {
+        if (GlobalShipVariables.shipHealth > 1.0f) GlobalShipVariables.shipHealth = 1.0f;
         else if(GlobalShipVariables.shipHealth < 0.0f) GlobalShipVariables.shipHealth = 0.0f;
 
         GlobalShipVariables.shipHealth -= Gdx.graphics.getDeltaTime() / 5;
