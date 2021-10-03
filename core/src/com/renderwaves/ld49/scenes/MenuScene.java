@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -17,6 +19,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import com.renderwaves.ld49.managers.FontManager;
 
 import java.awt.*;
@@ -26,10 +30,19 @@ public class MenuScene implements Screen {
     private Table table;
     private Table creditsTable;
 
+    private Array<Sprite> video;
+    private TextureAtlas videoAtlas;
+    private Sprite vidCurSprite;
+    private int vidCurFrame = 0;
+
     Game game;
+
+    private SpriteBatch spriteBatch;
 
     public MenuScene(Game game){
         this.game = game;
+        spriteBatch = new SpriteBatch();
+
         Skin uiSkin = new Skin();
         uiSkin.add("default-font", FontManager.font_droidBb_20);
 
@@ -45,11 +58,19 @@ public class MenuScene implements Screen {
         stage.addActor(table);
         //table.setDebug(true);
 
+        Pixmap pixmapName = new Pixmap(1,1,Pixmap.Format.RGBA8888);
+        pixmapName.setColor(1,0, 0.5f, 1.0f);
+        pixmapName.fill();
+        TextureRegionDrawable backgroundName = new TextureRegionDrawable(new Texture(pixmapName));
+
         Label.LabelStyle gameNameStyle = new Label.LabelStyle();
         gameNameStyle.font = FontManager.font_droidBb_40;
         gameNameStyle.fontColor = new Color(1,1,1,1);
+        gameNameStyle.background = backgroundName;
+
 
         final Label gameName = new Label("PANIC ON THE SHIP", gameNameStyle);
+        gameName.setAlignment(Align.center);
         final TextButton playButton = new TextButton("Play", uiSkin);
         playButton.addListener(new ClickListener() {
             @Override
@@ -75,7 +96,7 @@ public class MenuScene implements Screen {
             }
         });
 
-        table.add(gameName);
+        table.add(gameName).width(300);
         table.row();
         table.add(playButton).spaceTop(20).width(100).height(30);
         table.row();
@@ -99,6 +120,7 @@ public class MenuScene implements Screen {
         //creditsTable.setColor(0.5f,0.5f,0.5f,1);
 
         Label creditsHeader = new Label("Credits", gameNameStyle);
+        creditsHeader.setAlignment(Align.center);
         Label nameRenderwaves = new Label("RenderWaves Team", creditsHeaders);
         Label nameAknavj = new Label("Aknavj (@aknavj)", uiSkin);
         Label nameLeumas = new Label("Leumas__ (@samuelbencak)", uiSkin);
@@ -114,7 +136,7 @@ public class MenuScene implements Screen {
         });
 
         //creditsTable.center();
-        creditsTable.add(creditsHeader);
+        creditsTable.add(creditsHeader).width(200);
         creditsTable.row();
         creditsTable.add(nameRenderwaves).spaceTop(20);
         creditsTable.row();
@@ -128,9 +150,11 @@ public class MenuScene implements Screen {
         creditsTable.row();
         creditsTable.add(closeCredits).width(100).height(30).spaceTop(50);
 
+        videoAtlas = new TextureAtlas(Gdx.files.internal("textures/atlas/mainloop/mainloop.atlas"));
+        video = videoAtlas.createSprites();
     }
 
-    public void callbackStartGame(){
+    public void startGame(){
         this.game.setScreen(new TemplateScene((com.renderwaves.ld49.Game) game));
     }
 
@@ -153,9 +177,41 @@ public class MenuScene implements Screen {
 
     }
 
+    private float time = 0;
+    private boolean toGame = false;
+    private void nextFrame(float delta){
+        time += delta;
+        if(time > 0.1f){
+            vidCurFrame++;
+            time = 0;
+        }
+        if(vidCurFrame<video.size){
+            vidCurSprite = video.get(vidCurFrame);
+        } else {
+            if(toGame) startGame();
+            vidCurFrame = 0;
+        }
+        vidCurSprite.setPosition(Gdx.graphics.getWidth()/2.425f, Gdx.graphics.getHeight()/2.425f);
+        vidCurSprite.setScale(5,5);
+    }
+
+    private void callbackStartGame(){
+        stage.clear();
+        video.clear();
+        videoAtlas.dispose();
+        videoAtlas = new TextureAtlas(Gdx.files.internal("textures/atlas/transition/transitiontogame.atlas"));
+        video = videoAtlas.createSprites();
+        toGame = true;
+    }
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        nextFrame(delta);
+        spriteBatch.begin();
+        vidCurSprite.draw(spriteBatch);
+        spriteBatch.end();
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
     }
@@ -182,5 +238,7 @@ public class MenuScene implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        video.clear();
+        videoAtlas.dispose();
     }
 }
