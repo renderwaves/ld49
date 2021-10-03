@@ -13,6 +13,7 @@ public enum Tile {
     WallTile(2, TextureManager.wallTile, new Color(0,0,0,1), true),
     DoorTile(3, TextureManager.closedDoorTile, new Color(0,0.14901961f,1,1), true),
     DoorTileOpened(3, TextureManager.doorTile, new Color(0,0.14901961f,1,1), false),
+    DoorTileBlocked(3, TextureManager.blockedDoorTile, new Color(0,0.14901961f,1,1), true),
     ReactorTile(4, TextureManager.groundTile, new Color(0.29803925f, 1, 0, 1), false),
     LifeSupportTile(5, TextureManager.groundTile, new Color(1, 0.84705882f, 0, 1), false),
     EngineTile(6, TextureManager.groundTile, new Color(1, 0, 0, 1), false),

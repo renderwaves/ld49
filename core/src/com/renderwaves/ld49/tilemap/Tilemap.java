@@ -33,20 +33,87 @@ public class Tilemap {
 
     public static ArrayList<Fire> fireHandler = new ArrayList<Fire>();
 
-    public class DoorInstance {
-        public float timer;
+    public class DoorPart{
+        //public float timer;
         public int x, y;
         public boolean closed;
+        public boolean blocked;
+        public boolean isNeighbour = false;
 
-        public DoorInstance(float timer, int x, int y, boolean closed) {
-            this.timer = timer;
+        public DoorPart(/*float timer,*/int x, int y, boolean closed, boolean blocked) {
+            //this.timer = timer;
             this.x = x;
             this.y = y;
             this.closed = closed;
         }
     }
 
+    public class DoorInstance {
+        public float timer;
+        public int x, y;
+        public boolean closed;
+        public boolean blocked;
+
+        public ArrayList<DoorPart> doorParts;
+        public DoorInstance(float timer, int x, int y, boolean closed) {
+            doorParts = new ArrayList<DoorPart>();
+            this.timer = timer;
+            this.x = x;
+            this.y = y;
+            this.closed = closed;
+        }
+
+        public void addDoorPart(DoorPart doorPart){
+            doorParts.add(doorPart);
+        }
+
+        public void block(){
+            for (int i = 0; i < doorParts.size();i++){
+                DoorPart d = doorParts.get(i);
+                setTile(d.x, d.y, Tile.DoorTileBlocked);
+                blocked = true;
+                d.blocked = true;
+            }
+        }
+        public void unblock(){
+            for (int i = 0; i < doorParts.size();i++){
+                DoorPart d = doorParts.get(i);
+                setTile(d.x, d.y, Tile.DoorTile);
+                blocked = false;
+                d.blocked = false;
+            }
+        }
+
+        public void open(){
+            for(int i = 0; i < doorParts.size(); i++){
+                DoorPart d = doorParts.get(i);
+                setTile(d.x, d.y, Tile.DoorTileOpened);
+                d.closed = false;
+            }
+        }
+        public void close(){
+            for(int i = 0; i < doorParts.size(); i++){
+                DoorPart d = doorParts.get(i);
+                setTile(d.x, d.y, Tile.DoorTile);
+                d.closed = true;
+            }
+        }
+    }
+
     public ArrayList<DoorInstance> doorHandler = new ArrayList<DoorInstance>();
+    private ArrayList<DoorPart> doorPartHandler = new ArrayList<DoorPart>();
+
+    private DoorPart getDoorPartByPosition(int x, int y){
+        DoorPart d = null;
+        for(int i = 0; i < doorPartHandler.size(); i++){
+            DoorPart find = doorPartHandler.get(i);
+            if(find.x == x && find.y == y) {
+                d = find;
+                return d;
+            }
+        }
+        return d;
+    }
 
     public Tilemap(int width, int height, Tile map[]) {
         this.width = width;
@@ -76,7 +143,7 @@ public class Tilemap {
                 }
                 else if(c.equals(Tile.DoorTile.color)){
                     map[i * texture.getWidth() + j] = Tile.DoorTile;
-                    doorHandler.add(new DoorInstance(5.0f, j, i, true));
+                    doorPartHandler.add(new DoorPart(j, i, true,false));
                 }
                 else if(c.equals(Tile.GroundTile.color)) {
                     map[i * texture.getWidth() + j] = Tile.GroundTile;
@@ -110,6 +177,50 @@ public class Tilemap {
                 }
                 else if(c.equals(Tile.PlayerTile.color)) {
                     map[i * texture.getWidth() + j] = Tile.PlayerTile;
+                }
+            }
+        }
+        for(int i = 0; i < doorPartHandler.size(); i++){
+            DoorPart d = doorPartHandler.get(i);
+
+            Vector2 pos = new Vector2((int)(((float)d.x+1)), (int)(((float)d.y)));
+            Tile t = getTileByPosition((int)pos.x, (int)pos.y);
+            Boolean foundNeighbour = false;
+            int doorTileId = t.tileID;
+            if(doorTileId == Tile.DoorTile.tileID || doorTileId == Tile.DoorTileOpened.tileID) {
+                DoorPart neighbour = getDoorPartByPosition((int)pos.x,(int)pos.y);
+                if(neighbour != null && !d.isNeighbour){
+                    System.out.println("Neighbour door found x+1");
+                    DoorInstance di = new DoorInstance(5.0f, d.x, d.y, true);
+                    di.addDoorPart(d);
+                    neighbour.isNeighbour = true;
+                    di.addDoorPart(neighbour);
+                    doorHandler.add(di);
+                    foundNeighbour = true;
+                }
+            }
+
+            Vector2 pos1 = new Vector2((int)(((float)d.x)), (int)(((float)d.y+1)));
+            Tile t1 = getTileByPosition((int)pos1.x, (int)pos1.y);
+            int doorTileId1 = t1.tileID;
+            if(doorTileId1 == Tile.DoorTile.tileID || doorTileId1 == Tile.DoorTileOpened.tileID) {
+                DoorPart neighbour = getDoorPartByPosition((int)pos1.x,(int)pos1.y);
+                if (neighbour != null && !d.isNeighbour) {
+                    System.out.println("Neighbour door found y+1");
+                    DoorInstance di = new DoorInstance(5.0f, d.x, d.y, true);
+                    di.addDoorPart(d);
+                    neighbour.isNeighbour = true;
+                    di.addDoorPart(neighbour);
+                    doorHandler.add(di);
+                    foundNeighbour = true;
+                }
+            }
+
+            if(!foundNeighbour){
+                DoorInstance di = new DoorInstance(5.0f, d.x, d.y, true);
+                if(!d.isNeighbour){
+                    di.addDoorPart(d);
+                    doorHandler.add(di);
                 }
             }
         }
@@ -192,9 +303,11 @@ public class Tilemap {
         for(int i = 0; i < doorHandler.size(); i++) {
             doorHandler.get(i).timer -= Gdx.graphics.getDeltaTime();
             if(doorHandler.get(i).timer <= 0) {
-                setTile(doorHandler.get(i).x, doorHandler.get(i).y, Tile.DoorTile);
-                doorHandler.get(i).timer = 5.0f;
-                doorHandler.get(i).closed = true;
+                //setTile(doorHandler.get(i).x, doorHandler.get(i).y, Tile.DoorTile);
+                if(!doorHandler.get(i).blocked) {
+                    doorHandler.get(i).timer = 5.0f;
+                    doorHandler.get(i).close();
+                }
             }
         }
 
