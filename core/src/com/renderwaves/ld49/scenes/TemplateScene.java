@@ -16,6 +16,7 @@ import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.entity.entities.*;
 import com.renderwaves.ld49.events.*;
 import com.renderwaves.ld49.managers.FontManager;
+import com.renderwaves.ld49.managers.OxygenManager;
 import com.renderwaves.ld49.managers.ProgressManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.tilemap.Tilemap;
@@ -143,6 +144,7 @@ public class TemplateScene implements Screen {
 
     private Generator generator;
     public static boolean fireEvent = false;
+    public OxygenManager oxygenManager = new OxygenManager();
     @Override
     public void render(float delta) {
         period = (float)(Math.random()*(1.0f-0.01f + 1.0f)+1.0f);
@@ -171,7 +173,7 @@ public class TemplateScene implements Screen {
             progressManager.renderSprites(batch);
             if(progressManager.getProgress() >= 1.0f) progressManager.setProgress(0.0f);
             if(GlobalShipVariables.generatorFuel > 0) {
-                progressManager.setProgress(progressManager.getProgress() + delta / (200 + (1 - GlobalShipVariables.engine1Health)*100 + (1 - GlobalShipVariables.navigationHealth)*100));
+                progressManager.setProgress(progressManager.getProgress() + (delta / ((200 + ((1 - GlobalShipVariables.engine1Health)*250 + (1 - GlobalShipVariables.navigationHealth)*250)))) * GlobalShipVariables.generatorHealth);
             }
             if(progressManager.getProgress() >= 1.0f) {
                 game.setScreen(new YouWonScene(game));
@@ -180,6 +182,8 @@ public class TemplateScene implements Screen {
             for(int i = 0; i < warningLabels.size(); i++) {
                 warningLabels.get(i).render(batch, i);
             }
+
+            oxygenManager.renderSprite(batch);
         batch.end();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -199,6 +203,8 @@ public class TemplateScene implements Screen {
             }
 
             shipTilemap.player.renderShape(shapeRenderer);
+
+            oxygenManager.renderShape(shapeRenderer);
         shapeRenderer.end();
 
         // overlay fonts
@@ -267,6 +273,13 @@ public class TemplateScene implements Screen {
         }
         else if(GlobalShipVariables.communicationsHealth < 0.0f) {
             GlobalShipVariables.communicationsHealth = 0.0f;
+        }
+
+        if(GlobalShipVariables.oxygenLevel > 1.0f) {
+            GlobalShipVariables.oxygenLevel = 1.0f;
+        }
+        else if(GlobalShipVariables.oxygenLevel < 0.0f) {
+            GlobalShipVariables.oxygenLevel = 0.0f;
         }
     }
 

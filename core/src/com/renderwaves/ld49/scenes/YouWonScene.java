@@ -79,6 +79,7 @@ public class YouWonScene implements Screen {
         com.renderwaves.ld49.Game.entityManager.clear();
         PlayerEntity.health = 1.0f;
         GlobalShipVariables.engine1Health = 1.0f;
+        GlobalShipVariables.oxygenLevel = 1.0f;
         GlobalShipVariables.shipHealth = 1.0f;
         GlobalShipVariables.communicationsHealth = 1.0f;
         GlobalShipVariables.navigationHealth = 1.0f;

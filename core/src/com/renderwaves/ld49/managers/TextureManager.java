@@ -27,6 +27,7 @@ public class TextureManager {
     public static Texture dangerNuclear = new Texture("textures/ui/dangernuclear.png");
     public static Texture lifesupporticon = new Texture("textures/ui/lifesupporticon.png");
     public static Texture navigationicon = new Texture("textures/ui/navigationicon.png");
+    public static Texture oxygenIcon = new Texture("textures/ui/oxygenIcon.png");
 
     public static void disposeAllTextures() {
         img.dispose();
@@ -52,5 +53,6 @@ public class TextureManager {
         dangerNuclear.dispose();
         lifesupporticon.dispose();
         navigationicon.dispose();
+        oxygenIcon.dispose();
     }
 }

@@ -79,6 +79,7 @@ public class DeathScene implements Screen {
         TemplateScene.shipTilemap.doorHandler.clear();
         TemplateScene.shipTilemap.fireHandler.clear();
         TemplateScene.getInstance().gameEventSystem.completeAllEvents();
+        GlobalShipVariables.oxygenLevel = 1.0f;
         TemplateScene.warningLabels.clear();
         com.renderwaves.ld49.Game.entityManager.clear();
         PlayerEntity.health = 1.0f;

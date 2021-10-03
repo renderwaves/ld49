@@ -59,6 +59,10 @@ public class PlayerEntity extends TexturedEntity {
     public void render(SpriteBatch spriteBatch) {
         super.render(spriteBatch);
 
+        if(GlobalShipVariables.oxygenLevel <= 0.5f) {
+            health -= (Gdx.graphics.getDeltaTime() * (1 - GlobalShipVariables.oxygenLevel)) / 20;
+        }
+
         healthBar.renderSprite(spriteBatch);
 
         if(nearGenerator) {

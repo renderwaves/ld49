@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import com.renderwaves.ld49.Game;
+import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.entity.Entity;
 import com.renderwaves.ld49.entity.TexturedEntity;
 import com.renderwaves.ld49.managers.TextureManager;
@@ -64,5 +65,7 @@ public class Fire extends TexturedEntity {
             }
             fireSpreadTimer = 0;
         }
+
+        GlobalShipVariables.oxygenLevel -= Gdx.graphics.getDeltaTime() / 100;
     }
 }
