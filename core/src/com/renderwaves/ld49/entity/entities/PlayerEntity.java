@@ -39,7 +39,8 @@ public class PlayerEntity extends TexturedEntity {
     private boolean nearSpacesuit = false;
     private boolean nearFireExtanguisher = false;
     private boolean nearComms = false;
-    private boolean nearEngine = false;
+    private boolean nearEngine1 = false;
+    private boolean nearEngine2 = false;
     private boolean nearNavigation = false;
 
     private boolean hasSpacesuit = false;
@@ -70,9 +71,6 @@ public class PlayerEntity extends TexturedEntity {
         if(GlobalShipVariables.oxygenLevel <= 0.5f) {
             health -= (Gdx.graphics.getDeltaTime() * (1 - GlobalShipVariables.oxygenLevel)) / 20;
         }
-
-        healthBar.renderSprite(spriteBatch);
-
         if(nearGenerator) {
             FontManager.font_droidBb_20.draw(spriteBatch, "PRESS " + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + " TO ADD URANIUM TO REACTOR", Gdx.graphics.getWidth() / 2 - "PRESS E TO ADD URANIUM TO REACTOR".length() * 4, 100);
             GlobalShipVariables.generatorHealth += Gdx.graphics.getDeltaTime() / 2;
@@ -111,6 +109,14 @@ public class PlayerEntity extends TexturedEntity {
                 }
             }
         }
+        else if (nearEngine1) {
+            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE 1", Gdx.graphics.getWidth() / 2 -"REPARING ENGINE 1".length() * 7, 100);
+            GlobalShipVariables.engine1Health += Gdx.graphics.getDeltaTime() / 4;
+        }
+        else if(nearEngine2){
+            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE 2" , Gdx.graphics.getWidth() / 2 -"REPARING ENGINE 2".length() * 7, 100);
+            GlobalShipVariables.engine2Health += Gdx.graphics.getDeltaTime() / 4;
+        }
         else if (nearUranium != null && currentUranium == null) {
             FontManager.font_droidBb_20.draw(spriteBatch, "YOU CAN PICKUP URANIUM USING " + Input.Keys.toString(InputManager.TakeSpacesuit.key1), "YOU CAN PICKUP URANIUM USING <E>".length() * 4, 100);
             if(Gdx.input.isKeyJustPressed(InputManager.TakeSpacesuit.key1)) {
@@ -122,17 +128,9 @@ public class PlayerEntity extends TexturedEntity {
                 currentUranium = null;
             }
         }
-        else if (nearEngine) {
-            if(GlobalShipVariables.engineFailed == 1){
-                FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE 1" , "REPARING ENGINE 1".length() * 7, 100);
-                GlobalShipVariables.engine1Health += Gdx.graphics.getDeltaTime() / 4;
-            }
-            else if(GlobalShipVariables.engineFailed == 2){
-                FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE 2" , "REPARING ENGINE 2".length() * 7, 100);
-                GlobalShipVariables.engine2Health += Gdx.graphics.getDeltaTime() / 4;
-            }
 
-        }
+        healthBar.renderSprite(spriteBatch);
+
         if (touchingFire) {
             if(!hasSpacesuit) health -= Gdx.graphics.getDeltaTime() / 5;
         }
@@ -217,7 +215,7 @@ public class PlayerEntity extends TexturedEntity {
     private MedBay medBay;
     private FireExtinguisher fireExtinguisher;
     private Comms comms;
-    private Engine engine;
+    private ArrayList<Engine> engineList = new ArrayList<Engine>();
     private Navigation navigation;
     public static ArrayList<Uranium> uraniumList = new ArrayList<Uranium>();
 
@@ -248,7 +246,7 @@ public class PlayerEntity extends TexturedEntity {
                     comms = (Comms) entityManager.get(i);
                 }
                 else if(entityManager.get(i) instanceof  Engine){
-                    engine = (Engine) entityManager.get(i);
+                    engineList.add((Engine) entityManager.get(i));
                 }
                 else if(entityManager.get(i) instanceof  Navigation){
                     navigation = (Navigation) entityManager.get(i);
@@ -302,17 +300,23 @@ public class PlayerEntity extends TexturedEntity {
             else {
                 nearComms = false;
             }
-            if(engine.rectangle.overlaps((rectangle))){
-                nearEngine = true;
-            }
-            else {
-                nearEngine = false;
-            }
             if(navigation.rectangle.overlaps((rectangle))){
                 nearNavigation = true;
             }
             else {
                 nearNavigation = false;
+            }
+            if(engineList.get(1).rectangle.overlaps(rectangle)){
+                nearEngine1 = true;
+            }
+            else {
+                nearEngine1 = false;
+            }
+            if(engineList.get(0).rectangle.overlaps(rectangle)){
+                nearEngine2 = true;
+            }
+            else {
+                nearEngine2 = false;
             }
             for(int i = 0; i < uraniumList.size(); i++) {
                 if(uraniumList.get(i).rectangle.overlaps((rectangle))){
