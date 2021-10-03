@@ -21,9 +21,6 @@ import java.util.ArrayList;
 public class GameEventSystem {
 
     private ArrayList<GameEvent> events;
-    private ArrayList<StatusBar> progress_sl;
-    private ArrayList<ProgressManager> progress_manager_sl;
-    private Skin skin;
 
     private final Integer offset_x = 10;
     private final Integer offset_y = 64;
@@ -34,14 +31,8 @@ public class GameEventSystem {
      */
     public GameEventSystem() {
         events = new ArrayList<GameEvent>(0);
-        progress_sl = new ArrayList<StatusBar>(0);
-
         pos_x = 10;
         pos_y = 10;
-    }
-
-    public void setUiSkin(Skin skin) {
-        this.skin = skin;
     }
 
     /* deal with events
@@ -58,28 +49,14 @@ public class GameEventSystem {
     }
 
     public void render(SpriteBatch batch) {
-
-        if (progress_sl.size() < 0) return;
-
         for (GameEvent event: events) {
             event.render(batch);
-        }
-
-
-        // render sliders
-        for (int slider = 0; slider < progress_sl.size(); slider++) {
-            progress_sl.get(slider).renderSprite(batch);
-
-            // prasarna treba to upravit
-            progress_sl.get(slider).status = events.get(slider).progressF;
         }
     }
 
     public void render(ShapeRenderer shape) {
-        if (progress_sl.size() < 0) return;
-
-        for (int slider = 0; slider < progress_sl.size(); slider++) {
-            progress_sl.get(slider).renderShape(shape);
+        for (GameEvent event: events) {
+            event.render(shape);
         }
     }
 
@@ -89,34 +66,27 @@ public class GameEventSystem {
 
     public void addEvent(GameEvent event) {
         events.add(event);
-
-        pos_x = offset_x;
-        final StatusBar statusBar = new StatusBar(
-                new Vector2(pos_x, pos_y),
-                new Vector2(128, 64),
-                1.0f,
-                new Color(255, 255, 255, 255),
-                new Color(255, 0, 0, 255),
-                event.eventIcon,
-                new Vector2(2, 2)
-        );
-
-        if(statusBar.sprite != null)
-            pos_y += offset_y;
-
-        progress_sl.add(statusBar);
+        refreshUiPosition();
     }
 
     public void removeEvent() {
-        //for (GameEvent event : this.events) {
         for (int i = 0; i < events.size(); i++) {
             if (events.get(i).isComplete()) {
                 events.get(i).onEnd();
-
                 events.remove(i);
-                if(progress_sl.get(i).sprite != null)
-                    pos_y -= offset_y;
-                progress_sl.remove(i);
+            }
+        }
+
+        refreshUiPosition();
+    }
+
+    private void refreshUiPosition() {
+        int __pos_x = pos_x;
+        int __pos_y = pos_y;
+        for (int i = 0; i < events.size(); i++) {
+            if (events.get(i).getIcon() != null) {
+                __pos_y += offset_y;
+                events.get(i).overrideUiPosition(__pos_x, __pos_y);
             }
         }
     }

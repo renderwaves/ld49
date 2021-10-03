@@ -103,40 +103,68 @@ public class TemplateScene implements Screen {
 
         switch(gameState) {
             case 0:
-                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
-                    if(gameEventSystem.getEvent(i) instanceof CommsEvent) return;
-                }
-                gameEventSystem.addEvent(new CommsEvent()); break; // comms failure
+            {
+                for (int i = 0; i < gameEventSystem.numEvents(); i++)
+                    if (gameEventSystem.getEvent(i) instanceof CommsEvent)
+                        return;
+                gameEventSystem.addEvent(new CommsEvent());
+                break;
+            }
+            // lifesupport, oxygen failure (space suit)
             case 1:
-                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
-                    if(gameEventSystem.getEvent(i) instanceof LifesupportEvent) return;
-                }
-                gameEventSystem.addEvent(new LifesupportEvent()); break; // lifesupport, oxygen failure (space suit)
-            case 2:
-                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
-                    if(gameEventSystem.getEvent(i) instanceof GeneratorEvent) return;
-                }
-                gameEventSystem.addEvent(new GeneratorEvent()); break; // generator failure
+            {
+                for (int i = 0; i < gameEventSystem.numEvents(); i++)
+                    if (gameEventSystem.getEvent(i) instanceof LifesupportEvent)
+                        return;
+                gameEventSystem.addEvent(new LifesupportEvent());
+                break;
+            }
+            // generator failure
+            case 2: {
+                for (int i = 0; i < gameEventSystem.numEvents(); i++)
+                    if (gameEventSystem.getEvent(i) instanceof GeneratorEvent)
+                        return;
+                gameEventSystem.addEvent(new GeneratorEvent());
+                break;
+            }
+            // navigation failure
             case 3:
-                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
-                    if(gameEventSystem.getEvent(i) instanceof NavigationEvent) return;
-                }
-                gameEventSystem.addEvent(new NavigationEvent()); break; // navigation failure
+            {
+                for (int i = 0; i < gameEventSystem.numEvents(); i++)
+                    if (gameEventSystem.getEvent(i) instanceof NavigationEvent)
+                        return;
+                gameEventSystem.addEvent(new NavigationEvent());
+                break;
+            }
+            // engine failure
             case 4:
-                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
-                    if(gameEventSystem.getEvent(i) instanceof EngineEvent) return;
-                }
-                gameEventSystem.addEvent(new EngineEvent()); break; // engine failure
+            {
+                for (int i = 0; i < gameEventSystem.numEvents(); i++)
+                    if (gameEventSystem.getEvent(i) instanceof EngineEvent)
+                        return;
+                gameEventSystem.addEvent(new EngineEvent());
+                break;
+            }
+            // fire in hull
             case 5:
-                /*for(int i = 0; i < gameEventSystem.numEvents(); i++) {
-                    if(gameEventSystem.getEvent(i) instanceof FireEvent) return;
-                }
-                gameEventSystem.addEvent(new FireEvent());*/ break; // fire in hull
+            {
+                /*
+                for (int i = 0; i < gameEventSystem.numEvents(); i++)
+                    if (gameEventSystem.getEvent(i) instanceof FireEvent)
+                        return;
+                gameEventSystem.addEvent(new FireEvent());
+                break;
+                */
+            }
+            // door failure
             case 6:
-                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
-                    if(gameEventSystem.getEvent(i) instanceof DoorEvent) return;
-                }
-                gameEventSystem.addEvent(new DoorEvent()); break; // door failure
+            {
+                for (int i = 0; i < gameEventSystem.numEvents(); i++)
+                    if (gameEventSystem.getEvent(i) instanceof DoorEvent)
+                        return;
+                gameEventSystem.addEvent(new DoorEvent());
+                break;
+            }
             default:
                 System.out.println("nothing is hapenning");
                 // nothing is hapenning

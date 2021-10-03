@@ -1,34 +1,33 @@
 package com.renderwaves.ld49.events;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.managers.TextureManager;
 
 public class CommsEvent extends GameEvent {
 
+    static final String TAG = "Communication Event";
+
     public CommsEvent()  {
-        this.eventName = "Comms Event";
-        this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
-        this.eventIcon = TextureManager.comms;
-        GlobalShipVariables.communicationsHealth -= 1.0f;
-        onStart();
+        super(TAG, TextureManager.comms);
     }
 
     @Override
     public void onStart() {
-        this.progressI = 0;
-        System.out.println(String.format("%s is Active!", this.info(), this.eventName));
+        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
+        GlobalShipVariables.communicationsHealth -= 1.0f;
+        setProgress(GlobalShipVariables.communicationsHealth);
     }
 
     @Override
     public void onEnd() {
-        System.out.println(String.format("%s is Solved!", this.info(), this.eventName));
+        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
     }
 
     @Override
     public void onUpdate(float timer) {
-        progressF = GlobalShipVariables.communicationsHealth;
-
+        setProgress(GlobalShipVariables.communicationsHealth);
         if(GlobalShipVariables.communicationsHealth >= 1.0f) {
             setComplete(true);
         }

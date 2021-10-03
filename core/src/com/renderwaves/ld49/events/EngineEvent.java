@@ -2,6 +2,7 @@ package com.renderwaves.ld49.events;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.managers.TextureManager;
@@ -12,6 +13,9 @@ import jdk.nashorn.internal.objects.Global;
 public class EngineEvent extends GameEvent {
     private WarningLabel warningLabel;
 
+    static final String TAG = "Engine Failure Event";
+
+    /*
     public EngineEvent()  {
         this.eventName = "Engine Failure Event";
         this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
@@ -19,24 +23,32 @@ public class EngineEvent extends GameEvent {
         eventIcon = TextureManager.engine;
         onStart();
     }
+     */
+
+    public EngineEvent() {
+        super(TAG, TextureManager.engine);
+    }
 
     @Override
     public void onStart() {
-        this.progressI = 0;
-        System.out.println(String.format("%s is Active!", this.info(), this.eventName));
+        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
         warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING ENGINE HAS FAILED!", Color.WHITE, Color.RED, 1);
         TemplateScene.warningLabels.add(warningLabel);
+
+        GlobalShipVariables.engine1Health -= 0.5f;
+        setProgress(GlobalShipVariables.engine1Health);
     }
 
     @Override
     public void onEnd() {
         TemplateScene.warningLabels.remove(warningLabel);
-        System.out.println(String.format("%s is Solved!", this.info(), this.eventName));
+        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
     }
 
     @Override
     public void onUpdate(float timer) {
-        progressF = GlobalShipVariables.engine1Health;
+        //progressF = GlobalShipVariables.engine1Health;
+        setProgress(GlobalShipVariables.engine1Health);
         if(GlobalShipVariables.engine1Health >= 1.0f) setComplete(true);
     }
 

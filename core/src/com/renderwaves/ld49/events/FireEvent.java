@@ -11,17 +11,25 @@ import com.renderwaves.ld49.ui.WarningLabel;
 public class FireEvent extends GameEvent {
     private WarningLabel warningLabel;
 
+    static final String TAG = "Fire Event";
+
+    /*
     public FireEvent() {
         this.eventName = "Fire in Hull Event";
         this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
-        eventIcon = null;
+        eventIcon = TextureManager.fireEvent;
         onStart();
+    }
+     */
+
+    public FireEvent() {
+        super(TAG, TextureManager.fireEvent);
     }
 
     @Override
     public void onStart() {
-        this.progressI = 0;
-        System.out.println(String.format("%s is Active!", this.info(), this.eventName));
+        setProgress(0.0f);
+        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
         warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING FIRE HAS ERUPTED!", Color.WHITE, Color.RED, 1);
         TemplateScene.warningLabels.add(warningLabel);
     }
@@ -30,7 +38,7 @@ public class FireEvent extends GameEvent {
     public void onEnd() {
         TemplateScene.warningLabels.remove(warningLabel);
         TemplateScene.fireEvent = false;
-        System.out.println(String.format("%s is Solved!", this.info(), this.eventName));
+        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
     }
 
     @Override

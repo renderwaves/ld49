@@ -1,24 +1,27 @@
 package com.renderwaves.ld49.events;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.managers.TextureManager;
 
 public class DoorEvent extends GameEvent {
 
+    static final String TAG = "Door Event";
+
     public DoorEvent()  {
-        this.eventName = "Door Event";
-        this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
-        onStart();
+        super(TAG, TextureManager.doorTile);
     }
 
     @Override
     public void onStart() {
-        this.progressI = 0;
-        System.out.println(String.format("%s is Active!", this.info(), this.eventName));
+        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
+        setProgress(1.0f);
     }
 
     @Override
     public void onEnd() {
-        System.out.println(String.format("%s is Solved!", this.info(), this.eventName));
+        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
     }
 
     @Override
