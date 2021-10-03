@@ -125,10 +125,10 @@ public class TemplateScene implements Screen {
                 }
                 gameEventSystem.addEvent(new EngineEvent()); break; // engine failure
             case 5:
-                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
+                /*for(int i = 0; i < gameEventSystem.numEvents(); i++) {
                     if(gameEventSystem.getEvent(i) instanceof FireEvent) return;
                 }
-                gameEventSystem.addEvent(new FireEvent()); break; // fire in hull
+                gameEventSystem.addEvent(new FireEvent());*/ break; // fire in hull
             case 6:
                 for(int i = 0; i < gameEventSystem.numEvents(); i++) {
                     if(gameEventSystem.getEvent(i) instanceof DoorEvent) return;
@@ -142,9 +142,15 @@ public class TemplateScene implements Screen {
     }
 
     private Generator generator;
+    public static boolean fireEvent = false;
     @Override
     public void render(float delta) {
         period = (float)(Math.random()*(1.0f-0.01f + 1.0f)+1.0f);
+
+        if(shipTilemap.fireHandler.size() > 0 && !fireEvent) {
+            gameEventSystem.addEvent(new FireEvent());
+            fireEvent = true;
+        }
 
         ingameTime += Gdx.graphics.getRawDeltaTime();
         if (ingameTime > period) {
@@ -186,6 +192,8 @@ public class TemplateScene implements Screen {
             else {
                 generator.renderShape(shapeRenderer);
             }
+
+            shipTilemap.player.renderShape(shapeRenderer);
         shapeRenderer.end();
 
         // overlay fonts
