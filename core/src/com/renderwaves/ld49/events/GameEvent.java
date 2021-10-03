@@ -1,5 +1,6 @@
 package com.renderwaves.ld49.events;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public abstract class GameEvent {
 
     protected Integer progressI;
     protected float progressF;
+
+    public Texture eventIcon;
 
     public boolean isComplete() { return this.isComplete; }
     public void setComplete(boolean s) { this.isComplete = s; }

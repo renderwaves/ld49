@@ -52,8 +52,9 @@ public class PlayerEntity extends TexturedEntity {
         super.render(spriteBatch);
 
         if(nearGenerator) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "ADDING FUEL TO GENERATOR", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100);
+            FontManager.font_droidBb_20.draw(spriteBatch, "ADDING FUEL TO REACTOR", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO REACTOR".length() * 7, 100);
             GlobalShipVariables.shipHealth += Gdx.graphics.getDeltaTime() / 2;
+            GlobalShipVariables.generatorFuel += Gdx.graphics.getDeltaTime() / 4;
         }
         else if(nearLifeSupport) {
             FontManager.font_droidBb_20.draw(spriteBatch, "REPAIRING LIFE SUPPORT", Gdx.graphics.getWidth() / 2 - "REPAIRING LIFE SUPPORT".length() * 7, 100);
@@ -97,7 +98,8 @@ public class PlayerEntity extends TexturedEntity {
         rectangle.y = position.y;
 
         if(Gdx.input.isKeyPressed(InputManager.Sprint.key1) || Gdx.input.isKeyPressed(InputManager.Sprint.key2)) {
-            sprint = 2.0f;
+            if(!hasSpacesuit && !hasFireExtinguisher)
+                sprint = 2.0f;
         }
 
         if(Gdx.input.isKeyPressed(InputManager.MoveUp.key1) || Gdx.input.isKeyPressed(InputManager.MoveUp.key2)) {

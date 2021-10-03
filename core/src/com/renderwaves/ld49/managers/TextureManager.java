@@ -22,6 +22,9 @@ public class TextureManager {
     public static Texture comms = new Texture("textures/entities/transmitter.png");
     public static Texture engine = new Texture("textures/entities/enginecontrollmodule.png");
     public static Texture navigation = new Texture("textures/entities/navigation.png");
+    public static Texture fireEvent = new Texture("textures/ui/fireEvent.png");
+    public static Texture dangerNuclear = new Texture("textures/ui/dangernuclear.png");
+    public static Texture lifesupporticon = new Texture("textures/ui/lifesupporticon.png");
 
     public static void disposeAllTextures() {
         img.dispose();
@@ -43,5 +46,8 @@ public class TextureManager {
         comms.dispose();
         engine.dispose();
         navigation.dispose();
+        fireEvent.dispose();
+        dangerNuclear.dispose();
+        lifesupporticon.dispose();
     }
 }

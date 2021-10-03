@@ -135,6 +135,7 @@ public class Tilemap {
         return new Vector2((float)processedX, (float)processedY);
     }
 
+    private PlayerEntity player;
     public void generateEntities(){
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
@@ -157,9 +158,6 @@ public class Tilemap {
                     else if(map[i * width + j].tileID == Tile.FireExtinguisherTile.tileID){
                         Game.entityManager.addEntity(new FireExtinguisher(new Vector2(x, y), new Vector2(1.5f, 2.0f)));
                     }
-                    else if(map[i * width + j].tileID == Tile.PlayerTile.tileID){
-                        Game.entityManager.addEntity(new PlayerEntity(new Vector2(x, y), new Vector2(2, 2)));
-                    }
                     else if(map[i * width + j].tileID == Tile.EngineTile.tileID){
                         Game.entityManager.addEntity(new Engine(new Vector2(x+10, y+5), new Vector2(2, 2)));
                     }
@@ -169,9 +167,13 @@ public class Tilemap {
                     else if(map[i * width + j].tileID == Tile.NavTile.tileID){
                         Game.entityManager.addEntity(new Navigation(new Vector2(x+8, y-17), new Vector2(2, 2)));
                     }
+                    else if(map[i * width + j].tileID == Tile.PlayerTile.tileID){
+                        player = new PlayerEntity(new Vector2(x, y), new Vector2(2, 2));
+                    }
                 }
             }
         }
+        Game.entityManager.addEntity(player);
         entitiesGenerated = true;
 
     }

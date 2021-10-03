@@ -90,20 +90,21 @@ public class GameEventSystem {
     public void addEvent(GameEvent event) {
         events.add(event);
 
-        pos_x = offset_x;
-        pos_y += offset_y;
+        if(event.eventIcon != null) {
+            pos_x = offset_x;
+            pos_y += offset_y;
+            final StatusBar statusBar = new StatusBar(
+                    new Vector2(pos_x, pos_y),
+                    new Vector2(128, 64),
+                    1.0f,
+                    new Color(255, 255, 255, 255),
+                    new Color(255, 0, 0, 255),
+                    event.eventIcon,
+                    new Vector2(2, 2)
+            );
 
-        final StatusBar statusBar = new StatusBar(
-                new Vector2(pos_x, pos_y),
-                new Vector2(128, 64),
-                1.0f,
-                new Color(255, 255, 255, 255),
-                new Color(255, 0, 0, 255),
-                TextureManager.energyTexture,
-                new Vector2(2, 2)
-        );
-
-        progress_sl.add(statusBar);
+            progress_sl.add(statusBar);
+        }
     }
 
     public void removeEvent() {
@@ -114,6 +115,7 @@ public class GameEventSystem {
 
                 events.remove(i);
                 progress_sl.remove(i);
+                pos_y -= offset_y;
             }
         }
     }
@@ -123,5 +125,11 @@ public class GameEventSystem {
         GameEvent event = events.get(id);
         if (event == null) return null;
         return event;
+    }
+
+    public void clearAllEvents() {
+        for(int i = 0; i < events.size(); i++) {
+            events.get(i).setComplete(true);
+        }
     }
 }

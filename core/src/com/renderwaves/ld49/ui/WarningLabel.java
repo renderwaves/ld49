@@ -28,27 +28,16 @@ public class WarningLabel {
         timer = 0;
     }
 
-    private float period = 1f;
-
     private boolean switchColors = false;
-    public void render(SpriteBatch spriteBatch) {
+    public void render(SpriteBatch spriteBatch, float offsetY) {
         timer += Gdx.graphics.getRawDeltaTime();
-        if (timer > period) {
-            timer -= period;
+        if (timer > time) {
+            timer -= time;
             if (font != null)
                 event();
         }
-        /*
-        System.out.println(timer);
-        if(timer >= 2) {
-            font.setColor(switchColors ? color2 : color1);
-            switchColors = !switchColors;
-            timer = 0;
-            startTime = System.nanoTime();
-        }
 
-        */
-        if (font != null) font.draw(spriteBatch, this.text, this.x, this.y);
+        if (font != null) font.draw(spriteBatch, this.text, this.x, this.y - (offsetY * 42));
     }
 
     private void event() {

@@ -1,6 +1,7 @@
 package com.renderwaves.ld49.scenes;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -23,13 +24,17 @@ import com.renderwaves.ld49.managers.ProgressManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.tilemap.Tilemap;
 import com.renderwaves.ld49.ui.StatusBar;
+import com.renderwaves.ld49.ui.WarningLabel;
 import sun.jvm.hotspot.gc.shared.Space;
 
 import java.awt.*;
+import java.util.ArrayList;
+
+import static com.renderwaves.ld49.Game.entityManager;
 
 public class TemplateScene implements Screen {
     Game game;
-    GameEventSystem gameEventSystem;
+    public GameEventSystem gameEventSystem;
     Sprite sprite;
 
     Stage stage;
@@ -39,15 +44,24 @@ public class TemplateScene implements Screen {
 
     public static Tilemap shipTilemap;
     private StatusBar statusBar;
-    private ShapeRenderer shapeRenderer;
+    public ShapeRenderer shapeRenderer;
     private ProgressManager progressManager;
+
+    public static ArrayList<WarningLabel> warningLabels = new ArrayList<WarningLabel>();
 
     private float ingameTime = 0f;
     private float period = 0.001f;
 
+    private static TemplateScene instance;
+
+    public static TemplateScene getInstance() {
+        return instance;
+    }
+
     /*
      */
     public TemplateScene(Game game) {
+        instance = this;
         this.game = game;
         this.gameEventSystem = new GameEventSystem();
         gameEventSystem.addEvent(new GeneratorEvent());
@@ -107,6 +121,7 @@ public class TemplateScene implements Screen {
         }
     }
 
+    private Generator generator;
     @Override
     public void render(float delta) {
         period = (float)(Math.random()*(1.0f-0.01f + 1.0f)+1.0f);
@@ -124,18 +139,33 @@ public class TemplateScene implements Screen {
         ScreenUtils.clear(0, 0, 0, 1);
         batch.begin();
             shipTilemap.render(batch);
-            game.entityManager.handleEntities(batch);
+            entityManager.handleEntities(batch);
             gameEventSystem.render(batch);
 
             progressManager.renderSprites(batch);
             if(progressManager.getProgress() >= 1.0f) progressManager.setProgress(0.0f);
             progressManager.setProgress(progressManager.getProgress() + delta / 5);
+
+            for(int i = 0; i < warningLabels.size(); i++) {
+                warningLabels.get(i).render(batch, i);
+            }
         batch.end();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
             gameEventSystem.render(shapeRenderer);
 
             progressManager.renderShapes(shapeRenderer);
+
+            if(generator == null) {
+                for(int i = 0; i < entityManager.size(); i++) {
+                    if(entityManager.get(i) instanceof Generator) {
+                        generator = (Generator) entityManager.get(i);
+                    }
+                }
+            }
+            else {
+                generator.renderShape(shapeRenderer);
+            }
         shapeRenderer.end();
 
         // overlay fonts
@@ -145,6 +175,10 @@ public class TemplateScene implements Screen {
 
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.F11)) {
+            gameEventSystem.clearAllEvents();
+        }
     }
 
     @Override
