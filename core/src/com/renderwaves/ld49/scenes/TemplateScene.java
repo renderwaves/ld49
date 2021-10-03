@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -20,6 +21,7 @@ import com.renderwaves.ld49.managers.OxygenManager;
 import com.renderwaves.ld49.managers.ProgressManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.tilemap.Tilemap;
+import com.renderwaves.ld49.ui.CommunicationMenu;
 import com.renderwaves.ld49.ui.StatusBar;
 import com.renderwaves.ld49.ui.WarningLabel;
 
@@ -55,6 +57,8 @@ public class TemplateScene implements Screen {
         return instance;
     }
 
+    Skin uiSkin;
+
     /*
      */
     public TemplateScene(Game game) {
@@ -82,6 +86,8 @@ public class TemplateScene implements Screen {
         progressManager = new ProgressManager(50.0f, shipIndicator);
 
         statusBar = new StatusBar(new Vector2(10, 10), new Vector2(128, 64), 1.0f, new Color(255, 255, 255, 255), new Color(255, 0, 0, 255), TextureManager.energyTexture, new Vector2(2, 2));
+
+        communicationMenu = new CommunicationMenu();
     }
 
     @Override
@@ -92,6 +98,7 @@ public class TemplateScene implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         sprite = new Sprite(TextureManager.img);
+        stage.addActor(communicationMenu.window);
     }
 
     /*
@@ -175,9 +182,12 @@ public class TemplateScene implements Screen {
     private Generator generator;
     public static boolean fireEvent = false;
     public OxygenManager oxygenManager = new OxygenManager();
+    public static CommunicationMenu communicationMenu;
     @Override
     public void render(float delta) {
         period = (float)(Math.random()*(1.0f-0.01f + 1.0f)+1.0f);
+
+        communicationMenu.update();
 
         shipHealthBar.status = GlobalShipVariables.shipHealth;
 

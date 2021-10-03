@@ -60,9 +60,18 @@ public class EngineEvent extends GameEvent {
     @Override
     public void onUpdate(float timer) {
         //progressF = GlobalShipVariables.engine1Health;
-        setProgress(GlobalShipVariables.engine1Health);
-        if(GlobalShipVariables.engineFailed == 1 && GlobalShipVariables.engine1Health >= 1.0f) setComplete(true);
-        if(GlobalShipVariables.engineFailed == 2 && GlobalShipVariables.engine2Health >= 1.0f) setComplete(true);
+        if(GlobalShipVariables.engineFailed == 1) {
+            setProgress(GlobalShipVariables.engine1Health);
+        }
+        if(GlobalShipVariables.engineFailed == 2) {
+            setProgress(GlobalShipVariables.engine2Health);
+        }
+        if(GlobalShipVariables.engineFailed == 1 && GlobalShipVariables.engine1Health >= 1.0f) {
+            setComplete(true);
+        }
+        if(GlobalShipVariables.engineFailed == 2 && GlobalShipVariables.engine2Health >= 1.0f) {
+            setComplete(true);
+        }
     }
 
     @Override

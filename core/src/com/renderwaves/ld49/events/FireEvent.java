@@ -43,7 +43,9 @@ public class FireEvent extends GameEvent {
 
     @Override
     public void onUpdate(float timer) {
-
+        if(TemplateScene.shipTilemap.fireHandler.size() <= 0) {
+            setComplete(true);
+        }
     }
 
     @Override

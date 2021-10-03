@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.entity.EntityManager;
 import com.renderwaves.ld49.entity.TexturedEntity;
 import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.InputManager;
@@ -18,6 +19,8 @@ import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.tilemap.Tile;
 import com.renderwaves.ld49.tilemap.Tilemap;
 import com.renderwaves.ld49.ui.StatusBar;
+
+import java.util.ArrayList;
 
 import static com.renderwaves.ld49.Game.entityManager;
 
@@ -41,6 +44,9 @@ public class PlayerEntity extends TexturedEntity {
     private boolean hasFireExtinguisher = false;
 
     private boolean touchingFire = false;
+
+    private Uranium nearUranium;
+    private Uranium currentUranium;
 
     public static float health = 1.0f;
 
@@ -68,7 +74,12 @@ public class PlayerEntity extends TexturedEntity {
         if(nearGenerator) {
             FontManager.font_droidBb_20.draw(spriteBatch, "ADDING FUEL TO REACTOR", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO REACTOR".length() * 7, 100);
             GlobalShipVariables.generatorHealth += Gdx.graphics.getDeltaTime() / 2;
-            GlobalShipVariables.generatorFuel += Gdx.graphics.getDeltaTime() / 4;
+            if(currentUranium != null && Gdx.input.isKeyJustPressed(InputManager.TakeFireExtinguisher.key1)) {
+                GlobalShipVariables.generatorFuel += 0.5f;
+                entityManager.remove(currentUranium);
+                uraniumList.remove(currentUranium);
+                currentUranium = null;
+            }
         }
         else if(nearLifeSupport) {
             FontManager.font_droidBb_20.draw(spriteBatch, "REPAIRING LIFE SUPPORT", Gdx.graphics.getWidth() / 2 - "REPAIRING LIFE SUPPORT".length() * 7, 100);
@@ -89,10 +100,25 @@ public class PlayerEntity extends TexturedEntity {
             GlobalShipVariables.navigationHealth += Gdx.graphics.getDeltaTime() / 4;
         }
         else if (nearComms) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING COMMUNICATION", Gdx.graphics.getWidth() / 2 - "REPARING COMMUNICATION".length() * 7, 100);
+            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING COMMUNICATION", Gdx.graphics.getWidth() / 2 - "REPARING COMMUNICATION".length() * 4, 100);
             GlobalShipVariables.communicationsHealth += Gdx.graphics.getDeltaTime() / 4;
             if(GlobalShipVariables.communicationsHealth > 0.0f) {
-
+                FontManager.font_droidBb_20.draw(spriteBatch, "YOU CAN OPEN COMMUNICATION MENU USING <" + Input.Keys.toString(InputManager.OpenComMenu.key1) + ">", Gdx.graphics.getWidth() / 2 - "YOU CAN OPEN COMMUNICATION MENU USING <B>".length() * 4, 80);
+                if(Gdx.input.isKeyJustPressed(InputManager.OpenComMenu.key1)) {
+                    TemplateScene.communicationMenu.window.setVisible(true);
+                }
+            }
+        }
+        else if (nearUranium != null && currentUranium == null) {
+            FontManager.font_droidBb_20.draw(spriteBatch, "YOU CAN PICKUP URANIUM USING " + Input.Keys.toString(InputManager.TakeSpacesuit.key1), "YOU CAN PICKUP URANIUM USING <E>".length() * 4, 100);
+            if(Gdx.input.isKeyJustPressed(InputManager.TakeSpacesuit.key1)) {
+                currentUranium = nearUranium;
+            }
+        }
+        else if (currentUranium != null) {
+            System.out.println("NOT NEAR");
+            if(Gdx.input.isKeyJustPressed(InputManager.TakeSpacesuit.key1)) {
+                currentUranium = null;
             }
         }
         else if (nearEngine) {
@@ -167,6 +193,10 @@ public class PlayerEntity extends TexturedEntity {
 
         velocity.x = 0;
         velocity.y = 0;
+
+        if(currentUranium != null) {
+            currentUranium.setPosition(position.x + 8, position.y);
+        }
     }
 
     private Generator generator;
@@ -177,6 +207,7 @@ public class PlayerEntity extends TexturedEntity {
     private Comms comms;
     private Engine engine;
     private Navigation navigation;
+    public static ArrayList<Uranium> uraniumList = new ArrayList<Uranium>();
 
     private void collision() {
         if(generator == null && spacesuit == null) {
@@ -204,6 +235,13 @@ public class PlayerEntity extends TexturedEntity {
                 }
                 else if(entityManager.get(i) instanceof  Navigation){
                     navigation = (Navigation) entityManager.get(i);
+                }
+                else if(entityManager.get(i) instanceof Uranium) {
+                    for(int j = 0; j < uraniumList.size(); j++) {
+                        if(uraniumList.get(j).equals(entityManager.get(i))) {
+                            uraniumList.add((Uranium) entityManager.get(i));
+                        }
+                    }
                 }
             }
         }
@@ -258,6 +296,14 @@ public class PlayerEntity extends TexturedEntity {
             }
             else {
                 nearNavigation = false;
+            }
+            for(int i = 0; i < uraniumList.size(); i++) {
+                if(uraniumList.get(i).rectangle.overlaps((rectangle))){
+                    nearUranium = uraniumList.get(i);
+                }
+                else {
+                    nearUranium = null;
+                }
             }
         }
 

@@ -13,7 +13,10 @@ public enum InputManager {
 
     TakeSpacesuit(Input.Keys.E, -1, "Take Spacesuit"),
 
-    TakeFireExtinguisher(Input.Keys.E, -1, "Take Fire Extinguisher");
+    TakeFireExtinguisher(Input.Keys.E, -1, "Take Fire Extinguisher"),
+
+    OpenComMenu(Input.Keys.B, -1, "Open Communication Menu")
+    ;
 
     public int key1, key2;
     public String name;
