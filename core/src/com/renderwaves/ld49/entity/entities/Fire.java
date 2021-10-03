@@ -66,6 +66,7 @@ public class Fire extends TexturedEntity {
             fireSpreadTimer = 0;
         }
 
+        GlobalShipVariables.shipHealth -= Gdx.graphics.getDeltaTime() / 1000;
         GlobalShipVariables.oxygenLevel -= Gdx.graphics.getDeltaTime() / 100;
     }
 }

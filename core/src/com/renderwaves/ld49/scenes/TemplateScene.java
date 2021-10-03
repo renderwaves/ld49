@@ -49,6 +49,8 @@ public class TemplateScene implements Screen {
 
     private static TemplateScene instance;
 
+    private StatusBar shipHealthBar = new StatusBar(new Vector2(Gdx.graphics.getWidth() - 200, 175), new Vector2(128, 64), GlobalShipVariables.shipHealth, new Color(255, 255, 255, 255), new Color(255, 0, 0, 255), TextureManager.shipIndicator, new Vector2(2, 2));
+
     public static TemplateScene getInstance() {
         return instance;
     }
@@ -149,6 +151,8 @@ public class TemplateScene implements Screen {
     public void render(float delta) {
         period = (float)(Math.random()*(1.0f-0.01f + 1.0f)+1.0f);
 
+        shipHealthBar.status = GlobalShipVariables.shipHealth;
+
         if(shipTilemap.fireHandler.size() > 0 && !fireEvent) {
             gameEventSystem.addEvent(new FireEvent());
             fireEvent = true;
@@ -184,6 +188,7 @@ public class TemplateScene implements Screen {
             }
 
             oxygenManager.renderSprite(batch);
+            shipHealthBar.renderSprite(batch);
         batch.end();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -205,6 +210,7 @@ public class TemplateScene implements Screen {
             shipTilemap.player.renderShape(shapeRenderer);
 
             oxygenManager.renderShape(shapeRenderer);
+            shipHealthBar.renderShape(shapeRenderer);
         shapeRenderer.end();
 
         // overlay fonts
@@ -280,6 +286,10 @@ public class TemplateScene implements Screen {
         }
         else if(GlobalShipVariables.oxygenLevel < 0.0f) {
             GlobalShipVariables.oxygenLevel = 0.0f;
+        }
+
+        if(GlobalShipVariables.shipHealth <= 0.0f) {
+            game.setScreen(new DeathScene(game));
         }
     }
 
