@@ -159,7 +159,7 @@ public class Tilemap {
                         Game.entityManager.addEntity(new FireExtinguisher(new Vector2(x, y), new Vector2(1.5f, 2.0f)));
                     }
                     else if(map[i * width + j].tileID == Tile.EngineTile.tileID){
-                        Game.entityManager.addEntity(new Engine(new Vector2(x+10, y+5), new Vector2(2, 2)));
+                        Game.entityManager.addEntity(new Engine(new Vector2(x-64, y-6), new Vector2(2, 2)));
                     }
                     else if(map[i * width + j].tileID == Tile.CommsTile.tileID){
                         Game.entityManager.addEntity(new Comms(new Vector2(x+5, y), new Vector2(2, 2)));

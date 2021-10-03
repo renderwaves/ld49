@@ -21,6 +21,7 @@ public class TextureManager {
     public static Texture fireExtinguisher = new Texture("textures/entities/fire_extinguisher.png");
     public static Texture comms = new Texture("textures/entities/transmitter.png");
     public static Texture engine = new Texture("textures/entities/enginecontrollmodule.png");
+    public static Texture engineWithThrusters = new Texture("textures/entities/enginewiththruster.png");
     public static Texture navigation = new Texture("textures/entities/navigation.png");
     public static Texture fireEvent = new Texture("textures/ui/fireEvent.png");
     public static Texture dangerNuclear = new Texture("textures/ui/dangernuclear.png");
