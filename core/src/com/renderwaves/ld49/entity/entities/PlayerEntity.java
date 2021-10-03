@@ -76,7 +76,7 @@ public class PlayerEntity extends TexturedEntity {
         }
         else if(nearMedBay) {
             FontManager.font_droidBb_20.draw(spriteBatch, "HEALING", Gdx.graphics.getWidth() / 2 - "HEALING".length() * 7, 100);
-            //GlobalShipVariables.shipHealth += Gdx.graphics.getDeltaTime() / 2;
+            health += Gdx.graphics.getDeltaTime() / 4;
         }
         else if(nearSpacesuit) {
             FontManager.font_droidBb_20.draw(spriteBatch, (hasSpacesuit ? "PUT BACK" : "TAKE") + " SPACESUIT <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100);
