@@ -43,7 +43,7 @@ public class Fire extends TexturedEntity {
         }
 
         fireSpreadTimer += Gdx.graphics.getDeltaTime();
-        if(fireSpreadTimer >= 10.0f) {
+        if(fireSpreadTimer >= 15.0f) {
             Vector2 tilePos = TemplateScene.getInstance().shipTilemap.globalPositionToTilemapPosition(position.x+32, position.y);
             if(TemplateScene.getInstance().shipTilemap.getTileByPosition((int)tilePos.x, (int)tilePos.y).tileID == Tile.GroundTile.tileID) {
                 TemplateScene.getInstance().shipTilemap.fireHandler.add(new Fire(new Vector2(position.x+32, position.y)));

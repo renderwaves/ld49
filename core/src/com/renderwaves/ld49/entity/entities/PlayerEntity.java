@@ -72,10 +72,10 @@ public class PlayerEntity extends TexturedEntity {
         healthBar.renderSprite(spriteBatch);
 
         if(nearGenerator) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "ADDING FUEL TO REACTOR", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO REACTOR".length() * 7, 100);
+            FontManager.font_droidBb_20.draw(spriteBatch, "PRESS " + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + " TO ADD URANIUM TO REACTOR", Gdx.graphics.getWidth() / 2 - "PRESS E TO ADD URANIUM TO REACTOR".length() * 4, 100);
             GlobalShipVariables.generatorHealth += Gdx.graphics.getDeltaTime() / 2;
             if(currentUranium != null && Gdx.input.isKeyJustPressed(InputManager.TakeFireExtinguisher.key1)) {
-                GlobalShipVariables.generatorFuel += 0.5f;
+                GlobalShipVariables.generatorFuel += 1.0f;
                 entityManager.remove(currentUranium);
                 uraniumList.remove(currentUranium);
                 currentUranium = null;
@@ -116,7 +116,6 @@ public class PlayerEntity extends TexturedEntity {
             }
         }
         else if (currentUranium != null) {
-            System.out.println("NOT NEAR");
             if(Gdx.input.isKeyJustPressed(InputManager.TakeSpacesuit.key1)) {
                 currentUranium = null;
             }
@@ -133,7 +132,7 @@ public class PlayerEntity extends TexturedEntity {
 
         }
         if (touchingFire) {
-            if(!hasSpacesuit) health -= Gdx.graphics.getDeltaTime() / 10;
+            if(!hasSpacesuit) health -= Gdx.graphics.getDeltaTime() / 5;
         }
 
 

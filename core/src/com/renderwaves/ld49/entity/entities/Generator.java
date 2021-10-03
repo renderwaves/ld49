@@ -27,7 +27,7 @@ public class Generator extends TexturedEntity {
 
     @Override
     public void update() {
-        GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 30;
+        GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 50;
         if(GlobalShipVariables.generatorFuel < 0) {
             GlobalShipVariables.generatorFuel = 0.0f;
         }
