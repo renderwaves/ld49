@@ -99,11 +99,14 @@ public class CommunicationMenu {
         cooldown -= Gdx.graphics.getDeltaTime();
         if(cooldown <= 0) cooldown = 0;
 
-        if(cooldown == 0) {
+        if(cooldown <= 0) {
             cooldownLabel.setText("You can buy now");
         }
-        else {
+        else if(String.valueOf(cooldown).length() >= 4) {
             cooldownLabel.setText("You cannot buy for " + String.valueOf(cooldown).substring(0, 4));
+        }
+        else {
+            cooldownLabel.setText("You cannot buy for " + String.valueOf(cooldown));
         }
     }
 }
