@@ -1,0 +1,186 @@
+package com.renderwaves.ld49.scenes;
+
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.renderwaves.ld49.managers.FontManager;
+
+import java.awt.*;
+
+public class MenuScene implements Screen {
+    private Stage stage;
+    private Table table;
+    private Table creditsTable;
+
+    Game game;
+
+    public MenuScene(Game game){
+        this.game = game;
+        Skin uiSkin = new Skin();
+        uiSkin.add("default-font", FontManager.font_droidBb_20);
+
+        uiSkin.addRegions(new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
+        uiSkin.load(Gdx.files.internal("skins/skin.json"));
+
+        stage = new Stage();
+        Gdx.input.setInputProcessor(stage);
+
+        table = new Table();
+        table.setFillParent(true);
+
+        stage.addActor(table);
+        //table.setDebug(true);
+
+        Label.LabelStyle gameNameStyle = new Label.LabelStyle();
+        gameNameStyle.font = FontManager.font_droidBb_40;
+        gameNameStyle.fontColor = new Color(1,1,1,1);
+
+        final Label gameName = new Label("PANIC ON THE SHIP", gameNameStyle);
+        final TextButton playButton = new TextButton("Play", uiSkin);
+        playButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                super.clicked(event, x, y);
+                callbackStartGame();
+            }
+        });
+        final TextButton creditsButton = new TextButton("Credits", uiSkin);
+        creditsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                super.clicked(event, x, y);
+                callbackCredits();
+            }
+        });
+        final TextButton quitButton = new TextButton("Quit", uiSkin);
+        quitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                super.clicked(event, x, y);
+                callbackQuit();
+            }
+        });
+
+        table.add(gameName);
+        table.row();
+        table.add(playButton).spaceTop(20).width(100).height(30);
+        table.row();
+        table.add(creditsButton).spaceTop(5).width(100).height(30);
+        table.row();
+        table.add(quitButton).spaceTop(5).width(100).height(30);
+
+        creditsTable = new Table();
+        creditsTable.setFillParent(true);
+        creditsTable.pad(50);
+
+        Pixmap pixmap = new Pixmap(1,1,Pixmap.Format.RGBA8888);
+        pixmap.setColor(0.4f,0.4f, 0.4f, 0.8f);
+        pixmap.fill();
+        TextureRegionDrawable background = new TextureRegionDrawable(new Texture(pixmap));
+        creditsTable.setBackground(background);
+
+        Label.LabelStyle creditsHeaders = new Label.LabelStyle();
+        creditsHeaders.font = FontManager.font_droidBb_30;
+        creditsHeaders.fontColor = new Color(1,1,1,1);
+        //creditsTable.setColor(0.5f,0.5f,0.5f,1);
+
+        Label creditsHeader = new Label("Credits", gameNameStyle);
+        Label nameRenderwaves = new Label("RenderWaves Team", creditsHeaders);
+        Label nameAknavj = new Label("Aknavj (@aknavj)", uiSkin);
+        Label nameLeumas = new Label("Leumas__ (@samuelbencak)", uiSkin);
+        Label nameAdam = new Label("Adam077x (@adam077x)", uiSkin);
+        Label nameJiri = new Label("Jiri (@zorzo)", uiSkin);
+        TextButton closeCredits = new TextButton("Close", uiSkin);
+        closeCredits.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                super.clicked(event, x, y);
+                callbackCloseCredits();
+            }
+        });
+
+        //creditsTable.center();
+        creditsTable.add(creditsHeader);
+        creditsTable.row();
+        creditsTable.add(nameRenderwaves).spaceTop(20);
+        creditsTable.row();
+        creditsTable.add(nameAknavj).spaceTop(5);
+        creditsTable.row();
+        creditsTable.add(nameLeumas).spaceTop(5);
+        creditsTable.row();
+        creditsTable.add(nameAdam).spaceTop(5);
+        creditsTable.row();
+        creditsTable.add(nameJiri).spaceTop(5);
+        creditsTable.row();
+        creditsTable.add(closeCredits).width(100).height(30).spaceTop(50);
+
+    }
+
+    public void callbackStartGame(){
+        this.game.setScreen(new TemplateScene((com.renderwaves.ld49.Game) game));
+    }
+
+    public void callbackCredits(){
+        stage.clear();
+        stage.addActor(creditsTable);
+    }
+
+    public void callbackCloseCredits(){
+        stage.clear();
+        stage.addActor(table);
+    }
+
+    public void callbackQuit(){
+        Gdx.app.exit();
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act(Gdx.graphics.getDeltaTime());
+        stage.draw();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height, true);
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+    }
+
+    @Override
+    public void hide() {
+
+    }
+
+    @Override
+    public void dispose() {
+        stage.dispose();
+    }
+}

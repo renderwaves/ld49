@@ -8,6 +8,7 @@ public class FontManager {
     public static BitmapFont font_arial_20;
     public static BitmapFont font_droidBb_18;
     public static BitmapFont font_droidBb_20;
+    public static BitmapFont font_droidBb_30;
     public static BitmapFont font_droidBb_40;
 
     public static void generateFonts() {
@@ -30,6 +31,11 @@ public class FontManager {
         fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/DisposableDroidBB.ttf"));
         parameter.size = 40;
         font_droidBb_40 = fontGenerator.generateFont(parameter);
+        fontGenerator.dispose();
+
+        fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/DisposableDroidBB.ttf"));
+        parameter.size = 30;
+        font_droidBb_30 = fontGenerator.generateFont(parameter);
         fontGenerator.dispose();
     }
 }
