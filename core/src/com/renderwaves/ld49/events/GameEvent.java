@@ -27,7 +27,8 @@ public abstract class GameEvent {
     private Integer uiPositionY = -9999;
 
 
-    private Sound sound = null;
+    protected Sound sound = null;
+    protected long soundId = 0;
 
     /*
      */
@@ -55,6 +56,29 @@ public abstract class GameEvent {
                 this.icon,
                 new Vector2(2, 2)
         );
+        onStart();
+    }
+
+    public GameEvent(String name, Texture icon, Sound sound) {
+        this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
+        this.name = name;
+        this.icon = icon;
+
+        progressBar = new StatusBar(
+                new Vector2(this.uiPositionX, this.uiPositionY),
+                new Vector2(128, 64),
+                1.0f,
+                new Color(255, 255, 255, 255),
+                new Color(255, 0, 0, 255),
+                this.icon,
+                new Vector2(2, 2)
+        );
+
+        this.sound = sound;
+        //this.soundId = this.sound.play();
+        //this.sound.setLooping(soundId, true);
+        //this.sound.stop();
+
         onStart();
     }
 
@@ -92,6 +116,7 @@ public abstract class GameEvent {
                 new Vector2(2, 2)
         );
         this.sound = sound;
+
         onStart();
     }
 
@@ -111,14 +136,6 @@ public abstract class GameEvent {
     /* internal update
      */
     public void update(float timer) {
-
-        if (isComplete() == false && sound != null) {
-            sound.play();
-            sound.loop();
-        } else if (sound != null) {
-            sound.stop();
-        }
-
         onUpdate(timer);
     }
 
@@ -148,6 +165,7 @@ public abstract class GameEvent {
     public abstract void onUpdate(float timer);
     public abstract void onRender();
     public abstract void onRender(SpriteBatch batch);
+    public abstract void onSound();
 
     /* setters, getters
      */

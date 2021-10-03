@@ -57,4 +57,11 @@ public class FireEvent extends GameEvent {
     public void onRender(SpriteBatch batch) {
 
     }
+
+    @Override
+    public void onSound() {
+        if (isComplete() == false) {
+
+        }
+    }
 }

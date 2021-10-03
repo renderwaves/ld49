@@ -42,6 +42,7 @@ public class GameEventSystem {
 
         for (GameEvent event: events) {
             event.update(timer);
+            event.onSound();
         }
 
         // check for complete events
@@ -89,6 +90,10 @@ public class GameEventSystem {
                 events.get(i).overrideUiPosition(__pos_x, __pos_y);
             }
         }
+    }
+
+    public int getNumEvents() {
+        return events.size();
     }
 
     public GameEvent getEvent(int id) {

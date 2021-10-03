@@ -3,6 +3,7 @@ package com.renderwaves.ld49.events;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.managers.SoundManager;
 import com.renderwaves.ld49.managers.TextureManager;
 
 /*
@@ -10,16 +11,9 @@ import com.renderwaves.ld49.managers.TextureManager;
 public class LifesupportEvent extends GameEvent {
 
     static final String TAG = "Lifesupport Event";
-    /*
-    public LifesupportEvent()  {
-        this.eventName = "Lifesupport Event";
-        this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
-        eventIcon = TextureManager.lifesupporticon;
-        onStart();
-    }
-     */
+
     public LifesupportEvent() {
-        super(TAG, TextureManager.lifesupporticon);
+        super(TAG, TextureManager.lifesupporticon, SoundManager.alarmSound3);
     }
 
     @Override
@@ -53,5 +47,15 @@ public class LifesupportEvent extends GameEvent {
     @Override
     public void onRender(SpriteBatch batch) {
 
+    }
+
+    @Override
+    public void onSound() {
+        if (sound != null) {
+            if (isComplete()) {
+                sound.stop();
+                sound.dispose();
+            }
+        }
     }
 }

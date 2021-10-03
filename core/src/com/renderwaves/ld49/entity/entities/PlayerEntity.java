@@ -221,6 +221,11 @@ public class PlayerEntity extends TexturedEntity {
     private Navigation navigation;
     public static ArrayList<Uranium> uraniumList = new ArrayList<Uranium>();
 
+    public boolean hasDied() {
+        if (health <= 0.0f) return true;
+        else return false;
+    }
+
     private void collision() {
         if(generator == null && spacesuit == null) {
             for(int i = 0; i < entityManager.size(); i++) {

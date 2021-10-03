@@ -51,4 +51,11 @@ public class DoorEvent extends GameEvent {
     public void onRender(SpriteBatch batch) {
 
     }
+
+    @Override
+    public void onSound() {
+        if (isComplete() == false) {
+
+        }
+    }
 }

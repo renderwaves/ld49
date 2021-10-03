@@ -16,10 +16,7 @@ import com.renderwaves.ld49.Game;
 import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.entity.entities.*;
 import com.renderwaves.ld49.events.*;
-import com.renderwaves.ld49.managers.FontManager;
-import com.renderwaves.ld49.managers.OxygenManager;
-import com.renderwaves.ld49.managers.ProgressManager;
-import com.renderwaves.ld49.managers.TextureManager;
+import com.renderwaves.ld49.managers.*;
 import com.renderwaves.ld49.tilemap.Tilemap;
 import com.renderwaves.ld49.ui.CommunicationMenu;
 import com.renderwaves.ld49.ui.StatusBar;
@@ -31,7 +28,9 @@ import static com.renderwaves.ld49.Game.entityManager;
 
 public class TemplateScene implements Screen {
     public Game game;
+    public Integer gameState = 0;
     public GameEventSystem gameEventSystem;
+    public SoundManager gameSound;
     Sprite sprite;
 
     Stage stage;
@@ -53,11 +52,11 @@ public class TemplateScene implements Screen {
 
     private StatusBar shipHealthBar = new StatusBar(new Vector2(Gdx.graphics.getWidth() - 200, 175), new Vector2(128, 64), GlobalShipVariables.shipHealth, new Color(255, 255, 255, 255), new Color(255, 0, 0, 255), TextureManager.shipIndicator, new Vector2(2, 2));
 
+    private boolean disableEvents = false;
+
     public static TemplateScene getInstance() {
         return instance;
     }
-
-    Skin uiSkin;
 
     /*
      */
@@ -65,6 +64,7 @@ public class TemplateScene implements Screen {
         instance = this;
         this.game = game;
         this.gameEventSystem = new GameEventSystem();
+        this.gameSound = new SoundManager();
 
         this.batch = game.batch;
 
@@ -74,19 +74,10 @@ public class TemplateScene implements Screen {
         shipTilemap = new Tilemap("maps/ship_new.png");
         shipTilemap.generateEntities();
 
-
-        //Game.entityManager.addEntity(new Generator(new Vector2(440, 430), new Vector2(4, 4)));
-        //Game.entityManager.addEntity(new LifeSupport(new Vector2(232, 420), new Vector2(2, 2)));
-        //Game.entityManager.addEntity(new MedBay(new Vector2(512, 244), new Vector2(1, 1)));
-        //Game.entityManager.addEntity(new Spacesuit(new Vector2(710, 250), new Vector2(2, 2)));
-        //Game.entityManager.addEntity(new PlayerEntity(new Vector2(820, 400), new Vector2(2, 2)));
-        //Game.entityManager.addEntity(new FireExtinguisher(new Vector2(450, 260), new Vector2(1.5f, 1.5f)));
-
         Sprite shipIndicator = new Sprite(TextureManager.shipIndicator);
         progressManager = new ProgressManager(50.0f, shipIndicator);
 
         statusBar = new StatusBar(new Vector2(10, 10), new Vector2(128, 64), 1.0f, new Color(255, 255, 255, 255), new Color(255, 0, 0, 255), TextureManager.energyTexture, new Vector2(2, 2));
-
         communicationMenu = new CommunicationMenu();
     }
 
@@ -152,19 +143,8 @@ public class TemplateScene implements Screen {
                 gameEventSystem.addEvent(new EngineEvent());
                 break;
             }
-            // fire in hull
-            case 5:
-            {
-                /*
-                for (int i = 0; i < gameEventSystem.numEvents(); i++)
-                    if (gameEventSystem.getEvent(i) instanceof FireEvent)
-                        return;
-                gameEventSystem.addEvent(new FireEvent());
-                break;
-                */
-            }
             // door failure
-            case 6:
+            case 5:
             {
                 for (int i = 0; i < gameEventSystem.numEvents(); i++)
                     if (gameEventSystem.getEvent(i) instanceof DoorEvent)
@@ -173,8 +153,6 @@ public class TemplateScene implements Screen {
                 break;
             }
             default:
-                System.out.println("nothing is hapenning");
-                // nothing is hapenning
                 break;
         }
     }
@@ -200,11 +178,26 @@ public class TemplateScene implements Screen {
         if (ingameTime > period) {
             ingameTime -= period;
 
-            if (gameEventSystem.numEvents() < 3)
-                update(delta);
+            if (disableEvents == false) {
+                if (gameEventSystem.numEvents() < 3)
+                    update(delta);
+            }
+        }
+
+        // determinate game state
+        // number of ongoing events
+        int ongoingEvents = gameEventSystem.numEvents();
+        if (ongoingEvents > 2) {
+            ongoingEvents = ongoingEvents / 2;
+            this.gameState = ongoingEvents;
         }
 
         gameEventSystem.update(ingameTime);
+
+        if (shipTilemap.player.hasDied())
+            gameSound.forceStop();
+
+        gameSound.update(this.gameState);
 
         ScreenUtils.clear(0, 0, 0, 1);
         batch.begin();
@@ -327,6 +320,7 @@ public class TemplateScene implements Screen {
         }
 
         if(GlobalShipVariables.shipHealth <= 0.0f) {
+            gameSound.forceStop();
             game.setScreen(new DeathScene(game));
         }
     }

@@ -182,6 +182,7 @@ public class MenuScene implements Screen {
 
     private float time = 0;
     private boolean toGame = false;
+
     private void nextFrame(float delta){
         time += delta;
         if(time > 0.1f){
