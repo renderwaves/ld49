@@ -91,6 +91,9 @@ public class PlayerEntity extends TexturedEntity {
         else if (nearComms) {
             FontManager.font_droidBb_20.draw(spriteBatch, "REPARING COMMUNICATION", Gdx.graphics.getWidth() / 2 - "REPARING COMMUNICATION".length() * 7, 100);
             GlobalShipVariables.communicationsHealth += Gdx.graphics.getDeltaTime() / 4;
+            if(GlobalShipVariables.communicationsHealth > 0.0f) {
+
+            }
         }
         else if (nearEngine) {
             FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE", Gdx.graphics.getWidth() / 2 - "REPARING ENGINE".length() * 7, 100);

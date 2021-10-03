@@ -10,7 +10,7 @@ public class DoorEvent extends GameEvent {
     static final String TAG = "Door Event";
 
     public DoorEvent()  {
-        super(TAG, TextureManager.doorTile);
+        super(TAG, null);
     }
 
     @Override

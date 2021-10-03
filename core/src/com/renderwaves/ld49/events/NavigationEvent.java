@@ -37,6 +37,8 @@ public class NavigationEvent extends GameEvent {
     public void onUpdate(float timer) {
         //progressF = GlobalShipVariables.navigationHealth;
 
+        setProgress(GlobalShipVariables.navigationHealth);
+
         if(GlobalShipVariables.navigationHealth >= 1.0f) {
             setComplete(true);
         }

@@ -23,7 +23,7 @@ public class FireEvent extends GameEvent {
      */
 
     public FireEvent() {
-        super(TAG, TextureManager.fireEvent);
+        super(TAG, null);
     }
 
     @Override
