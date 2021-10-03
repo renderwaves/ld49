@@ -29,6 +29,7 @@ public class FireEvent extends GameEvent {
     @Override
     public void onEnd() {
         TemplateScene.warningLabels.remove(warningLabel);
+        TemplateScene.fireEvent = false;
         System.out.println(String.format("%s is Solved!", this.info(), this.eventName));
     }
 

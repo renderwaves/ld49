@@ -37,7 +37,11 @@ public class Entity {
     }
 
     public void destroySelf() {
-        Game.entityManager.remove(this);
+        for(int i = 0; i < Game.entityManager.size(); i++) {
+            if(Game.entityManager.get(i).equals(this)) {
+                Game.entityManager.remove(i);
+            }
+        }
     }
 
     public void followTarget(Vector2 targetPosition, float speed) {

@@ -2,7 +2,9 @@ package com.renderwaves.ld49.entity.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.renderwaves.ld49.GlobalShipVariables;
@@ -13,6 +15,7 @@ import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.tilemap.Tile;
 import com.renderwaves.ld49.tilemap.Tilemap;
+import com.renderwaves.ld49.ui.StatusBar;
 
 import static com.renderwaves.ld49.Game.entityManager;
 
@@ -35,6 +38,12 @@ public class PlayerEntity extends TexturedEntity {
     private boolean hasSpacesuit = false;
     private boolean hasFireExtinguisher = false;
 
+    private boolean touchingFire = false;
+
+    public static float health = 1.0f;
+
+    private StatusBar healthBar = new StatusBar(new Vector2(Gdx.graphics.getWidth() - 200, 25), new Vector2(128, 64), health, new Color(255, 255, 255, 255), new Color(255, 0, 0, 255), TextureManager.lifesupporticon, new Vector2(2, 2));
+
     /*
      */
     public PlayerEntity(Vector2 position, Vector2 scale) {
@@ -47,6 +56,8 @@ public class PlayerEntity extends TexturedEntity {
     @Override
     public void render(SpriteBatch spriteBatch) {
         super.render(spriteBatch);
+
+        healthBar.renderSprite(spriteBatch);
 
         if(nearGenerator) {
             FontManager.font_droidBb_20.draw(spriteBatch, "ADDING FUEL TO REACTOR", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO REACTOR".length() * 7, 100);
@@ -79,6 +90,10 @@ public class PlayerEntity extends TexturedEntity {
             FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE", Gdx.graphics.getWidth() / 2 - "REPARING ENGINE".length() * 7, 100);
             GlobalShipVariables.engine1Health += Gdx.graphics.getDeltaTime() / 4;
         }
+        if (touchingFire) {
+            if(!hasSpacesuit) health -= Gdx.graphics.getDeltaTime() / 10;
+        }
+
 
         boolean useKeyPressed = Gdx.input.isKeyJustPressed(Input.Keys.E);
 
@@ -229,6 +244,16 @@ public class PlayerEntity extends TexturedEntity {
                 nearNavigation = false;
             }
         }
+
+        touchingFire = false;
+        for(int i = 0; i < TemplateScene.getInstance().shipTilemap.fireHandler.size(); i++) {
+            if(rectangle.overlaps(TemplateScene.getInstance().shipTilemap.fireHandler.get(i).rectangle)) {
+                touchingFire = true;
+                if(hasFireExtinguisher) {
+                    TemplateScene.getInstance().shipTilemap.fireHandler.get(i).health -= Gdx.graphics.getDeltaTime();
+                }
+            }
+        }
     }
 
     @Override
@@ -236,6 +261,8 @@ public class PlayerEntity extends TexturedEntity {
         super.update();
         movement();
         collision();
+
+        healthBar.status = health;
 
         if(nearSpacesuit) {
             if(Gdx.input.isKeyJustPressed(InputManager.TakeSpacesuit.key1)) {
@@ -257,5 +284,9 @@ public class PlayerEntity extends TexturedEntity {
         if(hasFireExtinguisher) fireExtinguisher.setPosition(this.position.x + 10, this.position.y);
 
         sprint = 1.0f;
+    }
+
+    public void renderShape(ShapeRenderer sr) {
+        healthBar.renderShape(sr);
     }
 }

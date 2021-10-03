@@ -31,6 +31,8 @@ public class Tilemap {
     public Tile map[];
     private boolean entitiesGenerated = false;
 
+    public static ArrayList<Fire> fireHandler = new ArrayList<Fire>();
+
     public class DoorInstance {
         public float timer;
         public int x, y;
@@ -135,7 +137,7 @@ public class Tilemap {
         return new Vector2((float)processedX, (float)processedY);
     }
 
-    private PlayerEntity player;
+    public PlayerEntity player;
     public void generateEntities(){
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
@@ -175,9 +177,9 @@ public class Tilemap {
         }
         Game.entityManager.addEntity(player);
         entitiesGenerated = true;
-
     }
 
+    private float fireTimer = 0;
     public void render(SpriteBatch batch) {
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
@@ -196,6 +198,22 @@ public class Tilemap {
             }
         }
 
+        fireTimer += Gdx.graphics.getDeltaTime();
+        //System.out.println(tilemapPositionToGlobalPosition((float)Math.random() * (width/32), (float)Math.random() * (height/32)));
+        if(fireTimer >= 10) {
+            Vector2 pos = new Vector2((int)((float)Math.random() * width), (int)((float)Math.random() * height));
+            if(getTileByPosition((int)pos.x, (int)pos.y).tileID == Tile.GroundTile.tileID) {
+                fireHandler.add(new Fire(new Vector2(pos.x*32+offset.x-4, pos.y*32+offset.y)));
+            }
+            fireTimer = 0;
+        }
+
+        for(int i = 0; i < fireHandler.size(); i++) {
+            fireHandler.get(i).render(batch);
+        }
+        for(int i = 0; i < fireHandler.size(); i++) {
+            fireHandler.get(i).update();
+        }
         //if(!entitiesGenerated) generateEntities();
     }
 
