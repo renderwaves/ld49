@@ -14,9 +14,6 @@ import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.tilemap.Tile;
 import com.renderwaves.ld49.tilemap.Tilemap;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.renderwaves.ld49.Game.entityManager;
 
 public class PlayerEntity extends TexturedEntity {
@@ -53,12 +50,12 @@ public class PlayerEntity extends TexturedEntity {
 
         if(nearGenerator) {
             FontManager.font_droidBb_20.draw(spriteBatch, "ADDING FUEL TO REACTOR", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO REACTOR".length() * 7, 100);
-            GlobalShipVariables.shipHealth += Gdx.graphics.getDeltaTime() / 2;
+            GlobalShipVariables.generatorHealth += Gdx.graphics.getDeltaTime() / 2;
             GlobalShipVariables.generatorFuel += Gdx.graphics.getDeltaTime() / 4;
         }
         else if(nearLifeSupport) {
             FontManager.font_droidBb_20.draw(spriteBatch, "REPAIRING LIFE SUPPORT", Gdx.graphics.getWidth() / 2 - "REPAIRING LIFE SUPPORT".length() * 7, 100);
-            GlobalShipVariables.shipHealth += Gdx.graphics.getDeltaTime() / 2;
+            GlobalShipVariables.lifeSupportHealth += Gdx.graphics.getDeltaTime() / 2;
         }
         else if(nearMedBay) {
             FontManager.font_droidBb_20.draw(spriteBatch, "HEALING", Gdx.graphics.getWidth() / 2 - "HEALING".length() * 7, 100);

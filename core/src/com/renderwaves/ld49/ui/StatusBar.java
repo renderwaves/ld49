@@ -20,12 +20,15 @@ public class StatusBar {
         this.position = position;
         this.statusBarSize = statusBarSize;
         this.spriteScale = spriteScale;
-        this.sprite = new Sprite(texture);
-        sprite.setPosition(position.x, position.y + sprite.getWidth() / 2);
-        sprite.setScale(spriteScale.x, spriteScale.y);
+        if(texture != null) {
+            this.sprite = new Sprite(texture);
+            sprite.setPosition(position.x, position.y + sprite.getWidth() / 2);
+            sprite.setScale(spriteScale.x, spriteScale.y);
+        }
     }
 
     public void renderShape(ShapeRenderer sr) {
+        if(sprite == null) return;
         if(status < 0) status = 0;
         else if(status > 1) status = 1;
 
@@ -37,6 +40,7 @@ public class StatusBar {
     }
 
     public void renderSprite(SpriteBatch batch) {
+        if(sprite == null) return;
         sprite.draw(batch);
     }
 }

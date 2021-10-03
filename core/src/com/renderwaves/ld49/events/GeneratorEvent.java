@@ -29,6 +29,7 @@ public class GeneratorEvent extends GameEvent {
         System.out.println(String.format("%s is Active!", this.info(), this.eventName));
         warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING REACTOR HAS FAILED!", Color.WHITE, Color.RED, 1);
         TemplateScene.warningLabels.add(warningLabel);
+        GlobalShipVariables.generatorHealth -= 0.5f;
     }
 
     @Override
@@ -40,14 +41,13 @@ public class GeneratorEvent extends GameEvent {
 
     @Override
     public void onUpdate(float timer) {
-        if (GlobalShipVariables.shipHealth > 1.0f) GlobalShipVariables.shipHealth = 1.0f;
-        else if(GlobalShipVariables.shipHealth < 0.0f) GlobalShipVariables.shipHealth = 0.0f;
+        if (GlobalShipVariables.generatorHealth > 1.0f) GlobalShipVariables.generatorHealth = 1.0f;
+        else if(GlobalShipVariables.generatorHealth < 0.0f) GlobalShipVariables.generatorHealth = 0.0f;
 
-        GlobalShipVariables.shipHealth -= Gdx.graphics.getDeltaTime() / 5;
-        progressF = GlobalShipVariables.shipHealth;
+        progressF = GlobalShipVariables.generatorHealth;
 
-        if (progressF < 0.0f) wasBelow = true;
-        if (wasBelow == true && progressF >= 0.90f) setComplete(true);
+        if (GlobalShipVariables.generatorHealth < 0.0f) wasBelow = true;
+        if (GlobalShipVariables.generatorHealth >= 1.0) setComplete(true);
     }
 
     @Override

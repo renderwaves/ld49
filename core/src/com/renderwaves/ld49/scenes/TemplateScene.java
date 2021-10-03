@@ -8,15 +8,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.renderwaves.ld49.Game;
-import com.renderwaves.ld49.entity.Entity;
-import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.entity.entities.*;
 import com.renderwaves.ld49.events.*;
 import com.renderwaves.ld49.managers.FontManager;
@@ -25,9 +20,7 @@ import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.tilemap.Tilemap;
 import com.renderwaves.ld49.ui.StatusBar;
 import com.renderwaves.ld49.ui.WarningLabel;
-import sun.jvm.hotspot.gc.shared.Space;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 import static com.renderwaves.ld49.Game.entityManager;
@@ -65,7 +58,7 @@ public class TemplateScene implements Screen {
         this.game = game;
         this.gameEventSystem = new GameEventSystem();
         gameEventSystem.addEvent(new GeneratorEvent());
-        gameEventSystem.addEvent(new FireEvent());
+        //gameEventSystem.addEvent(new FireEvent());
 
         this.batch = game.batch;
 
@@ -107,13 +100,35 @@ public class TemplateScene implements Screen {
         int gameState = (int)(Math.random()*(max-min+1)+min);
 
         switch(gameState) {
-            case 0: gameEventSystem.addEvent(new CommsEvent()); break; // comms failure
-            case 1: gameEventSystem.addEvent(new LifesupportEvent()); break; // lifesupport, oxygen failure (space suit)
-            case 2: gameEventSystem.addEvent(new GeneratorEvent()); break; // generator failure
-            case 3: gameEventSystem.addEvent(new NavigationEvent()); break; // navigation failure
-            case 4: gameEventSystem.addEvent(new EngineEvent()); break; // engine failure
-            case 5: gameEventSystem.addEvent(new FireEvent()); break; // fire in hull
-            case 6: gameEventSystem.addEvent(new DoorEvent()); break; // door failure
+            case 0:
+                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
+                    if(gameEventSystem.getEvent(i) instanceof CommsEvent) break;
+                }
+                gameEventSystem.addEvent(new CommsEvent()); break; // comms failure
+            case 1:
+                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
+                    if(gameEventSystem.getEvent(i) instanceof LifesupportEvent) break;
+                }
+                gameEventSystem.addEvent(new LifesupportEvent()); break; // lifesupport, oxygen failure (space suit)
+            case 2:
+                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
+                    if(gameEventSystem.getEvent(i) instanceof GeneratorEvent) break;
+                }
+                gameEventSystem.addEvent(new GeneratorEvent()); break; // generator failure
+            case 3:
+                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
+                    if(gameEventSystem.getEvent(i) instanceof NavigationEvent) break;
+                }
+                gameEventSystem.addEvent(new NavigationEvent()); break; // navigation failure
+            case 4:
+                for(int i = 0; i < gameEventSystem.numEvents(); i++) {
+                    if(gameEventSystem.getEvent(i) instanceof EngineEvent) break;
+                }
+                gameEventSystem.addEvent(new EngineEvent()); break; // engine failure
+            case 5:
+                gameEventSystem.addEvent(new FireEvent()); break; // fire in hull
+            case 6:
+                gameEventSystem.addEvent(new DoorEvent()); break; // door failure
             default:
                 System.out.println("nothing is hapenning");
                 // nothing is hapenning
@@ -177,7 +192,7 @@ public class TemplateScene implements Screen {
         stage.draw();
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.F11)) {
-            gameEventSystem.clearAllEvents();
+            gameEventSystem.completeAllEvents();
         }
     }
 
