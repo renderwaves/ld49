@@ -32,10 +32,19 @@ public class EngineEvent extends GameEvent {
     @Override
     public void onStart() {
         System.out.println(String.format("%s is Active!", this.info(), this.getName()));
-        warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING ENGINE HAS FAILED!", Color.WHITE, Color.RED, 1);
+        if(Math.random() > 0.5f){
+            GlobalShipVariables.engineFailed = 1;
+        } else {
+            GlobalShipVariables.engineFailed = 2;
+        }
+        warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING ENGINE"  + GlobalShipVariables.engineFailed + " HAS FAILED!", Color.WHITE, Color.RED, 1);
         TemplateScene.warningLabels.add(warningLabel);
 
-        GlobalShipVariables.engine1Health -= 0.5f;
+        if(GlobalShipVariables.engineFailed == 1){
+            GlobalShipVariables.engine1Health -= 0.5f;
+        } else {
+            GlobalShipVariables.engine2Health -= 0.5f;
+        }
         setProgress(GlobalShipVariables.engine1Health);
     }
 
@@ -49,7 +58,8 @@ public class EngineEvent extends GameEvent {
     public void onUpdate(float timer) {
         //progressF = GlobalShipVariables.engine1Health;
         setProgress(GlobalShipVariables.engine1Health);
-        if(GlobalShipVariables.engine1Health >= 1.0f) setComplete(true);
+        if(GlobalShipVariables.engineFailed == 1 && GlobalShipVariables.engine1Health >= 1.0f) setComplete(true);
+        if(GlobalShipVariables.engineFailed == 2 && GlobalShipVariables.engine2Health >= 1.0f) setComplete(true);
     }
 
     @Override

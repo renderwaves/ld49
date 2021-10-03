@@ -96,8 +96,9 @@ public class PlayerEntity extends TexturedEntity {
             }
         }
         else if (nearEngine) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE", Gdx.graphics.getWidth() / 2 - "REPARING ENGINE".length() * 7, 100);
-            GlobalShipVariables.engine1Health += Gdx.graphics.getDeltaTime() / 4;
+            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE " + GlobalShipVariables.engineFailed, Gdx.graphics.getWidth() / 2 - "REPARING ENGINE".length() * 7, 100);
+            if(GlobalShipVariables.engineFailed == 1) GlobalShipVariables.engine1Health += Gdx.graphics.getDeltaTime() / 4;
+            if(GlobalShipVariables.engineFailed == 2) GlobalShipVariables.engine2Health += Gdx.graphics.getDeltaTime() / 4;
         }
         if (touchingFire) {
             if(!hasSpacesuit) health -= Gdx.graphics.getDeltaTime() / 10;

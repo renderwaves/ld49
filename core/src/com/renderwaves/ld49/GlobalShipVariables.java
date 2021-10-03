@@ -10,4 +10,6 @@ public class GlobalShipVariables {
     public static float navigationHealth = 1.0f;
     public static float communicationsHealth = 1.0f;
     public static float oxygenLevel = 1.0f;
+
+    public static int engineFailed;
 }
