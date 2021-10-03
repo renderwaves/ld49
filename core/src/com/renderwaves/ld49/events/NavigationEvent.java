@@ -1,12 +1,15 @@
 package com.renderwaves.ld49.events;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.managers.TextureManager;
 
 public class NavigationEvent extends GameEvent {
-
     public NavigationEvent()  {
         this.eventName = "Navigation Failure Event";
         this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
+        this.eventIcon = TextureManager.navigationicon;
+        GlobalShipVariables.navigationHealth -= 0.5f;
         onStart();
     }
 
@@ -23,7 +26,11 @@ public class NavigationEvent extends GameEvent {
 
     @Override
     public void onUpdate(float timer) {
+        progressF = GlobalShipVariables.navigationHealth;
 
+        if(GlobalShipVariables.navigationHealth >= 1.0f) {
+            setComplete(true);
+        }
     }
 
     @Override

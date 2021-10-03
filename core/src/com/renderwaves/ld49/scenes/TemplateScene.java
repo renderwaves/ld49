@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.renderwaves.ld49.Game;
+import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.entity.entities.*;
 import com.renderwaves.ld49.events.*;
 import com.renderwaves.ld49.managers.FontManager;
@@ -57,8 +58,6 @@ public class TemplateScene implements Screen {
         instance = this;
         this.game = game;
         this.gameEventSystem = new GameEventSystem();
-        gameEventSystem.addEvent(new GeneratorEvent());
-        //gameEventSystem.addEvent(new FireEvent());
 
         this.batch = game.batch;
 
@@ -126,9 +125,9 @@ public class TemplateScene implements Screen {
                 }
                 gameEventSystem.addEvent(new EngineEvent()); break; // engine failure
             case 5:
-                gameEventSystem.addEvent(new FireEvent()); break; // fire in hull
+                /*gameEventSystem.addEvent(new FireEvent());*/ break; // fire in hull
             case 6:
-                gameEventSystem.addEvent(new DoorEvent()); break; // door failure
+                /*gameEventSystem.addEvent(new DoorEvent());*/ break; // door failure
             default:
                 System.out.println("nothing is hapenning");
                 // nothing is hapenning
@@ -193,6 +192,62 @@ public class TemplateScene implements Screen {
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.F11)) {
             gameEventSystem.completeAllEvents();
+        }
+
+        if(GlobalShipVariables.navigationHealth > 1.0f) {
+            GlobalShipVariables.navigationHealth = 1.0f;
+        }
+        else if(GlobalShipVariables.navigationHealth < 0.0f) {
+            GlobalShipVariables.navigationHealth = 0.0f;
+        }
+
+        if(GlobalShipVariables.shipHealth > 1.0f) {
+            GlobalShipVariables.navigationHealth = 1.0f;
+        }
+        else if(GlobalShipVariables.shipHealth < 0.0f) {
+            GlobalShipVariables.navigationHealth = 0.0f;
+        }
+
+        if(GlobalShipVariables.generatorFuel > 1.0f) {
+            GlobalShipVariables.generatorFuel = 1.0f;
+        }
+        else if(GlobalShipVariables.generatorFuel < 0.0f) {
+            GlobalShipVariables.generatorFuel = 0.0f;
+        }
+
+        if(GlobalShipVariables.generatorHealth > 1.0f) {
+            GlobalShipVariables.generatorHealth = 1.0f;
+        }
+        else if(GlobalShipVariables.generatorHealth < 0.0f) {
+            GlobalShipVariables.generatorHealth = 0.0f;
+        }
+
+        if(GlobalShipVariables.engine1Health > 1.0f) {
+            GlobalShipVariables.engine1Health = 1.0f;
+        }
+        else if(GlobalShipVariables.engine1Health < 0.0f) {
+            GlobalShipVariables.engine1Health = 0.0f;
+        }
+
+        if(GlobalShipVariables.engine2Health > 1.0f) {
+            GlobalShipVariables.engine2Health = 1.0f;
+        }
+        else if(GlobalShipVariables.engine2Health < 0.0f) {
+            GlobalShipVariables.engine2Health = 0.0f;
+        }
+
+        if(GlobalShipVariables.lifeSupportHealth > 1.0f) {
+            GlobalShipVariables.lifeSupportHealth = 1.0f;
+        }
+        else if(GlobalShipVariables.lifeSupportHealth < 0.0f) {
+            GlobalShipVariables.lifeSupportHealth = 0.0f;
+        }
+
+        if(GlobalShipVariables.communicationsHealth > 1.0f) {
+            GlobalShipVariables.communicationsHealth = 1.0f;
+        }
+        else if(GlobalShipVariables.communicationsHealth < 0.0f) {
+            GlobalShipVariables.communicationsHealth = 0.0f;
         }
     }
 

@@ -67,6 +67,18 @@ public class PlayerEntity extends TexturedEntity {
         else if(nearFireExtanguisher){
             FontManager.font_droidBb_20.draw(spriteBatch, (hasFireExtinguisher ? "PUT DOWN" : "TAKE") + " FIRE EXTINGUISHER <" + Input.Keys.toString(InputManager.TakeFireExtinguisher.key1) + ">", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100 );
         }
+        else if (nearNavigation) {
+            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING NAVIGATION", Gdx.graphics.getWidth() / 2 - "REPARING NAVIGATION".length() * 7, 100);
+            GlobalShipVariables.navigationHealth += Gdx.graphics.getDeltaTime() / 4;
+        }
+        else if (nearComms) {
+            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING COMMUNICATION", Gdx.graphics.getWidth() / 2 - "REPARING COMMUNICATION".length() * 7, 100);
+            GlobalShipVariables.communicationsHealth += Gdx.graphics.getDeltaTime() / 4;
+        }
+        else if (nearEngine) {
+            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE", Gdx.graphics.getWidth() / 2 - "REPARING ENGINE".length() * 7, 100);
+            GlobalShipVariables.engine1Health += Gdx.graphics.getDeltaTime() / 4;
+        }
 
         boolean useKeyPressed = Gdx.input.isKeyJustPressed(Input.Keys.E);
 

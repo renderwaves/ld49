@@ -14,7 +14,6 @@ public class GeneratorFuelEvent extends GameEvent {
     public GeneratorFuelEvent()  {
         this.eventName = "Generator Fuel Event";
         this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
-        eventIcon = TextureManager.energyTexture;
         onStart();
     }
 

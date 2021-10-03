@@ -91,7 +91,6 @@ public class GameEventSystem {
         events.add(event);
 
         pos_x = offset_x;
-        pos_y += offset_y;
         final StatusBar statusBar = new StatusBar(
                 new Vector2(pos_x, pos_y),
                 new Vector2(128, 64),
@@ -101,6 +100,9 @@ public class GameEventSystem {
                 event.eventIcon,
                 new Vector2(2, 2)
         );
+
+        if(statusBar.sprite != null)
+            pos_y += offset_y;
 
         progress_sl.add(statusBar);
     }
@@ -112,8 +114,9 @@ public class GameEventSystem {
                 events.get(i).onEnd();
 
                 events.remove(i);
+                if(progress_sl.get(i).sprite != null)
+                    pos_y -= offset_y;
                 progress_sl.remove(i);
-                pos_y -= offset_y;
             }
         }
     }

@@ -1,12 +1,16 @@
 package com.renderwaves.ld49.events;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.managers.TextureManager;
 
 public class CommsEvent extends GameEvent {
 
     public CommsEvent()  {
         this.eventName = "Comms Event";
         this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
+        this.eventIcon = TextureManager.comms;
+        GlobalShipVariables.communicationsHealth -= 1.0f;
         onStart();
     }
 
@@ -23,7 +27,11 @@ public class CommsEvent extends GameEvent {
 
     @Override
     public void onUpdate(float timer) {
+        progressF = GlobalShipVariables.communicationsHealth;
 
+        if(GlobalShipVariables.communicationsHealth >= 1.0f) {
+            setComplete(true);
+        }
     }
 
     @Override

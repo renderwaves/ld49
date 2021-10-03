@@ -3,9 +3,11 @@ package com.renderwaves.ld49.events;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.ui.WarningLabel;
+import jdk.nashorn.internal.objects.Global;
 
 public class EngineEvent extends GameEvent {
     private WarningLabel warningLabel;
@@ -13,6 +15,7 @@ public class EngineEvent extends GameEvent {
     public EngineEvent()  {
         this.eventName = "Engine Failure Event";
         this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
+        GlobalShipVariables.engine1Health -= 0.5f;
         eventIcon = TextureManager.engine;
         onStart();
     }
@@ -33,12 +36,12 @@ public class EngineEvent extends GameEvent {
 
     @Override
     public void onUpdate(float timer) {
-
+        progressF = GlobalShipVariables.engine1Health;
+        if(GlobalShipVariables.engine1Health >= 1.0f) setComplete(true);
     }
 
     @Override
     public void onRender() {
-
     }
 
     @Override
