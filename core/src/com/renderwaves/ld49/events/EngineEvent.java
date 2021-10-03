@@ -42,10 +42,13 @@ public class EngineEvent extends GameEvent {
 
         if(GlobalShipVariables.engineFailed == 1){
             GlobalShipVariables.engine1Health -= 0.5f;
+            setProgress(GlobalShipVariables.engine1Health);
+
         } else {
             GlobalShipVariables.engine2Health -= 0.5f;
+            setProgress(GlobalShipVariables.engine2Health);
+
         }
-        setProgress(GlobalShipVariables.engine1Health);
     }
 
     @Override
