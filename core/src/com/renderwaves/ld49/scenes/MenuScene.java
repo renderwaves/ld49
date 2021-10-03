@@ -126,6 +126,7 @@ public class MenuScene implements Screen {
         Label nameLeumas = new Label("Leumas__ (@samuelbencak)", uiSkin);
         Label nameAdam = new Label("Adam077x (@adam077x)", uiSkin);
         Label nameJiri = new Label("Jiri (@zorzo)", uiSkin);
+        Label rwUrl = new Label("www.renderwaves.com", uiSkin);
         TextButton closeCredits = new TextButton("Close", uiSkin);
         closeCredits.addListener(new ClickListener() {
             @Override
@@ -147,6 +148,8 @@ public class MenuScene implements Screen {
         creditsTable.add(nameAdam).spaceTop(5);
         creditsTable.row();
         creditsTable.add(nameJiri).spaceTop(5);
+        creditsTable.row();
+        creditsTable.add(rwUrl).spaceTop(10);
         creditsTable.row();
         creditsTable.add(closeCredits).width(100).height(30).spaceTop(50);
 
@@ -201,6 +204,7 @@ public class MenuScene implements Screen {
         videoAtlas.dispose();
         videoAtlas = new TextureAtlas(Gdx.files.internal("textures/atlas/transition/transitiontogame.atlas"));
         video = videoAtlas.createSprites();
+        vidCurFrame = 0;
         toGame = true;
     }
 
