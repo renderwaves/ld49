@@ -166,6 +166,9 @@ public class Tilemap {
                     else if(map[i * width + j].tileID == Tile.CommsTile.tileID){
                         Game.entityManager.addEntity(new Comms(new Vector2(x+5, y), new Vector2(2, 2)));
                     }
+                    else if(map[i * width + j].tileID == Tile.NavTile.tileID){
+                        Game.entityManager.addEntity(new Navigation(new Vector2(x+8, y-17), new Vector2(2, 2)));
+                    }
                 }
             }
         }

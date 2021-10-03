@@ -16,7 +16,7 @@ public enum Tile {
     ReactorTile(4, TextureManager.groundTile, new Color(0.29803925f, 1, 0, 1), false),
     LifeSupportTile(5, TextureManager.groundTile, new Color(1, 0.84705882f, 0, 1), false),
     EngineTile(6, TextureManager.groundTile, new Color(1, 0, 0, 1), false),
-    NavTile(7, TextureManager.componentTile, new Color(0.69803922f, 0, 1, 1), false),
+    NavTile(7, TextureManager.groundTile, new Color(0.69803922f, 0, 1, 1), false),
     CommsTile(8, TextureManager.groundTile, new Color(0.49803922f, 0.41568627f, 0, 1), false),
     MedicTile(9, TextureManager.groundTile, new Color(0.31764706f, 0.97647059f, 1, 1), false),
     SuitTile(10, TextureManager.componentTile, new Color(0, 0.49803922f, 0, 1), false),
