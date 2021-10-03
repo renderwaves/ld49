@@ -22,6 +22,8 @@ import com.renderwaves.ld49.ui.StatusBar;
 
 import java.util.ArrayList;
 
+import java.awt.*;
+
 import static com.renderwaves.ld49.Game.entityManager;
 
 public class PlayerEntity extends TexturedEntity {
@@ -141,7 +143,7 @@ public class PlayerEntity extends TexturedEntity {
 
         for(int i = 0; i < TemplateScene.shipTilemap.doorHandler.size(); i++) {
             Tilemap.DoorInstance instance = TemplateScene.shipTilemap.doorHandler.get(i);
-            if(instance.closed) {
+            if(instance.closed || !instance.closed) {
                 int x = instance.x;
                 int y = instance.y;
 
@@ -151,9 +153,20 @@ public class PlayerEntity extends TexturedEntity {
 
                 if(distance <= 1.5f) {
                     //FontManager.font_droidBb_18.draw(spriteBatch, "OPEN DOOR USING <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">", Gdx.graphics.getWidth() / 2 - "OPEN DOOR USING <E>".length() * 7, 100);
-                    TemplateScene.shipTilemap.setTile(x, y, Tile.DoorTileOpened);
-                    instance.closed = false;
-                    instance.timer = 5.0f;
+                    //TemplateScene.shipTilemap.setTile(x, y, Tile.DoorTileOpened);
+                    //instance.closed = false;
+                    if(!instance.blocked){
+                        instance.open();
+                        instance.timer = 5.0f;
+                    }
+                    else if(instance.blocked){
+                        FontManager.font_droidBb_18.draw(spriteBatch, "UNBLOCK DOORS USING <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">", Gdx.graphics.getWidth() / 2 - "UNBLOCK DOORS USING <E>".length() * 7, 100);
+                        if(useKeyPressed){
+                            instance.unblock();
+                            instance.open();
+                            instance.timer = 5.0f;
+                        }
+                    }
                 }
             }
         }
