@@ -5,6 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -13,6 +17,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.entity.entities.PlayerEntity;
 import com.renderwaves.ld49.managers.FontManager;
@@ -23,6 +30,12 @@ public class YouWonScene implements Screen {
     private Table creditsTable;
 
     Game game;
+
+    private Array<Sprite> video;
+    private TextureAtlas videoAtlas;
+    private Sprite vidCurSprite;
+    private int vidCurFrame = 0;
+    private SpriteBatch spriteBatch;
 
     public YouWonScene(Game game){
         this.game = game;
@@ -41,11 +54,18 @@ public class YouWonScene implements Screen {
         stage.addActor(table);
         //table.setDebug(true);
 
+        Pixmap pixmapName = new Pixmap(1,1,Pixmap.Format.RGBA8888);
+        pixmapName.setColor(1,0, 0.5f, 0.4f);
+        pixmapName.fill();
+        TextureRegionDrawable backYouWon = new TextureRegionDrawable(new Texture(pixmapName));
+
         Label.LabelStyle gameNameStyle = new Label.LabelStyle();
         gameNameStyle.font = FontManager.font_droidBb_40;
         gameNameStyle.fontColor = new Color(1,1,1,1);
+        gameNameStyle.background = backYouWon;
 
         final Label winText = new Label("YOU WON!", gameNameStyle);
+        winText.setAlignment(Align.center);
         final TextButton restartButton = new TextButton("Restart", uiSkin);
         restartButton.addListener(new ClickListener() {
             @Override
@@ -64,11 +84,15 @@ public class YouWonScene implements Screen {
             }
         });
 
-        table.add(winText);
+        table.add(winText).width(150);
         table.row();
         table.add(restartButton).spaceTop(20).width(100).height(30);
         table.row();
         table.add(quitButton).spaceTop(5).width(100).height(30);
+
+        videoAtlas = new TextureAtlas(Gdx.files.internal("textures/atlas/goodend/goodend.atlas"));
+        video = videoAtlas.createSprites();
+        spriteBatch = new SpriteBatch();
     }
 
     public void callbackStartGame(){
@@ -100,9 +124,33 @@ public class YouWonScene implements Screen {
 
     }
 
+    private float time = 0;
+    private boolean toGame = false;
+    private void nextFrame(float delta){
+        time += delta;
+        if(time > 0.1f){
+            vidCurFrame++;
+            time = 0;
+        }
+        if(vidCurFrame<video.size){
+            vidCurSprite = video.get(vidCurFrame);
+        } else {
+            vidCurFrame = 0;
+            time = 0;
+        }
+        vidCurSprite.setPosition(Gdx.graphics.getWidth()/2.425f, Gdx.graphics.getHeight()/2.425f);
+        vidCurSprite.setScale(5,5);
+    }
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        nextFrame(delta);
+        spriteBatch.begin();
+        vidCurSprite.draw(spriteBatch);
+        spriteBatch.end();
+
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
     }
