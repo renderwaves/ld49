@@ -14,7 +14,7 @@ public class FireEvent extends GameEvent {
     public FireEvent() {
         this.eventName = "Fire in Hull Event";
         this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
-        eventIcon = TextureManager.fireEvent;
+        eventIcon = null;
         onStart();
     }
 

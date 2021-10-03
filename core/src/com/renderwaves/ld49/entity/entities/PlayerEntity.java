@@ -12,6 +12,8 @@ import com.renderwaves.ld49.entity.TexturedEntity;
 import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.InputManager;
 import com.renderwaves.ld49.managers.TextureManager;
+import com.renderwaves.ld49.scenes.DeathScene;
+import com.renderwaves.ld49.scenes.MenuScene;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.tilemap.Tile;
 import com.renderwaves.ld49.tilemap.Tilemap;
@@ -282,6 +284,10 @@ public class PlayerEntity extends TexturedEntity {
             }
         }
         if(hasFireExtinguisher) fireExtinguisher.setPosition(this.position.x + 10, this.position.y);
+
+        if(health <= 0.0f) {
+            TemplateScene.getInstance().game.setScreen(new DeathScene(TemplateScene.getInstance().game));
+        }
 
         sprint = 1.0f;
     }

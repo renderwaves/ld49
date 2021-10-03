@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import static com.renderwaves.ld49.Game.entityManager;
 
 public class TemplateScene implements Screen {
-    Game game;
+    public Game game;
     public GameEventSystem gameEventSystem;
     Sprite sprite;
 
@@ -170,7 +170,12 @@ public class TemplateScene implements Screen {
 
             progressManager.renderSprites(batch);
             if(progressManager.getProgress() >= 1.0f) progressManager.setProgress(0.0f);
-            progressManager.setProgress(progressManager.getProgress() + delta / 5);
+            if(GlobalShipVariables.generatorFuel > 0) {
+                progressManager.setProgress(progressManager.getProgress() + delta / (200 + (1 - GlobalShipVariables.engine1Health)*100 + (1 - GlobalShipVariables.navigationHealth)*100));
+            }
+            if(progressManager.getProgress() >= 1.0f) {
+                game.setScreen(new YouWonScene(game));
+            }
 
             for(int i = 0; i < warningLabels.size(); i++) {
                 warningLabels.get(i).render(batch, i);
