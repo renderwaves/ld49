@@ -11,6 +11,7 @@ import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.entity.Entity;
 import com.renderwaves.ld49.entity.TexturedEntity;
 import com.renderwaves.ld49.managers.TextureManager;
+import com.renderwaves.ld49.scenes.MenuScene;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.tilemap.Tile;
 
@@ -20,7 +21,7 @@ public class Fire extends TexturedEntity {
     public Fire(Vector2 position) {
         super(position, new Vector2(2, 2), TextureManager.fireEvent);
         rectangle = new Rectangle(position.x, position.y, scale.x * sprite.getWidth(), scale.y * sprite.getHeight());
-        health = 1.0f;
+        health = 0.7f + MenuScene.difficulty;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class Fire extends TexturedEntity {
         }
 
         fireSpreadTimer += Gdx.graphics.getDeltaTime();
-        if(fireSpreadTimer >= 10.0f) {
+        if(fireSpreadTimer >= 15.0f - MenuScene.difficulty) {
             Vector2 tilePos = TemplateScene.getInstance().shipTilemap.globalPositionToTilemapPosition(position.x+32, position.y);
             if(TemplateScene.getInstance().shipTilemap.getTileByPosition((int)tilePos.x, (int)tilePos.y).tileID == Tile.GroundTile.tileID || TemplateScene.getInstance().shipTilemap.getTileByPosition((int)tilePos.x, (int)tilePos.y).tileID == Tile.EngineTile.tileID || TemplateScene.getInstance().shipTilemap.getTileByPosition((int)tilePos.x, (int)tilePos.y).tileID == Tile.NavTile.tileID || TemplateScene.getInstance().shipTilemap.getTileByPosition((int)tilePos.x, (int)tilePos.y).tileID == Tile.MedicTile.tileID || TemplateScene.getInstance().shipTilemap.getTileByPosition((int)tilePos.x, (int)tilePos.y).tileID == Tile.FireExtinguisherTile.tileID || TemplateScene.getInstance().shipTilemap.getTileByPosition((int)tilePos.x, (int)tilePos.y).tileID == Tile.ReactorTile.tileID || TemplateScene.getInstance().shipTilemap.getTileByPosition((int)tilePos.x, (int)tilePos.y).tileID == Tile.LifeSupportTile.tileID || TemplateScene.getInstance().shipTilemap.getTileByPosition((int)tilePos.x, (int)tilePos.y).tileID == Tile.CommsTile.tileID) {
                 TemplateScene.getInstance().shipTilemap.fireHandler.add(new Fire(new Vector2(position.x+32, position.y)));

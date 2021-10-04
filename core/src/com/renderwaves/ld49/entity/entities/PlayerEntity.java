@@ -74,7 +74,7 @@ public class PlayerEntity extends TexturedEntity {
         if(nearGenerator) {
             //FontManager.font_droidBb_20.draw(spriteBatch, "PRESS " + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + " TO ADD URANIUM TO REACTOR", Gdx.graphics.getWidth() / 2 - "PRESS E TO ADD URANIUM TO REACTOR".length() * 4, 100);
             TemplateScene.uiLabel.setText("PRESS " + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + " TO ADD URANIUM TO REACTOR");
-            GlobalShipVariables.generatorHealth += Gdx.graphics.getDeltaTime() / 2;
+            GlobalShipVariables.generatorHealth += Gdx.graphics.getDeltaTime() / 5;
             if(currentUranium != null && Gdx.input.isKeyJustPressed(InputManager.TakeFireExtinguisher.key1)) {
                 GlobalShipVariables.generatorFuel += 1.0f;
                 entityManager.remove(currentUranium);
@@ -146,6 +146,7 @@ public class PlayerEntity extends TexturedEntity {
         healthBar.renderSprite(spriteBatch);
 
         if (touchingFire) {
+            System.out.println(hasSpacesuit);
             if(!hasSpacesuit) health -= Gdx.graphics.getDeltaTime() / 5;
         }
 
@@ -216,20 +217,25 @@ public class PlayerEntity extends TexturedEntity {
         position.x += velocity.x * sprint;
         position.y += velocity.y * sprint;
 
-        if(velocity.x > 0) {
-            sprite.setTexture(TextureManager.playerLeft);
-            sprite.setSize(TextureManager.playerLeft.getWidth(), TextureManager.playerLeft.getHeight());
+        if(!hasSpacesuit) {
+            if(velocity.x > 0) {
+                sprite.setTexture(TextureManager.playerLeft);
+                sprite.setSize(TextureManager.playerLeft.getWidth(), TextureManager.playerLeft.getHeight());
+            }
+            else if(velocity.x < 0) {
+                sprite.setTexture(TextureManager.playerRight);
+                sprite.setSize(TextureManager.playerRight.getWidth(), TextureManager.playerRight.getHeight());
+            }
+            else if(velocity.y > 0) {
+                sprite.setTexture(TextureManager.playerBack);
+                sprite.setSize(TextureManager.playerBack.getWidth(), TextureManager.playerBack.getHeight());
+            }
+            else if(velocity.y < 0) {
+                sprite.setTexture(TextureManager.playerEntity);
+                sprite.setSize(TextureManager.playerEntity.getWidth(), TextureManager.playerEntity.getHeight());
+            }
         }
-        else if(velocity.x < 0) {
-            sprite.setTexture(TextureManager.playerRight);
-            sprite.setSize(TextureManager.playerRight.getWidth(), TextureManager.playerRight.getHeight());
-        }
-        else if(velocity.y > 0) {
-            sprite.setTexture(TextureManager.playerBack);
-            sprite.setSize(TextureManager.playerBack.getWidth(), TextureManager.playerBack.getHeight());
-        }
-        else if(velocity.y < 0) {
-            sprite.setTexture(TextureManager.playerEntity);
+        else {
             sprite.setSize(TextureManager.playerEntity.getWidth(), TextureManager.playerEntity.getHeight());
         }
 
@@ -363,6 +369,7 @@ public class PlayerEntity extends TexturedEntity {
         for(int i = 0; i < TemplateScene.getInstance().shipTilemap.fireHandler.size(); i++) {
             if(rectangle.overlaps(TemplateScene.getInstance().shipTilemap.fireHandler.get(i).rectangle)) {
                 touchingFire = true;
+                System.out.println(touchingFire);
                 if(hasFireExtinguisher) {
                     TemplateScene.getInstance().shipTilemap.fireHandler.get(i).health -= Gdx.graphics.getDeltaTime();
                 }

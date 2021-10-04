@@ -12,6 +12,8 @@ import com.renderwaves.ld49.entity.entities.PlayerEntity;
 import com.renderwaves.ld49.entity.entities.Uranium;
 import com.renderwaves.ld49.managers.FontManager;
 
+import static com.renderwaves.ld49.scenes.MenuScene.difficulty;
+
 public class CommunicationMenu {
     public static float cooldown = 10.0f;
 
@@ -58,7 +60,15 @@ public class CommunicationMenu {
                 if(GlobalShipVariables.shipHealth > 1.0f) {
                     GlobalShipVariables.shipHealth = 1.0f;
                 }
-                cooldown = 10;
+                if(difficulty == 3) {
+                    cooldown = 10;
+                }
+                else if(difficulty == 2) {
+                    cooldown = 8;
+                }
+                else if(difficulty == 1) {
+                    cooldown = 5;
+                }
             }
         });
 
@@ -77,7 +87,15 @@ public class CommunicationMenu {
                 Uranium uranium = new Uranium(new Vector2(824-64, 185));
                 PlayerEntity.uraniumList.add(uranium);
                 Game.entityManager.addEntity(uranium);
-                cooldown = 10;
+                if(difficulty == 3) {
+                    cooldown = 10;
+                }
+                else if(difficulty == 2) {
+                    cooldown = 8;
+                }
+                else if(difficulty == 1) {
+                    cooldown = 5;
+                }
             }
         });
         
