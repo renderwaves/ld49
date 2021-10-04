@@ -10,12 +10,14 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
@@ -29,6 +31,7 @@ public class MenuScene implements Screen {
     private Stage stage;
     private Table table;
     private Table creditsTable;
+    private Table difficultyTable;
 
     private Array<Sprite> video;
     private TextureAtlas videoAtlas;
@@ -38,6 +41,8 @@ public class MenuScene implements Screen {
     Game game;
 
     private SpriteBatch spriteBatch;
+
+    public static int difficulty = 1;
 
     public MenuScene(Game game){
         this.game = game;
@@ -76,7 +81,7 @@ public class MenuScene implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y){
                 super.clicked(event, x, y);
-                callbackStartGame();
+                callbackDifficulty();
             }
         });
         final TextButton creditsButton = new TextButton("Credits", uiSkin);
@@ -153,6 +158,44 @@ public class MenuScene implements Screen {
         creditsTable.row();
         creditsTable.add(closeCredits).width(100).height(30).spaceTop(50);
 
+        difficultyTable = new Table();
+        difficultyTable.setFillParent(true);
+        difficultyTable.pad(50);
+
+        TextButton easyModeButton = new TextButton("Easy", uiSkin);
+        TextButton mediumModeButton = new TextButton("Medium", uiSkin);
+        TextButton hardModeButton = new TextButton("Hard", uiSkin);
+
+        difficultyTable.add(easyModeButton).spaceTop(5);
+        difficultyTable.row();
+        difficultyTable.add(mediumModeButton).spaceTop(5);
+        difficultyTable.row();
+        difficultyTable.add(hardModeButton).spaceTop(5);
+
+        easyModeButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                difficulty = 1;
+                callbackStartGame();
+            }
+        });
+
+        mediumModeButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                difficulty = 2;
+                callbackStartGame();
+            }
+        });
+
+        hardModeButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                difficulty = 3;
+                callbackStartGame();
+            }
+        });
+
         videoAtlas = new TextureAtlas(Gdx.files.internal("textures/atlas/mainloop/mainloop.atlas"));
         video = videoAtlas.createSprites();
     }
@@ -164,6 +207,11 @@ public class MenuScene implements Screen {
     public void callbackCredits(){
         stage.clear();
         stage.addActor(creditsTable);
+    }
+
+    public void callbackDifficulty(){
+        stage.clear();
+        stage.addActor(difficultyTable);
     }
 
     public void callbackCloseCredits(){

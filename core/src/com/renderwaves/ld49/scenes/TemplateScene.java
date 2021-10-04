@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -168,9 +167,18 @@ public class TemplateScene implements Screen {
             // door failure
             case 5:
             {
-                for (int i = 0; i < gameEventSystem.numEvents(); i++)
-                    if (gameEventSystem.getEvent(i) instanceof DoorEvent)
-                        return;
+                gameEventSystem.addEvent(new DoorEvent());
+                break;
+            }
+            // door failure
+            case 6:
+            {
+                gameEventSystem.addEvent(new DoorEvent());
+                break;
+            }
+            // door failure
+            case 7:
+            {
                 gameEventSystem.addEvent(new DoorEvent());
                 break;
             }
@@ -188,8 +196,8 @@ public class TemplateScene implements Screen {
     private boolean hasLifeSupportEvent = false;
     private boolean hasNavigationEvent = false;
     private boolean hasCommsEvent = false;
-    private boolean hasEngine1Failed = false;
-    private boolean hasEngine2Failed = false;
+    private boolean hasEngine1FailedEvent = false;
+    private boolean hasEngine2FailedEvent = false;
     @Override
     public void render(float delta) {
         period = (float)(Math.random()*(1.0f-0.01f + 1.0f)+1.0f);
@@ -198,8 +206,8 @@ public class TemplateScene implements Screen {
         hasNavigationEvent = false;
         hasLifeSupportEvent = false;
         hasCommsEvent = false;
-        hasEngine2Failed = false;
-        hasEngine1Failed = false;
+        hasEngine2FailedEvent = false;
+        hasEngine1FailedEvent = false;
 
         for(int i = 0; i < gameEventSystem.numEvents(); i++) {
             if(gameEventSystem.getEvent(i) instanceof NavigationEvent) {
@@ -215,10 +223,10 @@ public class TemplateScene implements Screen {
                 hasGeneratorEvent = true;
             }
             else if(gameEventSystem.getEvent(i) instanceof EngineEvent && GlobalShipVariables.engineFailed == 1) {
-                hasEngine1Failed = true;
+                if(GlobalShipVariables.engineFailed != 2) hasEngine1FailedEvent = true;
             }
             else if(gameEventSystem.getEvent(i) instanceof EngineEvent && GlobalShipVariables.engineFailed == 2) {
-                hasEngine2Failed = true;
+                if(GlobalShipVariables.engineFailed != 1) hasEngine2FailedEvent = true;
             }
         }
 
@@ -239,12 +247,16 @@ public class TemplateScene implements Screen {
             gameEventSystem.addEvent(new LifesupportEvent(0.0f));
         }
 
-        if(!hasEngine1Failed && GlobalShipVariables.engine1Health < 1.0) {
-            gameEventSystem.addEvent(new EngineEvent(0.0f));
+        if(!hasEngine1FailedEvent && GlobalShipVariables.engine1Health < 1.0) {
+            if(GlobalShipVariables.engineFailed == 1) {
+                gameEventSystem.addEvent(new EngineEvent(0.0f));
+            }
         }
 
-        if(!hasEngine2Failed && GlobalShipVariables.engine2Health < 1.0) {
-            gameEventSystem.addEvent(new EngineEvent(0.0f));
+        if(!hasEngine2FailedEvent && GlobalShipVariables.engine2Health < 1.0) {
+            if(GlobalShipVariables.engineFailed == 2) {
+                gameEventSystem.addEvent(new EngineEvent(0.0f));
+            }
         }
 
 
@@ -262,8 +274,18 @@ public class TemplateScene implements Screen {
             ingameTime -= period;
 
             if (disableEvents == false) {
-                if (gameEventSystem.numEvents() < 3)
-                    update(delta);
+                if(MenuScene.difficulty == 1) {
+                    if (gameEventSystem.numEvents() - DoorEvent.numberOfDoorEvents < 2)
+                        update(delta);
+                }
+                else if(MenuScene.difficulty == 2) {
+                    if (gameEventSystem.numEvents() - DoorEvent.numberOfDoorEvents < 3)
+                        update(delta);
+                }
+                else if(MenuScene.difficulty == 3) {
+                    if (gameEventSystem.numEvents() - DoorEvent.numberOfDoorEvents < 4)
+                        update(delta);
+                }
             }
         }
 
