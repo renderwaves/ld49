@@ -21,6 +21,7 @@ import com.renderwaves.ld49.entity.EntityManager;
 import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.TextureManager;
 
+import com.renderwaves.ld49.scenes.IntroScene;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.scenes.MenuScene;
 
@@ -35,7 +36,7 @@ public class Game extends com.badlogic.gdx.Game {
 		FontManager.generateFonts();
 
 		batch = new SpriteBatch();
-		this.setScreen(new MenuScene(this));
+		this.setScreen(new IntroScene(this));
 	}
 
 	@Override

@@ -38,13 +38,13 @@ public class SoundManager {
     public SoundManager() {
         gameMusic = idleMusic;
         gameMusic.setLooping(true);
-        gameMusic.setVolume(0.2f);
+        gameMusic.setVolume(0.1f);
         gameMusic.play();
     }
     public SoundManager(Music music) {
         gameMusic = music;
         gameMusic.setLooping(true);
-        gameMusic.setVolume(0.2f);
+        gameMusic.setVolume(0.1f);
         gameMusic.play();
     }
 
