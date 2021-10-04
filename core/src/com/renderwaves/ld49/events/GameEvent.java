@@ -136,8 +136,10 @@ public abstract class GameEvent {
         onEnd(); // call user method
 
         // remove sound if present
-        if (this.sound != null)
-            sound.dispose();
+        if (this.sound != null) {
+            sound.stop();
+            sound = null;
+        }
 
         System.out.println(String.format("Event: %s is Solved!\n\t: Solve time took '%s' seconds\n", this.getName(), Integer.toString(this.eventTook)));
     }
