@@ -18,4 +18,6 @@ public class GlobalShipVariables {
 
     public static int score = 0;
     public static int globalShipTimer = 25000;
+
+    public static boolean tutorialMode = false;
 }

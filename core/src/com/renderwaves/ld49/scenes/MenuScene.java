@@ -27,6 +27,7 @@ import com.renderwaves.ld49.Game;
 import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.SoundManager;
 import com.renderwaves.ld49.other.Background;
+import com.renderwaves.ld49.other.GlobalShipVariables;
 
 import java.awt.*;
 
@@ -87,6 +88,7 @@ public class MenuScene implements Screen {
         final Label gameName = new Label("PANIC ON THE SHIP", gameNameStyle);
         gameName.setAlignment(Align.center);
         final TextButton playButton = new TextButton("Play", uiSkin);
+        final TextButton tutorialButton = new TextButton("Tutorial", uiSkin);
         playButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y){
@@ -111,9 +113,19 @@ public class MenuScene implements Screen {
             }
         });
 
+        tutorialButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y){
+                super.clicked(event, x, y);
+                callbackStartTutorial();
+            }
+        });
+
         table.add(gameName).width(300);
         table.row();
         table.add(playButton).spaceTop(20).width(100).height(30);
+        table.row();
+        table.add(tutorialButton).spaceTop(5).width(100).height(30);
         table.row();
         table.add(creditsButton).spaceTop(5).width(100).height(30);
         table.row();
@@ -271,13 +283,26 @@ public class MenuScene implements Screen {
         vidCurSprite.setScale(5,5);
     }
 
-    private void callbackStartGame(){
+    private void callbackStartGame() {
         stage.clear();
         video.clear();
         videoAtlas.dispose();
         videoAtlas = new TextureAtlas(Gdx.files.internal("textures/atlas/transition/transitiontogame.atlas"));
         video = videoAtlas.createSprites();
         vidCurFrame = 0;
+        GlobalShipVariables.tutorialMode = false;
+        toGame = true;
+    }
+
+    private void callbackStartTutorial() {
+        stage.clear();
+        video.clear();
+        videoAtlas.dispose();
+        videoAtlas = new TextureAtlas(Gdx.files.internal("textures/atlas/transition/transitiontogame.atlas"));
+        video = videoAtlas.createSprites();
+        vidCurFrame = 0;
+        TemplateScene.tutorialStage = 0;
+        GlobalShipVariables.tutorialMode = true;
         toGame = true;
     }
 

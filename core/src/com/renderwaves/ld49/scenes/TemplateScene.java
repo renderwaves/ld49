@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -21,6 +22,7 @@ import com.renderwaves.ld49.other.GlobalShipVariables;
 import com.renderwaves.ld49.entity.entities.*;
 import com.renderwaves.ld49.events.*;
 import com.renderwaves.ld49.managers.*;
+import com.renderwaves.ld49.tilemap.Tile;
 import com.renderwaves.ld49.tilemap.Tilemap;
 import com.renderwaves.ld49.ui.CommunicationMenu;
 import com.renderwaves.ld49.ui.StatusBar;
@@ -121,7 +123,110 @@ public class TemplateScene implements Screen {
 
     /*
      */
+    public static int tutorialStage = 0;
+    public static String tutorialText = "";
+    private GlyphLayout glyphLayout = new GlyphLayout(FontManager.font_droidBb_40, tutorialText);
+    private boolean tempBool = false;
     public void update(float delta) {
+        if(GlobalShipVariables.tutorialMode) {
+            if(tutorialStage == 0) {
+                tutorialStage++;
+            }
+            else if(tutorialStage == 1) {
+                tutorialStage++;
+            }
+            else if(tutorialStage == 2 && !tempBool) {
+                gameEventSystem.addEvent(new GeneratorEvent(0.5f));
+                tutorialText = "YOU CAN FIX THE GENERATOR BY COMING NEAR IT.";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tempBool = true;
+            }
+            else if(tutorialStage == 3) {
+                tutorialText = "";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tutorialStage++;
+                tempBool = false;
+            }
+            else if(tutorialStage == 4 && !tempBool) {
+                tutorialText = "LOOKS LIKE NAVIGATION BROKE DOWN. GO FIX IT.";
+                gameEventSystem.addEvent(new NavigationEvent(0.5f));
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tempBool = true;
+            }
+            else if(tutorialStage == 5) {
+                tutorialText = "";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tutorialStage++;
+                tempBool = false;
+            }
+            else if(tutorialStage == 6 && !tempBool) {
+                tutorialText = "LOOKS LIKE COMMUNICATION BROKE DOWN. GO FIX IT.";
+                gameEventSystem.addEvent(new CommsEvent(0.5f));
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tempBool = true;
+            }
+            else if(tutorialStage == 7) {
+                tutorialText = "";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tutorialStage++;
+                tempBool = false;
+            }
+            else if(tutorialStage == 8 && !tempBool) {
+                tutorialText = "LOOKS LIKE LIFE SUPPORT BROKE DOWN. GO FIX IT.";
+                gameEventSystem.addEvent(new LifesupportEvent(0.5f));
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tempBool = true;
+            }
+            else if(tutorialStage == 9) {
+                tutorialText = "";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tutorialStage++;
+                tempBool = false;
+            }
+            else if(tutorialStage == 10 && !tempBool) {
+                tutorialText = "LOOKS LIKE ENGINE BROKE DOWN. GO FIX IT.";
+                gameEventSystem.addEvent(new EngineEvent(0.5f));
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tempBool = true;
+            }
+            else if(tutorialStage == 11) {
+                tutorialText = "";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tutorialStage++;
+                tempBool = false;
+            }
+            else if(tutorialStage == 12 && !tempBool) {
+                GlobalShipVariables.generatorFuel = 0.2f;
+                tutorialText = "LOOKS LIKE FUEL IS RUNNING OUT. GO TO COMMUNICATION AND BUY URANIUM.";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tempBool = true;
+            }
+            else if(tutorialStage == 13) {
+                tutorialText = "";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tutorialStage++;
+                tempBool = false;
+            }
+            else if(tutorialStage == 14 && !tempBool) {
+                boolean placeFire = true;
+                while(placeFire) {
+                    Vector2 pos = new Vector2((int)((float)Math.random() * shipTilemap.getWidth()), (int)((float)Math.random() * shipTilemap.getHeight()));
+                    if(shipTilemap.getTileByPosition((int)pos.x, (int)pos.y).tileID == Tile.GroundTile.tileID) {
+                        shipTilemap.fireHandler.add(new Fire(new Vector2(pos.x*32+shipTilemap.offset.x-4, pos.y*32+shipTilemap.offset.y)));
+                        placeFire = false;
+                    }
+                }
+                tutorialText = "FIRE BROKE OUT. PICK UP EXTINGUISHER AND EXTINGUISH IT BY COMING NEAR IT.";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tempBool = true;
+            }
+            else if(tutorialStage == 15) {
+                tutorialText = "GOOD JOB! YOU FINISHED TUTORIAL. PRESS SPACE FOR MENU.";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+            }
+            return;
+        }
+
         int min = -16;
         int max = 16;
         int gameState = (int)(Math.random()*(max-min+1)+min);
@@ -207,6 +312,30 @@ public class TemplateScene implements Screen {
     @Override
     public void render(float delta) {
         //background.renderShape(shapeRenderer);
+
+        System.out.println(tutorialStage);
+        if(tutorialStage >= 15 && GlobalShipVariables.tutorialMode) {
+            if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+                TemplateScene.shipTilemap.doorHandler.clear();
+                TemplateScene.shipTilemap.fireHandler.clear();
+                TemplateScene.getInstance().gameEventSystem.completeAllEvents();
+                TemplateScene.warningLabels.clear();
+                com.renderwaves.ld49.Game.entityManager.clear();
+                PlayerEntity.health = 1.0f;
+                GlobalShipVariables.engine1Health = 1.0f;
+                GlobalShipVariables.oxygenLevel = 1.0f;
+                GlobalShipVariables.shipHealth = 1.0f;
+                GlobalShipVariables.communicationsHealth = 1.0f;
+                GlobalShipVariables.navigationHealth = 1.0f;
+                GlobalShipVariables.lifeSupportHealth = 1.0f;
+                GlobalShipVariables.generatorFuel = 1.0f;
+                GlobalShipVariables.generatorHealth = 1.0f;
+                GlobalShipVariables.engine2Health = 1.0f;
+                GlobalShipVariables.score = 0;
+                GlobalShipVariables.globalShipTimer = 25000;
+                this.game.setScreen(new MenuScene(this.game));
+            }
+        }
 
         period = (float)(Math.random()*(1.0f-0.01f + 1.0f)+1.0f);
 
@@ -318,8 +447,10 @@ public class TemplateScene implements Screen {
             progressManager.renderSprites(batch);
             if(progressManager.getProgress() >= 1.0f) progressManager.setProgress(0.0f);
             if(GlobalShipVariables.generatorFuel > 0) {
-                GlobalShipVariables.progression = progressManager.getProgress() + (delta / ((200 + ((1 - GlobalShipVariables.engine1Health)*250 + (1 - GlobalShipVariables.navigationHealth)*250)))) * GlobalShipVariables.generatorHealth;
-                progressManager.setProgress(GlobalShipVariables.progression);
+                if(!GlobalShipVariables.tutorialMode) {
+                    GlobalShipVariables.progression = progressManager.getProgress() + (delta / ((200 + ((1 - GlobalShipVariables.engine1Health) * 250 + (1 - GlobalShipVariables.navigationHealth) * 250)))) * GlobalShipVariables.generatorHealth;
+                    progressManager.setProgress(GlobalShipVariables.progression);
+                }
             }
             if(progressManager.getProgress() >= 1.0f) {
                 gameSound.forceStop();
@@ -360,6 +491,10 @@ public class TemplateScene implements Screen {
         // overlay fonts
         batch.begin();
             progressManager.renderFonts(FontManager.font_droidBb_18, batch);
+            if(GlobalShipVariables.tutorialMode && tutorialText.length() > 0) {
+                FontManager.font_droidBb_40.setColor(Color.WHITE);
+                FontManager.font_droidBb_40.draw(batch, this.glyphLayout, ((float)Gdx.graphics.getWidth()/2) - (glyphLayout.width/2), 75);
+            }
         batch.end();
 
         stage.act(Gdx.graphics.getDeltaTime());

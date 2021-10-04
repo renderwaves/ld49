@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.renderwaves.ld49.Game;
 import com.renderwaves.ld49.entity.EntityManager;
 import com.renderwaves.ld49.entity.entities.*;
+import com.renderwaves.ld49.other.GlobalShipVariables;
 import com.renderwaves.ld49.scenes.TemplateScene;
 
 import javax.imageio.ImageIO;
@@ -327,7 +328,7 @@ public class Tilemap {
         else if(difficulty == 4) {
             t = 7;
         }
-        if(fireTimer >= t) {
+        if(fireTimer >= t && !GlobalShipVariables.tutorialMode) {
             Vector2 pos = new Vector2((int)((float)Math.random() * width), (int)((float)Math.random() * height));
             if(getTileByPosition((int)pos.x, (int)pos.y).tileID == Tile.GroundTile.tileID) {
                 fireHandler.add(new Fire(new Vector2(pos.x*32+offset.x-4, pos.y*32+offset.y)));

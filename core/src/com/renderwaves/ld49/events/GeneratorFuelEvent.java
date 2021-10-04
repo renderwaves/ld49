@@ -35,6 +35,9 @@ public class GeneratorFuelEvent extends GameEvent {
     @Override
     public void onEnd() {
         TemplateScene.warningLabels.remove(warningLabel);
+        if(GlobalShipVariables.tutorialMode) {
+            TemplateScene.tutorialStage++;
+        }
     }
 
     @Override

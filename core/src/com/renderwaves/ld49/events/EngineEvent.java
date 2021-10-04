@@ -55,6 +55,10 @@ public class EngineEvent extends GameEvent {
         if(getEventTook() > 0) {
             GlobalShipVariables.score += 300 / getEventTook();
         }
+
+        if(GlobalShipVariables.tutorialMode) {
+            TemplateScene.tutorialStage++;
+        }
     }
 
     @Override

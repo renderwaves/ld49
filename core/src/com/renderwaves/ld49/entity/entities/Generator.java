@@ -30,17 +30,16 @@ public class Generator extends TexturedEntity {
 
     @Override
     public void update() {
-        if(difficulty == 1) {
-            GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 100;
-        }
-        else if(difficulty == 2) {
-            GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 75;
-        }
-        else if(difficulty == 3) {
-            GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 50;
-        }
-        else if(difficulty == 4) {
-            GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 75;
+        if(!GlobalShipVariables.tutorialMode) {
+            if (difficulty == 1) {
+                GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 100;
+            } else if (difficulty == 2) {
+                GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 75;
+            } else if (difficulty == 3) {
+                GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 50;
+            } else if (difficulty == 4) {
+                GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 75;
+            }
         }
 
         if(GlobalShipVariables.generatorFuel < 0) {

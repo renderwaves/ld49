@@ -47,6 +47,9 @@ public class GeneratorEvent extends GameEvent {
             GlobalShipVariables.score += 300 / getEventTook();
         }
         TemplateScene.warningLabels.remove(warningLabel);
+        if(GlobalShipVariables.tutorialMode) {
+            TemplateScene.tutorialStage++;
+        }
     }
 
 

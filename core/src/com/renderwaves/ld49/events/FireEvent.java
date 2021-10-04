@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.renderwaves.ld49.managers.SoundManager;
+import com.renderwaves.ld49.other.GlobalShipVariables;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.ui.WarningLabel;
 
@@ -36,6 +37,10 @@ public class FireEvent extends GameEvent {
     public void onEnd() {
         TemplateScene.warningLabels.remove(warningLabel);
         TemplateScene.fireEvent = false;
+
+        if(GlobalShipVariables.tutorialMode) {
+            TemplateScene.tutorialStage++;
+        }
     }
 
     @Override

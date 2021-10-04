@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.renderwaves.ld49.other.GlobalShipVariables;
 import com.renderwaves.ld49.managers.SoundManager;
 import com.renderwaves.ld49.managers.TextureManager;
+import com.renderwaves.ld49.scenes.TemplateScene;
 
 /*
  */
@@ -25,6 +26,9 @@ public class LifesupportEvent extends GameEvent {
     public void onEnd() {
         if(getEventTook() > 0) {
             GlobalShipVariables.score += 300 / getEventTook();
+        }
+        if(GlobalShipVariables.tutorialMode) {
+            TemplateScene.tutorialStage++;
         }
     }
 
