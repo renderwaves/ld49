@@ -95,7 +95,7 @@ public class TemplateScene implements Screen {
         Gdx.input.setInputProcessor(stage);
 
         this.table = new Table();
-        this.table.setDebug(true);
+        //this.table.setDebug(true);
         this.table.setFillParent(true);
         this.stage.addActor(table);
 
@@ -127,7 +127,7 @@ public class TemplateScene implements Screen {
                 for (int i = 0; i < gameEventSystem.numEvents(); i++)
                     if (gameEventSystem.getEvent(i) instanceof CommsEvent)
                         return;
-                gameEventSystem.addEvent(new CommsEvent());
+                gameEventSystem.addEvent(new CommsEvent(0.5f));
                 break;
             }
             // lifesupport, oxygen failure (space suit)
@@ -136,7 +136,7 @@ public class TemplateScene implements Screen {
                 for (int i = 0; i < gameEventSystem.numEvents(); i++)
                     if (gameEventSystem.getEvent(i) instanceof LifesupportEvent)
                         return;
-                gameEventSystem.addEvent(new LifesupportEvent());
+                gameEventSystem.addEvent(new LifesupportEvent(0.5f));
                 break;
             }
             // generator failure
@@ -144,7 +144,7 @@ public class TemplateScene implements Screen {
                 for (int i = 0; i < gameEventSystem.numEvents(); i++)
                     if (gameEventSystem.getEvent(i) instanceof GeneratorEvent)
                         return;
-                gameEventSystem.addEvent(new GeneratorEvent());
+                gameEventSystem.addEvent(new GeneratorEvent(0.5f));
                 break;
             }
             // navigation failure
@@ -153,7 +153,7 @@ public class TemplateScene implements Screen {
                 for (int i = 0; i < gameEventSystem.numEvents(); i++)
                     if (gameEventSystem.getEvent(i) instanceof NavigationEvent)
                         return;
-                gameEventSystem.addEvent(new NavigationEvent());
+                gameEventSystem.addEvent(new NavigationEvent(0.5f));
                 break;
             }
             // engine failure
@@ -162,7 +162,7 @@ public class TemplateScene implements Screen {
                 for (int i = 0; i < gameEventSystem.numEvents(); i++)
                     if (gameEventSystem.getEvent(i) instanceof EngineEvent)
                         return;
-                gameEventSystem.addEvent(new EngineEvent());
+                gameEventSystem.addEvent(new EngineEvent(0.5f));
                 break;
             }
             // door failure
@@ -183,9 +183,70 @@ public class TemplateScene implements Screen {
     public static boolean fireEvent = false;
     public OxygenManager oxygenManager = new OxygenManager();
     public static CommunicationMenu communicationMenu;
+
+    private boolean hasGeneratorEvent = false;
+    private boolean hasLifeSupportEvent = false;
+    private boolean hasNavigationEvent = false;
+    private boolean hasCommsEvent = false;
+    private boolean hasEngine1Failed = false;
+    private boolean hasEngine2Failed = false;
     @Override
     public void render(float delta) {
         period = (float)(Math.random()*(1.0f-0.01f + 1.0f)+1.0f);
+
+        hasGeneratorEvent = false;
+        hasNavigationEvent = false;
+        hasLifeSupportEvent = false;
+        hasCommsEvent = false;
+        hasEngine2Failed = false;
+        hasEngine1Failed = false;
+
+        for(int i = 0; i < gameEventSystem.numEvents(); i++) {
+            if(gameEventSystem.getEvent(i) instanceof NavigationEvent) {
+                hasNavigationEvent = true;
+            }
+            else if(gameEventSystem.getEvent(i) instanceof CommsEvent) {
+                hasCommsEvent = true;
+            }
+            else if(gameEventSystem.getEvent(i) instanceof LifesupportEvent) {
+                hasLifeSupportEvent = true;
+            }
+            else if(gameEventSystem.getEvent(i) instanceof GeneratorEvent) {
+                hasGeneratorEvent = true;
+            }
+            else if(gameEventSystem.getEvent(i) instanceof EngineEvent && GlobalShipVariables.engineFailed == 1) {
+                hasEngine1Failed = true;
+            }
+            else if(gameEventSystem.getEvent(i) instanceof EngineEvent && GlobalShipVariables.engineFailed == 2) {
+                hasEngine2Failed = true;
+            }
+        }
+
+
+        if(!hasNavigationEvent && GlobalShipVariables.navigationHealth < 1.0) {
+            gameEventSystem.addEvent(new NavigationEvent(0.0f));
+        }
+
+        if(!hasCommsEvent && GlobalShipVariables.communicationsHealth < 1.0) {
+            gameEventSystem.addEvent(new CommsEvent(0.0f));
+        }
+
+        if(!hasGeneratorEvent && GlobalShipVariables.generatorHealth < 1.0) {
+            gameEventSystem.addEvent(new GeneratorEvent(0.0f));
+        }
+
+        if(!hasLifeSupportEvent && GlobalShipVariables.lifeSupportHealth < 1.0) {
+            gameEventSystem.addEvent(new LifesupportEvent(0.0f));
+        }
+
+        if(!hasEngine1Failed && GlobalShipVariables.engine1Health < 1.0) {
+            gameEventSystem.addEvent(new EngineEvent(0.0f));
+        }
+
+        if(!hasEngine2Failed && GlobalShipVariables.engine2Health < 1.0) {
+            gameEventSystem.addEvent(new EngineEvent(0.0f));
+        }
+
 
         communicationMenu.update();
 

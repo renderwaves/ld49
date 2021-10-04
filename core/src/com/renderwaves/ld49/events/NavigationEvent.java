@@ -17,9 +17,9 @@ public class NavigationEvent extends GameEvent {
         onStart();
     }
      */
-    public NavigationEvent() {
+    public NavigationEvent(float damage) {
         super(TAG, TextureManager.navigationicon);
-        GlobalShipVariables.navigationHealth -= 0.5f;
+        GlobalShipVariables.navigationHealth -= damage;
     }
 
     @Override

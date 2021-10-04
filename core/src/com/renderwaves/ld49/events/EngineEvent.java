@@ -25,8 +25,11 @@ public class EngineEvent extends GameEvent {
     }
      */
 
-    public EngineEvent() {
+    private float damage;
+
+    public EngineEvent(float damage) {
         super(TAG, TextureManager.engine);
+        this.damage = damage;
     }
 
     @Override
@@ -37,17 +40,14 @@ public class EngineEvent extends GameEvent {
         } else {
             GlobalShipVariables.engineFailed = 2;
         }
-        warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING ENGINE"  + GlobalShipVariables.engineFailed + " HAS FAILED!", Color.WHITE, Color.RED, 1);
+        warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING ENGINE "  + GlobalShipVariables.engineFailed + " HAS FAILED!", Color.WHITE, Color.RED, 1);
         TemplateScene.warningLabels.add(warningLabel);
 
-        if(GlobalShipVariables.engineFailed == 1){
-            GlobalShipVariables.engine1Health -= 0.5f;
-            setProgress(GlobalShipVariables.engine1Health);
-
-        } else {
-            GlobalShipVariables.engine2Health -= 0.5f;
-            setProgress(GlobalShipVariables.engine2Health);
-
+        if(GlobalShipVariables.engineFailed == 1) {
+            GlobalShipVariables.engine1Health -= damage;
+        }
+        else if(GlobalShipVariables.engineFailed == 2) {
+            GlobalShipVariables.engine2Health -= damage;
         }
     }
 

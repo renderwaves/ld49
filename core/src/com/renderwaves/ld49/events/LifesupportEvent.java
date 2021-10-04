@@ -12,14 +12,14 @@ public class LifesupportEvent extends GameEvent {
 
     static final String TAG = "Lifesupport Event";
 
-    public LifesupportEvent() {
+    public LifesupportEvent(float damage) {
         super(TAG, TextureManager.lifesupporticon, SoundManager.alarmSound3);
+        GlobalShipVariables.lifeSupportHealth -= damage;
     }
 
     @Override
     public void onStart() {
         System.out.println(String.format("%s is Active!", this.info(), this.getName()));
-        GlobalShipVariables.lifeSupportHealth -= 0.5f;
         setProgress(GlobalShipVariables.lifeSupportHealth);
     }
 
