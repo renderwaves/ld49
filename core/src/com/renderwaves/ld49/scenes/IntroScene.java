@@ -46,7 +46,7 @@ public class IntroScene implements Screen {
     private int numLogo = 0;
     private void nextFrame(float delta){
         time += delta;
-        if(time > 1.0f){
+        if(time > 1.5f){
             vidCurFrame++;
             numLogo++;
             time = 0;

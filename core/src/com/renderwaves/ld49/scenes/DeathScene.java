@@ -5,6 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -13,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Array;
 import com.renderwaves.ld49.other.GlobalShipVariables;
 import com.renderwaves.ld49.entity.entities.PlayerEntity;
 import com.renderwaves.ld49.managers.FontManager;
@@ -21,11 +24,18 @@ public class DeathScene implements Screen {
     private Stage stage;
     private Table table;
     private Table creditsTable;
+    private SpriteBatch spriteBatch;
+
+    private Array<Sprite> video;
+    private TextureAtlas videoAtlas;
+    private Sprite vidCurSprite;
+    private int vidCurFrame = 0;
 
     Game game;
 
     public DeathScene(Game game){
         this.game = game;
+        this.spriteBatch = new SpriteBatch();
         Skin uiSkin = new Skin();
         uiSkin.add("default-font", FontManager.font_droidBb_20);
 
@@ -69,6 +79,9 @@ public class DeathScene implements Screen {
         table.row();
         table.add(quitButton).spaceTop(5).width(100).height(30);
 
+        videoAtlas = new TextureAtlas(Gdx.files.internal("textures/atlas/badend/explosion.atlas"));
+        video = videoAtlas.createSprites();
+
     }
 
     public void callbackStartGame(){
@@ -102,9 +115,32 @@ public class DeathScene implements Screen {
 
     }
 
+    private float time = 0;
+    private boolean toGame = false;
+
+    private void nextFrame(float delta){
+        time += delta;
+        if(time > 0.1f){
+            vidCurFrame++;
+            time = 0;
+        }
+        if(vidCurFrame<video.size){
+            vidCurSprite = video.get(vidCurFrame);
+        } else {
+            vidCurFrame = 0;
+        }
+        vidCurSprite.setPosition(Gdx.graphics.getWidth()/2.425f, Gdx.graphics.getHeight()/2.425f);
+        vidCurSprite.setScale(5,5);
+    }
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        nextFrame(delta);
+
+        spriteBatch.begin();
+        vidCurSprite.draw(spriteBatch);
+        spriteBatch.end();
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
     }
