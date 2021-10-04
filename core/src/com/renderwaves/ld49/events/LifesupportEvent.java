@@ -18,14 +18,13 @@ public class LifesupportEvent extends GameEvent {
 
     @Override
     public void onStart() {
-        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
         GlobalShipVariables.lifeSupportHealth -= 0.5f;
         setProgress(GlobalShipVariables.lifeSupportHealth);
     }
 
     @Override
     public void onEnd() {
-        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
+
     }
 
     @Override
@@ -51,11 +50,6 @@ public class LifesupportEvent extends GameEvent {
 
     @Override
     public void onSound() {
-        if (sound != null) {
-            if (isComplete()) {
-                sound.stop();
-                sound.dispose();
-            }
-        }
+
     }
 }

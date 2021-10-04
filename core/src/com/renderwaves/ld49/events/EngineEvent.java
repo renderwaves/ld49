@@ -31,7 +31,6 @@ public class EngineEvent extends GameEvent {
 
     @Override
     public void onStart() {
-        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
         if(Math.random() > 0.5f){
             GlobalShipVariables.engineFailed = 1;
         } else {
@@ -54,7 +53,6 @@ public class EngineEvent extends GameEvent {
     @Override
     public void onEnd() {
         TemplateScene.warningLabels.remove(warningLabel);
-        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
     }
 
     @Override
@@ -85,8 +83,6 @@ public class EngineEvent extends GameEvent {
 
     @Override
     public void onSound() {
-        if (isComplete() == false) {
 
-        }
     }
 }

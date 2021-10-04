@@ -27,8 +27,7 @@ public class GeneratorFuelEvent extends GameEvent {
 
     @Override
     public void onStart() {
-        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
-            warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING REACTOR IS RUNNING OUT OF FUEL!", Color.WHITE, Color.RED, 1);
+        warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING REACTOR IS RUNNING OUT OF FUEL!", Color.WHITE, Color.RED, 1);
         TemplateScene.warningLabels.add(warningLabel);
 
         setProgress(GlobalShipVariables.generatorFuel);
@@ -36,7 +35,6 @@ public class GeneratorFuelEvent extends GameEvent {
 
     @Override
     public void onEnd() {
-        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
         TemplateScene.warningLabels.remove(warningLabel);
     }
 
@@ -60,8 +58,5 @@ public class GeneratorFuelEvent extends GameEvent {
 
     @Override
     public void onSound() {
-        if (isComplete() == false) {
-
-        }
     }
 }

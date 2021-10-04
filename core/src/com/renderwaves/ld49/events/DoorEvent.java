@@ -21,8 +21,6 @@ public class DoorEvent extends GameEvent {
 
     @Override
     public void onStart() {
-        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
-
         int numDoors = TemplateScene.shipTilemap.doorHandler.size();
         int doorToBlock = (int) ((Math.random() * numDoors));
 
@@ -34,7 +32,7 @@ public class DoorEvent extends GameEvent {
 
     @Override
     public void onEnd() {
-        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
+
     }
 
     @Override
@@ -54,8 +52,6 @@ public class DoorEvent extends GameEvent {
 
     @Override
     public void onSound() {
-        if (isComplete() == false) {
 
-        }
     }
 }

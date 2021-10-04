@@ -206,20 +206,10 @@ public class TemplateScene implements Screen {
             }
         }
 
-        // determinate game state
-        // number of ongoing events
-        int ongoingEvents = gameEventSystem.numEvents();
-        if (ongoingEvents > 2) {
-            ongoingEvents = ongoingEvents / 2;
-            this.gameState = ongoingEvents;
-        }
-
         gameEventSystem.update(ingameTime);
 
         if (shipTilemap.player.hasDied())
             gameSound.forceStop();
-
-        gameSound.update(this.gameState);
 
         ScreenUtils.clear(0, 0, 0, 1);
         batch.begin();
@@ -233,6 +223,7 @@ public class TemplateScene implements Screen {
                 progressManager.setProgress(progressManager.getProgress() + (delta / ((200 + ((1 - GlobalShipVariables.engine1Health)*250 + (1 - GlobalShipVariables.navigationHealth)*250)))) * GlobalShipVariables.generatorHealth);
             }
             if(progressManager.getProgress() >= 1.0f) {
+                gameSound.forceStop();
                 game.setScreen(new YouWonScene(game));
             }
 

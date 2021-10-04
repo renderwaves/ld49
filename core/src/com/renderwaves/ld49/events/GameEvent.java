@@ -1,5 +1,6 @@
 package com.renderwaves.ld49.events;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -30,16 +31,23 @@ public abstract class GameEvent {
     protected Sound sound = null;
     protected long soundId = 0;
 
+    // internal timer of how long it took to solve event
+    private float internalTimer;
+    private float timePeriod = 1f;
+    private Integer eventTook = 0;
+
     /*
      */
     public GameEvent() {
         this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
+
         onStart();
     }
 
     public GameEvent(String name) {
         this.uniqueId = (int)(Math.random() * Integer.MAX_VALUE);
         this.name = name;
+
         onStart();
     }
 
@@ -56,6 +64,7 @@ public abstract class GameEvent {
                 this.icon,
                 new Vector2(2, 2)
         );
+
         onStart();
     }
 
@@ -75,9 +84,8 @@ public abstract class GameEvent {
         );
 
         this.sound = sound;
-        //this.soundId = this.sound.play();
-        //this.sound.setLooping(soundId, true);
-        //this.sound.stop();
+        if (this.sound != null)
+            this.sound.loop(0.3f);
 
         onStart();
     }
@@ -97,6 +105,7 @@ public abstract class GameEvent {
                 this.icon,
                 new Vector2(2, 2)
         );
+
         onStart();
     }
 
@@ -115,9 +124,22 @@ public abstract class GameEvent {
                 this.icon,
                 new Vector2(2, 2)
         );
+
         this.sound = sound;
+        if (this.sound != null)
+            this.sound.loop(0.3f);
 
         onStart();
+    }
+
+    protected void finalize() {
+        onEnd(); // call user method
+
+        // remove sound if present
+        if (this.sound != null)
+            sound.dispose();
+
+        System.out.println(String.format("Event: %s is Solved!\n\t: Solve time took '%s' seconds\n", this.getName(), Integer.toString(this.eventTook)));
     }
 
     public String info() {
@@ -136,6 +158,8 @@ public abstract class GameEvent {
     /* internal update
      */
     public void update(float timer) {
+        if (isComplete() == false)
+            onTimeSolve();
         onUpdate(timer);
     }
 
@@ -158,6 +182,15 @@ public abstract class GameEvent {
         }
     }
 
+    private void onTimeSolve() {
+        internalTimer += Gdx.graphics.getRawDeltaTime();
+        if (internalTimer > timePeriod) {
+            internalTimer -= timePeriod;
+            // count score value
+            eventTook += 1;
+        }
+    }
+
     /* user defined methods
      */
     public abstract void onStart();
@@ -171,7 +204,13 @@ public abstract class GameEvent {
      */
     public void setProgress(float progress) { this.progress = progress; if (progressBar != null) this.progressBar.status = progress; }
     public float getProgress() { return (this.progress != progressBar.status) ? this.progress : this.progressBar.status; }
-    public boolean isComplete() { return this.isComplete; }
+    public boolean isComplete() {
+        if (this.isComplete == true) {
+            if (this.sound != null)
+                this.sound.stop();
+        }
+        return this.isComplete;
+    }
     public void setComplete(boolean s) { this.isComplete = s; }
     public String getName() { return this.name; }
     public Texture getIcon() {return this.icon; }

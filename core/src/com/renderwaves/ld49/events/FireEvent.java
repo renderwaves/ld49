@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.renderwaves.ld49.managers.FontManager;
+import com.renderwaves.ld49.managers.SoundManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.ui.WarningLabel;
@@ -23,7 +24,7 @@ public class FireEvent extends GameEvent {
      */
 
     public FireEvent() {
-        super(TAG, null);
+        super(TAG, null, SoundManager.alarmSound1);
     }
 
     @Override
@@ -38,7 +39,6 @@ public class FireEvent extends GameEvent {
     public void onEnd() {
         TemplateScene.warningLabels.remove(warningLabel);
         TemplateScene.fireEvent = false;
-        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class FireEvent extends GameEvent {
 
     @Override
     public void onRender() {
-        System.out.println("TEST");
+
     }
 
     @Override
@@ -60,8 +60,6 @@ public class FireEvent extends GameEvent {
 
     @Override
     public void onSound() {
-        if (isComplete() == false) {
 
-        }
     }
 }

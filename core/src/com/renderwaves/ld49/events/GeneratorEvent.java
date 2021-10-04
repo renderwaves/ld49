@@ -33,7 +33,6 @@ public class GeneratorEvent extends GameEvent {
 
     @Override
     public void onStart() {
-        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
         warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING REACTOR HAS FAILED!", Color.WHITE, Color.RED, 1);
         TemplateScene.warningLabels.add(warningLabel);
 
@@ -44,7 +43,6 @@ public class GeneratorEvent extends GameEvent {
     @Override
     public void onEnd() {
         TemplateScene.warningLabels.remove(warningLabel);
-        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
     }
 
 
@@ -71,8 +69,6 @@ public class GeneratorEvent extends GameEvent {
 
     @Override
     public void onSound() {
-        if (isComplete() == false) {
 
-        }
     }
 }

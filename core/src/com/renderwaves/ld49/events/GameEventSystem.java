@@ -73,7 +73,7 @@ public class GameEventSystem {
     public void removeEvent() {
         for (int i = 0; i < events.size(); i++) {
             if (events.get(i).isComplete()) {
-                events.get(i).onEnd();
+                events.get(i).finalize();
                 events.remove(i);
             }
         }

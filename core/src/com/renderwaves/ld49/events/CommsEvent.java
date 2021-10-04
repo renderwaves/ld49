@@ -15,14 +15,13 @@ public class CommsEvent extends GameEvent {
 
     @Override
     public void onStart() {
-        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
         GlobalShipVariables.communicationsHealth -= 1.0f;
         setProgress(GlobalShipVariables.communicationsHealth);
     }
 
     @Override
     public void onEnd() {
-        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
+
     }
 
     @Override
@@ -45,9 +44,7 @@ public class CommsEvent extends GameEvent {
 
     @Override
     public void onSound() {
-        if (isComplete() == false) {
 
-        }
     }
 }
 

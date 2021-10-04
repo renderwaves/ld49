@@ -76,9 +76,8 @@ public class SoundManager {
     /*
      */
     public void update(int gameState) {
-
-        System.out.println(String.format("SoundManager.update(): gamestate: %d prevGameState: %d\n", gameState, prevGameState));
-
+        //System.out.println(String.format("SoundManager.update(): gamestate: %d prevGameState: %d\n", gameState, prevGameState));
+/*
         if (prevGameState != gameState) {
             prevGameState = gameState;
 
@@ -102,7 +101,7 @@ public class SoundManager {
             if (gameMusic == null)
                 setMusic(idleMusic, 0.2f);
         }
-
+*/
 
     }
 
