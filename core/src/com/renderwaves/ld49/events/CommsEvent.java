@@ -9,13 +9,14 @@ public class CommsEvent extends GameEvent {
 
     static final String TAG = "Communication Event";
 
-    public CommsEvent()  {
+    public CommsEvent(float damage)  {
         super(TAG, TextureManager.comms);
+        GlobalShipVariables.communicationsHealth -= damage;
     }
 
     @Override
     public void onStart() {
-        GlobalShipVariables.communicationsHealth -= 1.0f;
+        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
         setProgress(GlobalShipVariables.communicationsHealth);
     }
 

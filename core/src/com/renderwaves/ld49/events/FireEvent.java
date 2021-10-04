@@ -30,7 +30,6 @@ public class FireEvent extends GameEvent {
     @Override
     public void onStart() {
         setProgress(0.0f);
-        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
         warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING FIRE HAS ERUPTED!", Color.WHITE, Color.RED, 1);
         TemplateScene.warningLabels.add(warningLabel);
     }

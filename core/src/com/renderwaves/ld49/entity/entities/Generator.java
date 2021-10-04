@@ -14,13 +14,17 @@ import com.renderwaves.ld49.events.GeneratorFuelEvent;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.ui.StatusBar;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 
 public class Generator extends TexturedEntity {
     private StatusBar statusBar = new StatusBar(new Vector2(Gdx.graphics.getWidth() - 200, 75), new Vector2(128, 64), GlobalShipVariables.generatorFuel, new Color(255, 255, 255, 255), new Color(255, 0, 0, 255), TextureManager.energyTexture, new Vector2(2, 2));
 
+    public Rectangle fireRectangle;
+
     public Generator(Vector2 position, Vector2 scale) {
         super(position, scale, TextureManager.reactorTexture);
         rectangle = new Rectangle(position.x, position.y, texture.getWidth() * scale.x * 2, texture.getHeight() * scale.y);
+        fireRectangle = new Rectangle(position.x, position.y, texture.getWidth() * scale.x, texture.getHeight() * scale.y);
     }
 
     private boolean runningOutOfFuel = false;
@@ -42,6 +46,12 @@ public class Generator extends TexturedEntity {
             runningOutOfFuel = false;
         }
         statusBar.status = GlobalShipVariables.generatorFuel;
+
+        for(int i = 0; i < TemplateScene.shipTilemap.fireHandler.size(); i++) {
+            if(fireRectangle.overlaps(TemplateScene.shipTilemap.fireHandler.get(i).rectangle)) {
+                GlobalShipVariables.generatorHealth -= Gdx.graphics.getDeltaTime() / 100;
+            }
+        }
     }
 
     @Override

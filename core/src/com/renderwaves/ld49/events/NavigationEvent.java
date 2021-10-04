@@ -17,20 +17,19 @@ public class NavigationEvent extends GameEvent {
         onStart();
     }
      */
-    public NavigationEvent() {
+    public NavigationEvent(float damage) {
         super(TAG, TextureManager.navigationicon);
-        GlobalShipVariables.navigationHealth -= 0.5f;
+        GlobalShipVariables.navigationHealth -= damage;
     }
 
     @Override
     public void onStart() {
-        System.out.println(String.format("%s is Active!", this.info(), this.getName()));
         setProgress(GlobalShipVariables.navigationHealth);
     }
 
     @Override
     public void onEnd() {
-        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
+
     }
 
     @Override
@@ -56,8 +55,6 @@ public class NavigationEvent extends GameEvent {
 
     @Override
     public void onSound() {
-        if (isComplete() == false) {
 
-        }
     }
 }

@@ -27,8 +27,9 @@ public class GeneratorEvent extends GameEvent {
     }
      */
 
-    public GeneratorEvent() {
+    public GeneratorEvent(float damage) {
         super(TAG, TextureManager.dangerNuclear);
+        GlobalShipVariables.generatorHealth -= damage;
     }
 
     @Override
@@ -36,7 +37,7 @@ public class GeneratorEvent extends GameEvent {
         warningLabel = new WarningLabel(Gdx.graphics.getWidth()/2 - 200, Gdx.graphics.getHeight() - 30, "WARNING REACTOR HAS FAILED!", Color.WHITE, Color.RED, 1);
         TemplateScene.warningLabels.add(warningLabel);
 
-        GlobalShipVariables.generatorHealth -= 0.5f;
+        //GlobalShipVariables.generatorHealth -= 0.5f;
         setProgress(GlobalShipVariables.generatorHealth);
     }
 
