@@ -3,6 +3,7 @@ package com.renderwaves.ld49.ui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.renderwaves.ld49.managers.FontManager;
@@ -16,6 +17,7 @@ public class WarningLabel {
 
     private float timer;
     private float startTime;
+    private GlyphLayout glyphLayout;
 
     public WarningLabel(int x, int y, String text, Color color1, Color color2, float time) {
         this.text = text;
@@ -26,6 +28,8 @@ public class WarningLabel {
         this.x = x;
         this.y = y;
         timer = 0;
+        glyphLayout = new GlyphLayout(this.font,this.text);
+
     }
 
     private boolean switchColors = false;
@@ -37,7 +41,7 @@ public class WarningLabel {
                 event();
         }
 
-        if (font != null) font.draw(spriteBatch, this.text, this.x, this.y - (offsetY * 42));
+        if (font != null) font.draw(spriteBatch, this.glyphLayout, ((float)Gdx.graphics.getWidth()/2) - (glyphLayout.width/2), this.y - (offsetY * 42));
     }
 
     private void event() {
