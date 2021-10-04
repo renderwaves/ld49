@@ -3,12 +3,10 @@ package com.renderwaves.ld49.entity.entities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.other.GlobalShipVariables;
 import com.renderwaves.ld49.entity.TexturedEntity;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
-
-import static com.renderwaves.ld49.GlobalShipVariables.engine1Health;
 
 public class Engine extends TexturedEntity {
     private Rectangle fireRectangle;

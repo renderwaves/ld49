@@ -15,7 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.renderwaves.ld49.Game;
-import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.other.Background;
+import com.renderwaves.ld49.other.GlobalShipVariables;
 import com.renderwaves.ld49.entity.entities.*;
 import com.renderwaves.ld49.events.*;
 import com.renderwaves.ld49.managers.*;
@@ -58,6 +59,8 @@ public class TemplateScene implements Screen {
 
     private boolean disableEvents = false;
 
+    private Background background;
+
     public static TemplateScene getInstance() {
         return instance;
     }
@@ -84,6 +87,7 @@ public class TemplateScene implements Screen {
 
         statusBar = new StatusBar(new Vector2(10, 10), new Vector2(128, 64), 1.0f, new Color(255, 255, 255, 255), new Color(255, 0, 0, 255), TextureManager.energyTexture, new Vector2(2, 2));
         communicationMenu = new CommunicationMenu();
+        background = new Background();
     }
 
     @Override
@@ -200,6 +204,8 @@ public class TemplateScene implements Screen {
     private boolean hasEngine2FailedEvent = false;
     @Override
     public void render(float delta) {
+        //background.renderShape(shapeRenderer);
+
         period = (float)(Math.random()*(1.0f-0.01f + 1.0f)+1.0f);
 
         hasGeneratorEvent = false;
@@ -295,7 +301,11 @@ public class TemplateScene implements Screen {
             gameSound.forceStop();
 
         ScreenUtils.clear(0, 0, 0, 1);
+
+        background.renderShape(shapeRenderer);
+
         batch.begin();
+            background.renderSprite(batch);
             shipTilemap.render(batch);
             entityManager.handleEntities(batch);
             gameEventSystem.render(batch);

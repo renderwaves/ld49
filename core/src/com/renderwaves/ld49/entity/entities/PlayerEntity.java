@@ -7,22 +7,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.renderwaves.ld49.GlobalShipVariables;
-import com.renderwaves.ld49.entity.EntityManager;
+import com.renderwaves.ld49.other.GlobalShipVariables;
 import com.renderwaves.ld49.entity.TexturedEntity;
-import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.InputManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.DeathScene;
-import com.renderwaves.ld49.scenes.MenuScene;
 import com.renderwaves.ld49.scenes.TemplateScene;
-import com.renderwaves.ld49.tilemap.Tile;
 import com.renderwaves.ld49.tilemap.Tilemap;
 import com.renderwaves.ld49.ui.StatusBar;
 
 import java.util.ArrayList;
-
-import java.awt.*;
 
 import static com.renderwaves.ld49.Game.entityManager;
 import static com.renderwaves.ld49.scenes.MenuScene.difficulty;

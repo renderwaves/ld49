@@ -2,19 +2,16 @@ package com.renderwaves.ld49.entity.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.other.GlobalShipVariables;
 import com.renderwaves.ld49.entity.TexturedEntity;
-import com.renderwaves.ld49.events.GeneratorEvent;
 import com.renderwaves.ld49.events.GeneratorFuelEvent;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.ui.StatusBar;
-import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 
 import static com.renderwaves.ld49.scenes.MenuScene.difficulty;
 
@@ -42,7 +39,7 @@ public class Generator extends TexturedEntity {
         else if(difficulty == 3) {
             GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 50;
         }
-        
+
         if(GlobalShipVariables.generatorFuel < 0) {
             GlobalShipVariables.generatorFuel = 0.0f;
         }

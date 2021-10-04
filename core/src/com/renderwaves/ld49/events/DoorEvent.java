@@ -1,13 +1,8 @@
 package com.renderwaves.ld49.events;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.renderwaves.ld49.GlobalShipVariables;
-import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.tilemap.Tilemap;
-
-import java.util.Random;
 
 public class DoorEvent extends GameEvent {
     public static int numberOfDoorEvents = 0;

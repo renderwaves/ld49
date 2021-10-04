@@ -1,10 +1,8 @@
 package com.renderwaves.ld49.events;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.other.GlobalShipVariables;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.renderwaves.ld49.managers.SoundManager;

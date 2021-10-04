@@ -1,4 +1,4 @@
-package com.renderwaves.ld49;
+package com.renderwaves.ld49.other;
 
 public class GlobalShipVariables {
     public static float shipHealth = 1.0f;

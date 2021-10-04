@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.other.GlobalShipVariables;
 import com.renderwaves.ld49.ui.StatusBar;
 
 public class OxygenManager {

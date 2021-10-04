@@ -20,7 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
-import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.other.GlobalShipVariables;
 import com.renderwaves.ld49.entity.entities.PlayerEntity;
 import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.SoundManager;

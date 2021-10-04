@@ -34,8 +34,23 @@ public class TextureManager {
     public static Texture playerRight = new Texture("textures/entities/player_right.png");
     public static Texture playerBack = new Texture("textures/entities/player_back.png");
 
+    public static Texture planetEarth = new Texture("textures/planet_earth.png");
+    public static Texture planetEarthFict1 = new Texture("textures/planet_earth_fict_1.png");
+    public static Texture planetEarthFict2 = new Texture("textures/planet_earth_fict_2.png");
+    public static Texture planetFict1 = new Texture("textures/planet_fict_1.png");
+    public static Texture planetJupiter = new Texture("textures/planet_jupiter.png");
+    public static Texture planetMerkur = new Texture("textures/planet_merkur.png");
+    public static Texture planetVenuse = new Texture("textures/planet_venuse.png");
+
     public static void disposeAllTextures() {
         img.dispose();
+        planetEarth.dispose();
+        planetEarthFict1.dispose();
+        planetEarthFict2.dispose();
+        planetFict1.dispose();
+        planetJupiter.dispose();
+        planetMerkur.dispose();
+        planetVenuse.dispose();
         groundTile.dispose();
         playerEntity.dispose();
         energyTexture.dispose();
