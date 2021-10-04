@@ -1,6 +1,5 @@
 package com.renderwaves.ld49.scenes;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -21,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
+import com.renderwaves.ld49.Game;
 import com.renderwaves.ld49.managers.FontManager;
 
 import java.awt.*;
@@ -158,7 +158,7 @@ public class MenuScene implements Screen {
     }
 
     public void startGame(){
-        this.game.setScreen(new TemplateScene((com.renderwaves.ld49.Game) game));
+        this.game.setScreen(new TutorialScene((com.renderwaves.ld49.Game) game));
     }
 
     public void callbackCredits(){

@@ -79,6 +79,7 @@ public class PlayerEntity extends TexturedEntity {
                 entityManager.remove(currentUranium);
                 uraniumList.remove(currentUranium);
                 currentUranium = null;
+                nearUranium = null;
             }
         }
         else if(nearLifeSupport) {
@@ -118,7 +119,7 @@ public class PlayerEntity extends TexturedEntity {
             GlobalShipVariables.engine2Health += Gdx.graphics.getDeltaTime() / 4;
         }
         else if (nearUranium != null && currentUranium == null) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "YOU CAN PICKUP URANIUM USING " + Input.Keys.toString(InputManager.TakeSpacesuit.key1), "YOU CAN PICKUP URANIUM USING <E>".length() * 4, 100);
+            FontManager.font_droidBb_20.draw(spriteBatch, "YOU CAN PICKUP URANIUM USING " + Input.Keys.toString(InputManager.TakeSpacesuit.key1), Gdx.graphics.getWidth()/2 - "YOU CAN PICKUP URANIUM USING <E>".length() * 4, 100);
             if(Gdx.input.isKeyJustPressed(InputManager.TakeSpacesuit.key1)) {
                 currentUranium = nearUranium;
             }
