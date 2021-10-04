@@ -10,6 +10,8 @@ import com.renderwaves.ld49.entity.TexturedEntity;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 
+import static com.renderwaves.ld49.scenes.MenuScene.difficulty;
+
 public class LifeSupport extends TexturedEntity {
     private Rectangle fireRectangle;
 
@@ -21,7 +23,9 @@ public class LifeSupport extends TexturedEntity {
 
     @Override
     public void update() {
-        GlobalShipVariables.oxygenLevel -= Gdx.graphics.getDeltaTime() / 50;
+        if(difficulty != 1) {
+            GlobalShipVariables.oxygenLevel -= Gdx.graphics.getDeltaTime() / 50;
+        }
         GlobalShipVariables.oxygenLevel +=  Gdx.graphics.getDeltaTime() / 10 * GlobalShipVariables.lifeSupportHealth * GlobalShipVariables.generatorFuel * GlobalShipVariables.generatorHealth;
 
         for(int i = 0; i < TemplateScene.shipTilemap.fireHandler.size(); i++) {

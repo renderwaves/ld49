@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.awt.*;
 
 import static com.renderwaves.ld49.Game.entityManager;
+import static com.renderwaves.ld49.scenes.MenuScene.difficulty;
 
 public class PlayerEntity extends TexturedEntity {
 
@@ -74,7 +75,12 @@ public class PlayerEntity extends TexturedEntity {
         if(nearGenerator) {
             //FontManager.font_droidBb_20.draw(spriteBatch, "PRESS " + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + " TO ADD URANIUM TO REACTOR", Gdx.graphics.getWidth() / 2 - "PRESS E TO ADD URANIUM TO REACTOR".length() * 4, 100);
             TemplateScene.uiLabel.setText("PRESS " + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + " TO ADD URANIUM TO REACTOR");
-            GlobalShipVariables.generatorHealth += Gdx.graphics.getDeltaTime() / 5;
+            if(difficulty == 1) {
+                GlobalShipVariables.generatorHealth += Gdx.graphics.getDeltaTime() / 3;
+            }
+            else {
+                GlobalShipVariables.generatorHealth += Gdx.graphics.getDeltaTime() / 5;
+            }
             if(currentUranium != null && Gdx.input.isKeyJustPressed(InputManager.TakeFireExtinguisher.key1)) {
                 GlobalShipVariables.generatorFuel += 1.0f;
                 entityManager.remove(currentUranium);
@@ -105,12 +111,25 @@ public class PlayerEntity extends TexturedEntity {
         else if (nearNavigation) {
             //FontManager.font_droidBb_20.draw(spriteBatch, "REPARING NAVIGATION", Gdx.graphics.getWidth() / 2 - "REPARING NAVIGATION".length() * 7, 100);
             TemplateScene.uiLabel.setText("REPARING NAVIGATION");
-            GlobalShipVariables.navigationHealth += Gdx.graphics.getDeltaTime() / 4;
+            if(difficulty == 1) {
+                GlobalShipVariables.navigationHealth += Gdx.graphics.getDeltaTime() / 2;
+            }
+            else if(difficulty == 2) {
+                GlobalShipVariables.navigationHealth += Gdx.graphics.getDeltaTime() / 3;
+            }
+            else if(difficulty == 3) {
+                GlobalShipVariables.navigationHealth += Gdx.graphics.getDeltaTime() / 4;
+            }
         }
         else if (nearComms) {
             //FontManager.font_droidBb_20.draw(spriteBatch, "REPARING COMMUNICATION", Gdx.graphics.getWidth() / 2 - "REPARING COMMUNICATION".length() * 4, 100);
             TemplateScene.uiLabel.setText("REPARING COMMUNICATION");
-            GlobalShipVariables.communicationsHealth += Gdx.graphics.getDeltaTime() / 4;
+            if(difficulty == 1) {
+                GlobalShipVariables.communicationsHealth += Gdx.graphics.getDeltaTime() / 2;
+            }
+            else {
+                GlobalShipVariables.communicationsHealth += Gdx.graphics.getDeltaTime() / 4;
+            }
             if(GlobalShipVariables.communicationsHealth > 0.75f) {
                 //FontManager.font_droidBb_20.draw(spriteBatch, "YOU CAN OPEN COMMUNICATION MENU USING <" + Input.Keys.toString(InputManager.OpenComMenu.key1) + ">", Gdx.graphics.getWidth() / 2 - "YOU CAN OPEN COMMUNICATION MENU USING <B>".length() * 4, 80);
                 TemplateScene.uiLabel.setText("YOU CAN OPEN COMMUNICATION MENU USING <" + Input.Keys.toString(InputManager.OpenComMenu.key1) + ">");
@@ -369,7 +388,6 @@ public class PlayerEntity extends TexturedEntity {
         for(int i = 0; i < TemplateScene.getInstance().shipTilemap.fireHandler.size(); i++) {
             if(rectangle.overlaps(TemplateScene.getInstance().shipTilemap.fireHandler.get(i).rectangle)) {
                 touchingFire = true;
-                System.out.println(touchingFire);
                 if(hasFireExtinguisher) {
                     TemplateScene.getInstance().shipTilemap.fireHandler.get(i).health -= Gdx.graphics.getDeltaTime();
                 }

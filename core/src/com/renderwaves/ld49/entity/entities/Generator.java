@@ -16,6 +16,8 @@ import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.ui.StatusBar;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 
+import static com.renderwaves.ld49.scenes.MenuScene.difficulty;
+
 public class Generator extends TexturedEntity {
     private StatusBar statusBar = new StatusBar(new Vector2(Gdx.graphics.getWidth() - 200, 75), new Vector2(128, 64), GlobalShipVariables.generatorFuel, new Color(255, 255, 255, 255), new Color(255, 0, 0, 255), TextureManager.energyTexture, new Vector2(2, 2));
 
@@ -31,7 +33,16 @@ public class Generator extends TexturedEntity {
 
     @Override
     public void update() {
-        GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 50;
+        if(difficulty == 1) {
+            GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 100;
+        }
+        else if(difficulty == 2) {
+            GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 75;
+        }
+        else if(difficulty == 3) {
+            GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 50;
+        }
+        
         if(GlobalShipVariables.generatorFuel < 0) {
             GlobalShipVariables.generatorFuel = 0.0f;
         }
