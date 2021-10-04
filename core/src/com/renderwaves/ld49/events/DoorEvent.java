@@ -10,6 +10,7 @@ import com.renderwaves.ld49.tilemap.Tilemap;
 import java.util.Random;
 
 public class DoorEvent extends GameEvent {
+    public static int numberOfDoorEvents = 0;
 
     static final String TAG = "Door Event";
 
@@ -27,12 +28,14 @@ public class DoorEvent extends GameEvent {
         door = TemplateScene.shipTilemap.doorHandler.get(doorToBlock);
         door.block();
 
+        numberOfDoorEvents++;
+
         //setProgress(1.0f);
     }
 
     @Override
     public void onEnd() {
-
+        System.out.println(String.format("%s is Solved!", this.info(), this.getName()));
     }
 
     @Override

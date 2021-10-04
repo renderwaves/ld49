@@ -343,7 +343,6 @@ public class PlayerEntity extends TexturedEntity {
             }
         }
 
-        touchingFire = false;
         for(int i = 0; i < TemplateScene.getInstance().shipTilemap.fireHandler.size(); i++) {
             if(rectangle.overlaps(TemplateScene.getInstance().shipTilemap.fireHandler.get(i).rectangle)) {
                 touchingFire = true;
@@ -351,6 +350,12 @@ public class PlayerEntity extends TexturedEntity {
                     TemplateScene.getInstance().shipTilemap.fireHandler.get(i).health -= Gdx.graphics.getDeltaTime();
                 }
             }
+            else {
+                touchingFire = false;
+            }
+        }
+        if(TemplateScene.getInstance().shipTilemap.fireHandler.size() <= 0) {
+            touchingFire = false;
         }
     }
 
