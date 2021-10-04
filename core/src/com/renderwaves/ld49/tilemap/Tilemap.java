@@ -316,7 +316,7 @@ public class Tilemap {
         //System.out.println(tilemapPositionToGlobalPosition((float)Math.random() * (width/32), (float)Math.random() * (height/32)));
         float t = 10;
         if(difficulty == 1) {
-            t = 20;
+            t = 1;
         }
         else if(difficulty == 2) {
             t = 15;
