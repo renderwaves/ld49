@@ -305,7 +305,7 @@ public class TemplateScene implements Screen {
             if(GlobalShipVariables.generatorFuel > 0) {
                 progressManager.setProgress(progressManager.getProgress() + (delta / ((200 + ((1 - GlobalShipVariables.engine1Health)*250 + (1 - GlobalShipVariables.navigationHealth)*250)))) * GlobalShipVariables.generatorHealth);
             }
-            if(progressManager.getProgress() >= 0.0f) {
+            if(progressManager.getProgress() >= 1.0f) {
                 gameSound.forceStop();
                 GlobalShipVariables.score += GlobalShipVariables.globalShipTimer;
                 game.setScreen(new YouWonScene(game));
