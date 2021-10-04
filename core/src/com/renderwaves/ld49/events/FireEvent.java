@@ -24,7 +24,7 @@ public class FireEvent extends GameEvent {
      */
 
     public FireEvent() {
-        super(TAG, null, SoundManager.alarmSound1);
+        super(TAG, null, SoundManager.fireEventSound);
     }
 
     @Override

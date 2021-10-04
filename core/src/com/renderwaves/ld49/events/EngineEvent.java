@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.managers.SoundManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.ui.WarningLabel;
@@ -28,7 +29,7 @@ public class EngineEvent extends GameEvent {
     private float damage;
 
     public EngineEvent(float damage) {
-        super(TAG, TextureManager.engine);
+        super(TAG, TextureManager.engine, SoundManager.engineFailureSound);
         this.damage = damage;
     }
 

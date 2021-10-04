@@ -3,6 +3,7 @@ package com.renderwaves.ld49.events;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.managers.SoundManager;
 import com.renderwaves.ld49.managers.TextureManager;
 
 public class NavigationEvent extends GameEvent {
@@ -18,7 +19,7 @@ public class NavigationEvent extends GameEvent {
     }
      */
     public NavigationEvent(float damage) {
-        super(TAG, TextureManager.navigationicon);
+        super(TAG, TextureManager.navigationicon, SoundManager.navFailureSound);
         GlobalShipVariables.navigationHealth -= damage;
     }
 
