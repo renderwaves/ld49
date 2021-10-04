@@ -10,7 +10,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.renderwaves.ld49.Game;
 import com.renderwaves.ld49.GlobalShipVariables;
@@ -31,10 +34,12 @@ public class TemplateScene implements Screen {
     public Integer gameState = 0;
     public GameEventSystem gameEventSystem;
     public SoundManager gameSound;
+    public static Label uiLabel;
     Sprite sprite;
 
-    Stage stage;
-    SpriteBatch batch;
+    private Stage stage;
+    private Table table;
+    private SpriteBatch batch;
 
     TemplateEntity templateEntity;
 
@@ -65,6 +70,7 @@ public class TemplateScene implements Screen {
         this.game = game;
         this.gameEventSystem = new GameEventSystem();
         this.gameSound = new SoundManager();
+        //this.stage = new Stage();
 
         this.batch = game.batch;
 
@@ -87,6 +93,22 @@ public class TemplateScene implements Screen {
 
         stage = new Stage();
         Gdx.input.setInputProcessor(stage);
+
+        this.table = new Table();
+        this.table.setDebug(true);
+        this.table.setFillParent(true);
+        this.stage.addActor(table);
+
+        Label.LabelStyle uiLabelStyle = new Label.LabelStyle();
+        uiLabelStyle.font = FontManager.font_droidBb_20;
+        uiLabelStyle.fontColor = new Color(1,1,1,1);
+
+        this.uiLabel = new Label("", uiLabelStyle);
+        this.uiLabel.setAlignment(Align.center);
+
+        this.table.add(new Label("", uiSkin));
+        this.table.row();
+        this.table.add(uiLabel).spaceTop(480);
 
         sprite = new Sprite(TextureManager.img);
         stage.addActor(communicationMenu.window);
@@ -327,7 +349,7 @@ public class TemplateScene implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+        stage.getViewport().update(width, height, true);
     }
 
     @Override

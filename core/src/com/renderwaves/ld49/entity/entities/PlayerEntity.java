@@ -72,7 +72,8 @@ public class PlayerEntity extends TexturedEntity {
             health -= (Gdx.graphics.getDeltaTime() * (1 - GlobalShipVariables.oxygenLevel)) / 20;
         }
         if(nearGenerator) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "PRESS " + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + " TO ADD URANIUM TO REACTOR", Gdx.graphics.getWidth() / 2 - "PRESS E TO ADD URANIUM TO REACTOR".length() * 4, 100);
+            //FontManager.font_droidBb_20.draw(spriteBatch, "PRESS " + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + " TO ADD URANIUM TO REACTOR", Gdx.graphics.getWidth() / 2 - "PRESS E TO ADD URANIUM TO REACTOR".length() * 4, 100);
+            TemplateScene.uiLabel.setText("PRESS " + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + " TO ADD URANIUM TO REACTOR");
             GlobalShipVariables.generatorHealth += Gdx.graphics.getDeltaTime() / 2;
             if(currentUranium != null && Gdx.input.isKeyJustPressed(InputManager.TakeFireExtinguisher.key1)) {
                 GlobalShipVariables.generatorFuel += 1.0f;
@@ -83,43 +84,54 @@ public class PlayerEntity extends TexturedEntity {
             }
         }
         else if(nearLifeSupport) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "REPAIRING LIFE SUPPORT", Gdx.graphics.getWidth() / 2 - "REPAIRING LIFE SUPPORT".length() * 7, 100);
+            //FontManager.font_droidBb_20.draw(spriteBatch, "REPAIRING LIFE SUPPORT", Gdx.graphics.getWidth() / 2 - "REPAIRING LIFE SUPPORT".length() * 7, 100);
+            TemplateScene.uiLabel.setText("REPAIRING LIFE SUPPORT");
             GlobalShipVariables.lifeSupportHealth += Gdx.graphics.getDeltaTime() / 2;
         }
         else if(nearMedBay) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "HEALING", Gdx.graphics.getWidth() / 2 - "HEALING".length() * 7, 100);
+            //FontManager.font_droidBb_20.draw(spriteBatch, "HEALING", Gdx.graphics.getWidth() / 2 - "HEALING".length() * 7, 100);
+            TemplateScene.uiLabel.setText("HEALING");
             health += Gdx.graphics.getDeltaTime() / 4;
         }
         else if(nearSpacesuit) {
-            FontManager.font_droidBb_20.draw(spriteBatch, (hasSpacesuit ? "PUT BACK" : "TAKE") + " SPACESUIT <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100);
+            //FontManager.font_droidBb_20.draw(spriteBatch, (hasSpacesuit ? "PUT BACK" : "TAKE") + " SPACESUIT <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100);
+            TemplateScene.uiLabel.setText((hasSpacesuit ? "PUT BACK" : "TAKE") + " SPACESUIT <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">");
+
         }
         else if(nearFireExtanguisher){
-            FontManager.font_droidBb_20.draw(spriteBatch, (hasFireExtinguisher ? "PUT DOWN" : "TAKE") + " FIRE EXTINGUISHER <" + Input.Keys.toString(InputManager.TakeFireExtinguisher.key1) + ">", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100 );
+            //FontManager.font_droidBb_20.draw(spriteBatch, (hasFireExtinguisher ? "PUT DOWN" : "TAKE") + " FIRE EXTINGUISHER <" + Input.Keys.toString(InputManager.TakeFireExtinguisher.key1) + ">", Gdx.graphics.getWidth() / 2 - "ADDING FUEL TO GENERATOR".length() * 7, 100 );
+            TemplateScene.uiLabel.setText((hasFireExtinguisher ? "PUT DOWN" : "TAKE") + " FIRE EXTINGUISHER <" + Input.Keys.toString(InputManager.TakeFireExtinguisher.key1) + ">");
         }
         else if (nearNavigation) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING NAVIGATION", Gdx.graphics.getWidth() / 2 - "REPARING NAVIGATION".length() * 7, 100);
+            //FontManager.font_droidBb_20.draw(spriteBatch, "REPARING NAVIGATION", Gdx.graphics.getWidth() / 2 - "REPARING NAVIGATION".length() * 7, 100);
+            TemplateScene.uiLabel.setText("REPARING NAVIGATION");
             GlobalShipVariables.navigationHealth += Gdx.graphics.getDeltaTime() / 4;
         }
         else if (nearComms) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING COMMUNICATION", Gdx.graphics.getWidth() / 2 - "REPARING COMMUNICATION".length() * 4, 100);
+            //FontManager.font_droidBb_20.draw(spriteBatch, "REPARING COMMUNICATION", Gdx.graphics.getWidth() / 2 - "REPARING COMMUNICATION".length() * 4, 100);
+            TemplateScene.uiLabel.setText("REPARING COMMUNICATION");
             GlobalShipVariables.communicationsHealth += Gdx.graphics.getDeltaTime() / 4;
-            if(GlobalShipVariables.communicationsHealth > 0.0f) {
-                FontManager.font_droidBb_20.draw(spriteBatch, "YOU CAN OPEN COMMUNICATION MENU USING <" + Input.Keys.toString(InputManager.OpenComMenu.key1) + ">", Gdx.graphics.getWidth() / 2 - "YOU CAN OPEN COMMUNICATION MENU USING <B>".length() * 4, 80);
+            if(GlobalShipVariables.communicationsHealth > 0.75f) {
+                //FontManager.font_droidBb_20.draw(spriteBatch, "YOU CAN OPEN COMMUNICATION MENU USING <" + Input.Keys.toString(InputManager.OpenComMenu.key1) + ">", Gdx.graphics.getWidth() / 2 - "YOU CAN OPEN COMMUNICATION MENU USING <B>".length() * 4, 80);
+                TemplateScene.uiLabel.setText("YOU CAN OPEN COMMUNICATION MENU USING <" + Input.Keys.toString(InputManager.OpenComMenu.key1) + ">");
                 if(Gdx.input.isKeyJustPressed(InputManager.OpenComMenu.key1)) {
                     TemplateScene.communicationMenu.window.setVisible(true);
                 }
             }
         }
         else if (nearEngine1) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE 1", Gdx.graphics.getWidth() / 2 -"REPARING ENGINE 1".length() * 7, 100);
+            //FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE 1", Gdx.graphics.getWidth() / 2 -"REPARING ENGINE 1".length() * 7, 100);
+            TemplateScene.uiLabel.setText("REPARING ENGINE 1");
             GlobalShipVariables.engine1Health += Gdx.graphics.getDeltaTime() / 4;
         }
         else if(nearEngine2){
-            FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE 2" , Gdx.graphics.getWidth() / 2 -"REPARING ENGINE 2".length() * 7, 100);
+            //FontManager.font_droidBb_20.draw(spriteBatch, "REPARING ENGINE 2" , Gdx.graphics.getWidth() / 2 -"REPARING ENGINE 2".length() * 7, 100);
+            TemplateScene.uiLabel.setText("REPARING ENGINE 2");
             GlobalShipVariables.engine2Health += Gdx.graphics.getDeltaTime() / 4;
         }
         else if (nearUranium != null && currentUranium == null) {
-            FontManager.font_droidBb_20.draw(spriteBatch, "YOU CAN PICKUP URANIUM USING " + Input.Keys.toString(InputManager.TakeSpacesuit.key1), Gdx.graphics.getWidth()/2 - "YOU CAN PICKUP URANIUM USING <E>".length() * 4, 100);
+            //FontManager.font_droidBb_20.draw(spriteBatch, "YOU CAN PICKUP URANIUM USING " + Input.Keys.toString(InputManager.TakeSpacesuit.key1), "YOU CAN PICKUP URANIUM USING <E>".length() * 4, 100);
+            TemplateScene.uiLabel.setText("YOU CAN PICKUP URANIUM USING " + Input.Keys.toString(InputManager.TakeSpacesuit.key1));
             if(Gdx.input.isKeyJustPressed(InputManager.TakeSpacesuit.key1)) {
                 currentUranium = nearUranium;
             }
@@ -129,6 +141,7 @@ public class PlayerEntity extends TexturedEntity {
                 currentUranium = null;
             }
         }
+        else TemplateScene.uiLabel.setText("");
 
         healthBar.renderSprite(spriteBatch);
 
@@ -158,7 +171,8 @@ public class PlayerEntity extends TexturedEntity {
                         instance.timer = 5.0f;
                     }
                     else if(instance.blocked){
-                        FontManager.font_droidBb_18.draw(spriteBatch, "UNBLOCK DOORS USING <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">", Gdx.graphics.getWidth() / 2 - "UNBLOCK DOORS USING <E>".length() * 7, 100);
+                        //FontManager.font_droidBb_18.draw(spriteBatch, "UNBLOCK DOORS USING <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">", Gdx.graphics.getWidth() / 2 - "UNBLOCK DOORS USING <E>".length() * 7, 100);
+                        TemplateScene.uiLabel.setText("UNBLOCK DOORS USING <" + Input.Keys.toString(InputManager.TakeSpacesuit.key1) + ">");
                         if(useKeyPressed){
                             instance.unblock();
                             instance.open();
