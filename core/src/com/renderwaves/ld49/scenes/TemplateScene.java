@@ -307,6 +307,7 @@ public class TemplateScene implements Screen {
             }
             if(progressManager.getProgress() >= 1.0f) {
                 gameSound.forceStop();
+                GlobalShipVariables.score += GlobalShipVariables.globalShipTimer;
                 game.setScreen(new YouWonScene(game));
             }
 
@@ -418,6 +419,11 @@ public class TemplateScene implements Screen {
         if(GlobalShipVariables.shipHealth <= 0.0f) {
             gameSound.forceStop();
             game.setScreen(new DeathScene(game));
+        }
+
+        GlobalShipVariables.globalShipTimer -= Gdx.graphics.getDeltaTime();
+        if(GlobalShipVariables.globalShipTimer < 0) {
+            GlobalShipVariables.globalShipTimer = 0;
         }
     }
 

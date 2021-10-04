@@ -12,4 +12,7 @@ public class GlobalShipVariables {
     public static float oxygenLevel = 1.0f;
 
     public static int engineFailed;
+
+    public static int score = 0;
+    public static int globalShipTimer = 25000;
 }
