@@ -4,735 +4,735 @@ size: 2048, 2048
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-main_loop0130
+frame0130
   rotate: false
   xy: 2, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0131
+frame0131
   rotate: false
   xy: 260, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0132
+frame0132
   rotate: false
   xy: 518, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0133
+frame0133
   rotate: false
   xy: 776, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0134
+frame0134
   rotate: false
   xy: 1034, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0135
+frame0135
   rotate: false
   xy: 1292, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0136
+frame0136
   rotate: false
   xy: 1550, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0137
+frame0137
   rotate: false
   xy: 2, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0138
+frame0138
   rotate: false
   xy: 260, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0139
+frame0139
   rotate: false
   xy: 518, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0140
+frame0140
   rotate: false
   xy: 776, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0141
+frame0141
   rotate: false
   xy: 1034, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0142
+frame0142
   rotate: false
   xy: 1292, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0143
+frame0143
   rotate: false
   xy: 1550, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0144
+frame0144
   rotate: false
   xy: 2, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0145
+frame0145
   rotate: false
   xy: 260, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0146
+frame0146
   rotate: false
   xy: 518, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0147
+frame0147
   rotate: false
   xy: 776, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0148
+frame0148
   rotate: false
   xy: 1034, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0149
+frame0149
   rotate: false
   xy: 1292, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0150
+frame0150
   rotate: false
   xy: 1550, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0151
+frame0151
   rotate: false
   xy: 2, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0152
+frame0152
   rotate: false
   xy: 260, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0153
+frame0153
   rotate: false
   xy: 518, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0154
+frame0154
   rotate: false
   xy: 776, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0155
+frame0155
   rotate: false
   xy: 1034, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0156
+frame0156
   rotate: false
   xy: 1292, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0157
+frame0157
   rotate: false
   xy: 1550, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0158
+frame0158
   rotate: false
   xy: 2, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0159
+frame0159
   rotate: false
   xy: 260, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0160
+frame0160
   rotate: false
   xy: 518, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0161
+frame0161
   rotate: false
   xy: 776, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0162
+frame0162
   rotate: false
   xy: 1034, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0163
+frame0163
   rotate: false
   xy: 1292, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0164
+frame0164
   rotate: false
   xy: 1550, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0165
+frame0165
   rotate: false
   xy: 2, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0166
+frame0166
   rotate: false
   xy: 260, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0167
+frame0167
   rotate: false
   xy: 518, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0168
+frame0168
   rotate: false
   xy: 776, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0169
+frame0169
   rotate: false
   xy: 1034, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0170
+frame0170
   rotate: false
   xy: 1292, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0171
+frame0171
   rotate: false
   xy: 1550, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0172
+frame0172
   rotate: false
   xy: 2, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0173
+frame0173
   rotate: false
   xy: 260, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0174
+frame0174
   rotate: false
   xy: 518, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0175
+frame0175
   rotate: false
   xy: 776, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0176
+frame0176
   rotate: false
   xy: 1034, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0177
+frame0177
   rotate: false
   xy: 1292, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0178
+frame0178
   rotate: false
   xy: 1550, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0179
+frame0179
   rotate: false
   xy: 2, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0180
+frame0180
   rotate: false
   xy: 260, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0181
+frame0181
   rotate: false
   xy: 518, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0182
+frame0182
   rotate: false
   xy: 776, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0183
+frame0183
   rotate: false
   xy: 1034, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0184
+frame0184
   rotate: false
   xy: 1292, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0185
+frame0185
   rotate: false
   xy: 1550, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0186
+frame0186
   rotate: false
   xy: 2, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0187
+frame0187
   rotate: false
   xy: 260, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0188
+frame0188
   rotate: false
   xy: 518, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0189
+frame0189
   rotate: false
   xy: 776, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0190
+frame0190
   rotate: false
   xy: 1034, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0191
+frame0191
   rotate: false
   xy: 1292, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0192
+frame0192
   rotate: false
   xy: 1550, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0193
+frame0193
   rotate: false
   xy: 2, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0194
+frame0194
   rotate: false
   xy: 260, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0195
+frame0195
   rotate: false
   xy: 518, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0196
+frame0196
   rotate: false
   xy: 776, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0197
+frame0197
   rotate: false
   xy: 1034, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0198
+frame0198
   rotate: false
   xy: 1292, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0199
+frame0199
   rotate: false
   xy: 1550, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0200
+frame0200
   rotate: false
   xy: 2, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0201
+frame0201
   rotate: false
   xy: 260, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0202
+frame0202
   rotate: false
   xy: 518, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0203
+frame0203
   rotate: false
   xy: 776, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0204
+frame0204
   rotate: false
   xy: 1034, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0205
+frame0205
   rotate: false
   xy: 1292, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0206
+frame0206
   rotate: false
   xy: 1550, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0207
+frame0207
   rotate: false
   xy: 2, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0208
+frame0208
   rotate: false
   xy: 260, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0209
+frame0209
   rotate: false
   xy: 518, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0210
+frame0210
   rotate: false
   xy: 776, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0211
+frame0211
   rotate: false
   xy: 1034, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0212
+frame0212
   rotate: false
   xy: 1292, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0213
+frame0213
   rotate: false
   xy: 1550, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0214
+frame0214
   rotate: false
   xy: 2, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0215
+frame0215
   rotate: false
   xy: 260, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0216
+frame0216
   rotate: false
   xy: 518, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0217
+frame0217
   rotate: false
   xy: 776, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0218
+frame0218
   rotate: false
   xy: 1034, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0219
+frame0219
   rotate: false
   xy: 1292, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0220
+frame0220
   rotate: false
   xy: 1550, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0221
+frame0221
   rotate: false
   xy: 2, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0222
+frame0222
   rotate: false
   xy: 260, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0223
+frame0223
   rotate: false
   xy: 518, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0224
+frame0224
   rotate: false
   xy: 776, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0225
+frame0225
   rotate: false
   xy: 1034, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0226
+frame0226
   rotate: false
   xy: 1292, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0227
+frame0227
   rotate: false
   xy: 1550, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0228
+frame0228
   rotate: false
   xy: 2, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0229
+frame0229
   rotate: false
   xy: 260, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0230
+frame0230
   rotate: false
   xy: 518, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0231
+frame0231
   rotate: false
   xy: 776, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0232
+frame0232
   rotate: false
   xy: 1034, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0233
+frame0233
   rotate: false
   xy: 1292, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0234
+frame0234
   rotate: false
   xy: 1550, 1824
   size: 256, 128
@@ -745,735 +745,735 @@ size: 2048, 2048
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-main_loop0235
+frame0235
   rotate: false
   xy: 2, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0236
+frame0236
   rotate: false
   xy: 260, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0237
+frame0237
   rotate: false
   xy: 518, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0238
+frame0238
   rotate: false
   xy: 776, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0239
+frame0239
   rotate: false
   xy: 1034, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0240
+frame0240
   rotate: false
   xy: 1292, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0241
+frame0241
   rotate: false
   xy: 1550, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0242
+frame0242
   rotate: false
   xy: 2, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0243
+frame0243
   rotate: false
   xy: 260, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0244
+frame0244
   rotate: false
   xy: 518, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0245
+frame0245
   rotate: false
   xy: 776, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0246
+frame0246
   rotate: false
   xy: 1034, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0247
+frame0247
   rotate: false
   xy: 1292, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0248
+frame0248
   rotate: false
   xy: 1550, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0249
+frame0249
   rotate: false
   xy: 2, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0250
+frame0250
   rotate: false
   xy: 260, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0251
+frame0251
   rotate: false
   xy: 518, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0252
+frame0252
   rotate: false
   xy: 776, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0253
+frame0253
   rotate: false
   xy: 1034, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0254
+frame0254
   rotate: false
   xy: 1292, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0255
+frame0255
   rotate: false
   xy: 1550, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0256
+frame0256
   rotate: false
   xy: 2, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0257
+frame0257
   rotate: false
   xy: 260, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0258
+frame0258
   rotate: false
   xy: 518, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0259
+frame0259
   rotate: false
   xy: 776, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0260
+frame0260
   rotate: false
   xy: 1034, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0261
+frame0261
   rotate: false
   xy: 1292, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0262
+frame0262
   rotate: false
   xy: 1550, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0263
+frame0263
   rotate: false
   xy: 2, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0264
+frame0264
   rotate: false
   xy: 260, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0265
+frame0265
   rotate: false
   xy: 518, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0266
+frame0266
   rotate: false
   xy: 776, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0267
+frame0267
   rotate: false
   xy: 1034, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0268
+frame0268
   rotate: false
   xy: 1292, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0269
+frame0269
   rotate: false
   xy: 1550, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0270
+frame0270
   rotate: false
   xy: 2, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0271
+frame0271
   rotate: false
   xy: 260, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0272
+frame0272
   rotate: false
   xy: 518, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0273
+frame0273
   rotate: false
   xy: 776, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0274
+frame0274
   rotate: false
   xy: 1034, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0275
+frame0275
   rotate: false
   xy: 1292, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0276
+frame0276
   rotate: false
   xy: 1550, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0277
+frame0277
   rotate: false
   xy: 2, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0278
+frame0278
   rotate: false
   xy: 260, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0279
+frame0279
   rotate: false
   xy: 518, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0280
+frame0280
   rotate: false
   xy: 776, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0281
+frame0281
   rotate: false
   xy: 1034, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0282
+frame0282
   rotate: false
   xy: 1292, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0283
+frame0283
   rotate: false
   xy: 1550, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0284
+frame0284
   rotate: false
   xy: 2, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0285
+frame0285
   rotate: false
   xy: 260, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0286
+frame0286
   rotate: false
   xy: 518, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0287
+frame0287
   rotate: false
   xy: 776, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0288
+frame0288
   rotate: false
   xy: 1034, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0289
+frame0289
   rotate: false
   xy: 1292, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0290
+frame0290
   rotate: false
   xy: 1550, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0291
+frame0291
   rotate: false
   xy: 2, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0292
+frame0292
   rotate: false
   xy: 260, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0293
+frame0293
   rotate: false
   xy: 518, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0294
+frame0294
   rotate: false
   xy: 776, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0295
+frame0295
   rotate: false
   xy: 1034, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0296
+frame0296
   rotate: false
   xy: 1292, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0297
+frame0297
   rotate: false
   xy: 1550, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0298
+frame0298
   rotate: false
   xy: 2, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0299
+frame0299
   rotate: false
   xy: 260, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0300
+frame0300
   rotate: false
   xy: 518, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0301
+frame0301
   rotate: false
   xy: 776, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0302
+frame0302
   rotate: false
   xy: 1034, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0303
+frame0303
   rotate: false
   xy: 1292, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0304
+frame0304
   rotate: false
   xy: 1550, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0305
+frame0305
   rotate: false
   xy: 2, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0306
+frame0306
   rotate: false
   xy: 260, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0307
+frame0307
   rotate: false
   xy: 518, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0308
+frame0308
   rotate: false
   xy: 776, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0309
+frame0309
   rotate: false
   xy: 1034, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0310
+frame0310
   rotate: false
   xy: 1292, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0311
+frame0311
   rotate: false
   xy: 1550, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0312
+frame0312
   rotate: false
   xy: 2, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0313
+frame0313
   rotate: false
   xy: 260, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0314
+frame0314
   rotate: false
   xy: 518, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0315
+frame0315
   rotate: false
   xy: 776, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0316
+frame0316
   rotate: false
   xy: 1034, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0317
+frame0317
   rotate: false
   xy: 1292, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0318
+frame0318
   rotate: false
   xy: 1550, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0319
+frame0319
   rotate: false
   xy: 2, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0320
+frame0320
   rotate: false
   xy: 260, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0321
+frame0321
   rotate: false
   xy: 518, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0322
+frame0322
   rotate: false
   xy: 776, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0323
+frame0323
   rotate: false
   xy: 1034, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0324
+frame0324
   rotate: false
   xy: 1292, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0325
+frame0325
   rotate: false
   xy: 1550, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0326
+frame0326
   rotate: false
   xy: 2, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0327
+frame0327
   rotate: false
   xy: 260, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0328
+frame0328
   rotate: false
   xy: 518, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0329
+frame0329
   rotate: false
   xy: 776, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0330
+frame0330
   rotate: false
   xy: 1034, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0331
+frame0331
   rotate: false
   xy: 1292, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0332
+frame0332
   rotate: false
   xy: 1550, 1694
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0333
+frame0333
   rotate: false
   xy: 2, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0334
+frame0334
   rotate: false
   xy: 260, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0335
+frame0335
   rotate: false
   xy: 518, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0336
+frame0336
   rotate: false
   xy: 776, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0337
+frame0337
   rotate: false
   xy: 1034, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0338
+frame0338
   rotate: false
   xy: 1292, 1824
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0339
+frame0339
   rotate: false
   xy: 1550, 1824
   size: 256, 128
@@ -1486,637 +1486,637 @@ size: 2048, 2048
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-main_loop0340
+frame0340
   rotate: false
   xy: 2, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0341
+frame0341
   rotate: false
   xy: 260, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0342
+frame0342
   rotate: false
   xy: 518, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0343
+frame0343
   rotate: false
   xy: 776, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0344
+frame0344
   rotate: false
   xy: 1034, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0345
+frame0345
   rotate: false
   xy: 1292, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0346
+frame0346
   rotate: false
   xy: 1550, 4
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0347
+frame0347
   rotate: false
   xy: 2, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0348
+frame0348
   rotate: false
   xy: 260, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0349
+frame0349
   rotate: false
   xy: 518, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0350
+frame0350
   rotate: false
   xy: 776, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0351
+frame0351
   rotate: false
   xy: 1034, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0352
+frame0352
   rotate: false
   xy: 1292, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0353
+frame0353
   rotate: false
   xy: 1550, 134
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0354
+frame0354
   rotate: false
   xy: 2, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0355
+frame0355
   rotate: false
   xy: 260, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0356
+frame0356
   rotate: false
   xy: 518, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0357
+frame0357
   rotate: false
   xy: 776, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0358
+frame0358
   rotate: false
   xy: 1034, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0359
+frame0359
   rotate: false
   xy: 1292, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0360
+frame0360
   rotate: false
   xy: 1550, 264
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0361
+frame0361
   rotate: false
   xy: 2, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0362
+frame0362
   rotate: false
   xy: 260, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0363
+frame0363
   rotate: false
   xy: 518, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0364
+frame0364
   rotate: false
   xy: 776, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0365
+frame0365
   rotate: false
   xy: 1034, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0366
+frame0366
   rotate: false
   xy: 1292, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0367
+frame0367
   rotate: false
   xy: 1550, 394
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0368
+frame0368
   rotate: false
   xy: 2, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0369
+frame0369
   rotate: false
   xy: 260, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0370
+frame0370
   rotate: false
   xy: 518, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0371
+frame0371
   rotate: false
   xy: 776, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0372
+frame0372
   rotate: false
   xy: 1034, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0373
+frame0373
   rotate: false
   xy: 1292, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0374
+frame0374
   rotate: false
   xy: 1550, 524
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0375
+frame0375
   rotate: false
   xy: 2, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0376
+frame0376
   rotate: false
   xy: 260, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0377
+frame0377
   rotate: false
   xy: 518, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0378
+frame0378
   rotate: false
   xy: 776, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0379
+frame0379
   rotate: false
   xy: 1034, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0380
+frame0380
   rotate: false
   xy: 1292, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0381
+frame0381
   rotate: false
   xy: 1550, 654
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0382
+frame0382
   rotate: false
   xy: 2, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0383
+frame0383
   rotate: false
   xy: 260, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0384
+frame0384
   rotate: false
   xy: 518, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0385
+frame0385
   rotate: false
   xy: 776, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0386
+frame0386
   rotate: false
   xy: 1034, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0387
+frame0387
   rotate: false
   xy: 1292, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0388
+frame0388
   rotate: false
   xy: 1550, 784
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0389
+frame0389
   rotate: false
   xy: 2, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0390
+frame0390
   rotate: false
   xy: 260, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0391
+frame0391
   rotate: false
   xy: 518, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0392
+frame0392
   rotate: false
   xy: 776, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0393
+frame0393
   rotate: false
   xy: 1034, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0394
+frame0394
   rotate: false
   xy: 1292, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0395
+frame0395
   rotate: false
   xy: 1550, 914
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0396
+frame0396
   rotate: false
   xy: 2, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0397
+frame0397
   rotate: false
   xy: 260, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0398
+frame0398
   rotate: false
   xy: 518, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0399
+frame0399
   rotate: false
   xy: 776, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0400
+frame0400
   rotate: false
   xy: 1034, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0401
+frame0401
   rotate: false
   xy: 1292, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0402
+frame0402
   rotate: false
   xy: 1550, 1044
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0403
+frame0403
   rotate: false
   xy: 2, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0404
+frame0404
   rotate: false
   xy: 260, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0405
+frame0405
   rotate: false
   xy: 518, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0406
+frame0406
   rotate: false
   xy: 776, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0407
+frame0407
   rotate: false
   xy: 1034, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0408
+frame0408
   rotate: false
   xy: 1292, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0409
+frame0409
   rotate: false
   xy: 1550, 1174
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0410
+frame0410
   rotate: false
   xy: 2, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0411
+frame0411
   rotate: false
   xy: 260, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0412
+frame0412
   rotate: false
   xy: 518, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0413
+frame0413
   rotate: false
   xy: 776, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0414
+frame0414
   rotate: false
   xy: 1034, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0415
+frame0415
   rotate: false
   xy: 1292, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0416
+frame0416
   rotate: false
   xy: 1550, 1304
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0417
+frame0417
   rotate: false
   xy: 2, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0418
+frame0418
   rotate: false
   xy: 260, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0419
+frame0419
   rotate: false
   xy: 518, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0420
+frame0420
   rotate: false
   xy: 776, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0421
+frame0421
   rotate: false
   xy: 1034, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0422
+frame0422
   rotate: false
   xy: 1292, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0423
+frame0423
   rotate: false
   xy: 1550, 1434
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0424
+frame0424
   rotate: false
   xy: 2, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0425
+frame0425
   rotate: false
   xy: 260, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0426
+frame0426
   rotate: false
   xy: 518, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0427
+frame0427
   rotate: false
   xy: 776, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0428
+frame0428
   rotate: false
   xy: 1034, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0429
+frame0429
   rotate: false
   xy: 1292, 1564
   size: 256, 128
   orig: 256, 128
   offset: 0, 0
   index: -1
-main_loop0430
+frame0430
   rotate: false
   xy: 1550, 1564
   size: 256, 128

@@ -18,9 +18,12 @@ public class SoundManager {
     public static Sound commsFailureSound = Gdx.audio.newSound(Gdx.files.internal("sounds/radio.mp3"));
     public static Sound reactorFailureSound = Gdx.audio.newSound(Gdx.files.internal("sounds/reactor.mp3"));
 
-    public static Music idleMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/idle_music.mp3"));
-    public static Music panicMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/panic_music.mp3"));
-    public static Music idleMenu = Gdx.audio.newMusic(Gdx.files.internal("sounds/menu_idle.mp3"));
+    public static Music idleMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/mainloop.mp3"));
+    //public static Music panicMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/panic_music.mp3"));
+    //public static Music idleMenu = Gdx.audio.newMusic(Gdx.files.internal("sounds/menu_idle.mp3"));
+    public static Music goodEnding = Gdx.audio.newMusic(Gdx.files.internal("sounds/goodending.mp3"));
+    public static Music menuMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/menuloop.mp3"));
+
 
     public static void disposeAllSounds() {
         //testSound.dispose();
@@ -34,6 +37,12 @@ public class SoundManager {
 
     public SoundManager() {
         gameMusic = idleMusic;
+        gameMusic.setLooping(true);
+        gameMusic.setVolume(0.2f);
+        gameMusic.play();
+    }
+    public SoundManager(Music music) {
+        gameMusic = music;
         gameMusic.setLooping(true);
         gameMusic.setVolume(0.2f);
         gameMusic.play();

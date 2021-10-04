@@ -24,6 +24,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.renderwaves.ld49.Game;
 import com.renderwaves.ld49.managers.FontManager;
+import com.renderwaves.ld49.managers.SoundManager;
 
 import java.awt.*;
 
@@ -198,6 +199,8 @@ public class MenuScene implements Screen {
 
         videoAtlas = new TextureAtlas(Gdx.files.internal("textures/atlas/mainloop/mainloop.atlas"));
         video = videoAtlas.createSprites();
+
+        SoundManager sound = new SoundManager(SoundManager.menuMusic);
     }
 
     public void startGame(){

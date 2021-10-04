@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.Array;
 import com.renderwaves.ld49.GlobalShipVariables;
 import com.renderwaves.ld49.entity.entities.PlayerEntity;
 import com.renderwaves.ld49.managers.FontManager;
+import com.renderwaves.ld49.managers.SoundManager;
 
 public class YouWonScene implements Screen {
     private Stage stage;
@@ -98,6 +99,8 @@ public class YouWonScene implements Screen {
         videoAtlas = new TextureAtlas(Gdx.files.internal("textures/atlas/goodend/goodend.atlas"));
         video = videoAtlas.createSprites();
         spriteBatch = new SpriteBatch();
+
+        SoundManager sound = new SoundManager(SoundManager.goodEnding);
     }
 
     public void callbackStartGame(){
