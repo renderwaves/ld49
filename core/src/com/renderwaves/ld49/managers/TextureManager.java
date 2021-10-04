@@ -25,6 +25,9 @@ public class TextureManager {
     public static Texture engineWithThrusters = new Texture("textures/entities/enginewiththruster.png");
     public static Texture navigation = new Texture("textures/entities/navigation.png");
     public static Texture fireEvent = new Texture("textures/ui/fireEvent.png");
+    public static Texture fireEvent1 = new Texture("textures/entities/fireEvent2.png");
+    public static Texture fireEvent2 = new Texture("textures/entities/fireEvent3.png");
+    public static Texture fireEvent3 = new Texture("textures/entities/fireEvent4.png");
     public static Texture dangerNuclear = new Texture("textures/ui/dangernuclear.png");
     public static Texture lifesupporticon = new Texture("textures/ui/lifesupporticon.png");
     public static Texture navigationicon = new Texture("textures/ui/navigationicon.png");
@@ -47,6 +50,9 @@ public class TextureManager {
         planetEarth.dispose();
         planetEarthFict1.dispose();
         planetEarthFict2.dispose();
+        fireEvent1.dispose();
+        fireEvent2.dispose();
+        fireEvent3.dispose();
         planetFict1.dispose();
         planetJupiter.dispose();
         planetMerkur.dispose();

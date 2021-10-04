@@ -1,6 +1,7 @@
 package com.renderwaves.ld49.entity.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -14,15 +15,29 @@ import com.renderwaves.ld49.tilemap.Tile;
 public class Fire extends TexturedEntity {
     public float health;
 
+    private Texture textures[] = {TextureManager.fireEvent, TextureManager.fireEvent1, TextureManager.fireEvent2, TextureManager.fireEvent3};
+
     public Fire(Vector2 position) {
         super(position, new Vector2(2, 2), TextureManager.fireEvent);
         rectangle = new Rectangle(position.x, position.y, scale.x * sprite.getWidth(), scale.y * sprite.getHeight());
         health = 0.7f + MenuScene.difficulty;
     }
 
+    public float animationTimer = 0;
+    private int animationCounter = 0;
+
     @Override
     public void render(SpriteBatch spriteBatch) {
         super.render(spriteBatch);
+        animationTimer += Gdx.graphics.getDeltaTime();
+        if(animationTimer >= 0.5f) {
+            animationCounter++;
+            animationTimer = 0;
+            if(animationCounter > 3) {
+                animationCounter = 0;
+            }
+            sprite.setTexture(textures[animationCounter]);
+        }
     }
 
     private float fireSpreadTimer = 0.0f;
