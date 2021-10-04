@@ -3,6 +3,7 @@ package com.renderwaves.ld49.events;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.renderwaves.ld49.GlobalShipVariables;
+import com.renderwaves.ld49.managers.SoundManager;
 import com.renderwaves.ld49.managers.TextureManager;
 
 public class CommsEvent extends GameEvent {
@@ -10,7 +11,7 @@ public class CommsEvent extends GameEvent {
     static final String TAG = "Communication Event";
 
     public CommsEvent(float damage)  {
-        super(TAG, TextureManager.comms);
+        super(TAG, TextureManager.comms, SoundManager.commsFailureSound);
         GlobalShipVariables.communicationsHealth -= damage;
     }
 

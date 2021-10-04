@@ -12,6 +12,11 @@ public class SoundManager {
     public static Sound alarmSound1 = Gdx.audio.newSound(Gdx.files.internal("sounds/alarm_1.mp3"));
     public static Sound alarmSound2 = Gdx.audio.newSound(Gdx.files.internal("sounds/alarm_2.mp3"));
     public static Sound alarmSound3 = Gdx.audio.newSound(Gdx.files.internal("sounds/alarm_3.mp3"));
+    public static Sound fireEventSound = Gdx.audio.newSound(Gdx.files.internal("sounds/fire.mp3"));
+    public static Sound engineFailureSound = Gdx.audio.newSound(Gdx.files.internal("sounds/enginefailure.mp3"));
+    public static Sound navFailureSound = Gdx.audio.newSound(Gdx.files.internal("sounds/navigation.mp3"));
+    public static Sound commsFailureSound = Gdx.audio.newSound(Gdx.files.internal("sounds/radio.mp3"));
+    public static Sound reactorFailureSound = Gdx.audio.newSound(Gdx.files.internal("sounds/reactor.mp3"));
 
     public static Music idleMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/idle_music.mp3"));
     public static Music panicMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/panic_music.mp3"));

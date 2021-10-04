@@ -1,11 +1,13 @@
 package com.renderwaves.ld49.events;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.renderwaves.ld49.GlobalShipVariables;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.renderwaves.ld49.managers.SoundManager;
 import com.renderwaves.ld49.managers.TextureManager;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.ui.WarningLabel;
@@ -28,7 +30,7 @@ public class GeneratorEvent extends GameEvent {
      */
 
     public GeneratorEvent(float damage) {
-        super(TAG, TextureManager.dangerNuclear);
+        super(TAG, TextureManager.dangerNuclear, SoundManager.reactorFailureSound);
         GlobalShipVariables.generatorHealth -= damage;
     }
 
