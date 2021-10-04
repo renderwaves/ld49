@@ -88,6 +88,7 @@ public class TemplateScene implements Screen {
         statusBar = new StatusBar(new Vector2(10, 10), new Vector2(128, 64), 1.0f, new Color(255, 255, 255, 255), new Color(255, 0, 0, 255), TextureManager.energyTexture, new Vector2(2, 2));
         communicationMenu = new CommunicationMenu();
         background = new Background();
+        background.keepMoving = false;
     }
 
     @Override
@@ -313,7 +314,8 @@ public class TemplateScene implements Screen {
             progressManager.renderSprites(batch);
             if(progressManager.getProgress() >= 1.0f) progressManager.setProgress(0.0f);
             if(GlobalShipVariables.generatorFuel > 0) {
-                progressManager.setProgress(progressManager.getProgress() + (delta / ((200 + ((1 - GlobalShipVariables.engine1Health)*250 + (1 - GlobalShipVariables.navigationHealth)*250)))) * GlobalShipVariables.generatorHealth);
+                GlobalShipVariables.progression = progressManager.getProgress() + (delta / ((200 + ((1 - GlobalShipVariables.engine1Health)*250 + (1 - GlobalShipVariables.navigationHealth)*250)))) * GlobalShipVariables.generatorHealth;
+                progressManager.setProgress(GlobalShipVariables.progression);
             }
             if(progressManager.getProgress() >= 1.0f) {
                 gameSound.forceStop();
@@ -428,6 +430,7 @@ public class TemplateScene implements Screen {
 
         if(GlobalShipVariables.shipHealth <= 0.0f) {
             gameSound.forceStop();
+            gameEventSystem.completeAllEvents();
             game.setScreen(new DeathScene(game));
         }
 

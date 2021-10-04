@@ -54,6 +54,22 @@ public class SoundManager {
         centralAlarm = null;
         if (gameMusic != null)
             gameMusic.stop();
+        if (alarmSound1 != null)
+            alarmSound1.stop();
+        if (alarmSound2 != null)
+            alarmSound2.stop();
+        if (alarmSound3 != null)
+            alarmSound3.stop();
+        if (fireEventSound != null)
+            fireEventSound.stop();
+        if (engineFailureSound != null)
+            engineFailureSound.stop();
+        if (navFailureSound != null)
+            navFailureSound.stop();
+        if (commsFailureSound != null)
+            commsFailureSound.stop();
+        if (reactorFailureSound != null)
+            reactorFailureSound.stop();
         gameMusic = null;
 
     }

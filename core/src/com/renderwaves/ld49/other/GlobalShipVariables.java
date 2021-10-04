@@ -1,5 +1,7 @@
 package com.renderwaves.ld49.other;
 
+import com.badlogic.gdx.Gdx;
+
 public class GlobalShipVariables {
     public static float shipHealth = 1.0f;
     public static float generatorFuel = 1.0f;
@@ -10,6 +12,7 @@ public class GlobalShipVariables {
     public static float navigationHealth = 1.0f;
     public static float communicationsHealth = 1.0f;
     public static float oxygenLevel = 1.0f;
+    public static float progression = 0;
 
     public static int engineFailed;
 

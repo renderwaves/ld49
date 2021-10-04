@@ -15,6 +15,7 @@ import com.renderwaves.ld49.scenes.DeathScene;
 import com.renderwaves.ld49.scenes.TemplateScene;
 import com.renderwaves.ld49.tilemap.Tilemap;
 import com.renderwaves.ld49.ui.StatusBar;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
 
 import java.util.ArrayList;
 
@@ -423,6 +424,8 @@ public class PlayerEntity extends TexturedEntity {
         if(hasFireExtinguisher) fireExtinguisher.setPosition(this.position.x + 10, this.position.y);
 
         if(health <= 0.0f) {
+            TemplateScene.getInstance().gameEventSystem.completeAllEvents();
+            TemplateScene.getInstance().gameSound.forceStop();
             TemplateScene.getInstance().game.setScreen(new DeathScene(TemplateScene.getInstance().game));
         }
 

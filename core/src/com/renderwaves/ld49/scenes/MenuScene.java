@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -25,6 +26,7 @@ import com.badlogic.gdx.utils.Array;
 import com.renderwaves.ld49.Game;
 import com.renderwaves.ld49.managers.FontManager;
 import com.renderwaves.ld49.managers.SoundManager;
+import com.renderwaves.ld49.other.Background;
 
 import java.awt.*;
 
@@ -42,12 +44,19 @@ public class MenuScene implements Screen {
     Game game;
 
     private SpriteBatch spriteBatch;
+    private ShapeRenderer shapeRenderer;
 
     public static int difficulty = 1;
+
+    private Background background;
 
     public MenuScene(Game game){
         this.game = game;
         spriteBatch = new SpriteBatch();
+        shapeRenderer = new ShapeRenderer();
+
+        background = new Background();
+        background.keepMoving = true;
 
         Skin uiSkin = new Skin();
         uiSkin.add("default-font", FontManager.font_droidBb_20);
@@ -264,8 +273,11 @@ public class MenuScene implements Screen {
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        background.renderShape(shapeRenderer);
+
         nextFrame(delta);
         spriteBatch.begin();
+        background.renderSprite(spriteBatch);
         vidCurSprite.draw(spriteBatch);
         spriteBatch.end();
         stage.act(Gdx.graphics.getDeltaTime());

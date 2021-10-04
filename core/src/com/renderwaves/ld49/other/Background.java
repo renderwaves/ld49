@@ -11,6 +11,8 @@ import com.renderwaves.ld49.managers.TextureManager;
 import java.util.ArrayList;
 
 public class Background {
+    public static boolean keepMoving = false;
+
     class Star {
         Vector2 position, velocity;
         float radius;
@@ -82,7 +84,12 @@ public class Background {
     }
 
     public void renderSprite(SpriteBatch spriteBatch) {
-        planet.position.x += Gdx.graphics.getDeltaTime() * planet.velocity.x;
+        if(keepMoving) {
+            planet.position.x += Gdx.graphics.getDeltaTime() * planet.velocity.x;
+        }
+        else {
+            planet.position.x += Gdx.graphics.getDeltaTime() * planet.velocity.x * GlobalShipVariables.generatorHealth * GlobalShipVariables.generatorFuel;
+        }
 
         if(planet.position.x < -planet.radius) {
             planet.position.x = (float) (Gdx.graphics.getWidth() + (Gdx.graphics.getWidth()*5*Math.random()));
@@ -98,7 +105,12 @@ public class Background {
         renderer.begin(ShapeRenderer.ShapeType.Filled);
 
         for(int i = 0; i < stars.size(); i++) {
-            stars.get(i).position.x += Gdx.graphics.getDeltaTime() * stars.get(i).velocity.x;
+            if(keepMoving) {
+                stars.get(i).position.x += Gdx.graphics.getDeltaTime() * stars.get(i).velocity.x;
+            }
+            else {
+                stars.get(i).position.x += Gdx.graphics.getDeltaTime() * stars.get(i).velocity.x * GlobalShipVariables.generatorHealth * GlobalShipVariables.generatorFuel;
+            }
 
             if(stars.get(i).position.x < 0) {
                 stars.get(i).position.x = Gdx.graphics.getWidth();
@@ -108,13 +120,26 @@ public class Background {
             renderer.setColor(Color.WHITE);
             renderer.circle(stars.get(i).position.x , stars.get(i).position.y, stars.get(i).radius);
             renderer.setColor(new Color(200, 200, 200, 255));
-            renderer.circle(stars.get(i).position.x+2 , stars.get(i).position.y, stars.get(i).radius);
-            renderer.setColor(new Color(150, 150, 150, 255));
-            renderer.circle(stars.get(i).position.x+4 , stars.get(i).position.y, stars.get(i).radius);
-            renderer.setColor(new Color(100, 100, 100, 255));
-            renderer.circle(stars.get(i).position.x+6 , stars.get(i).position.y, stars.get(i).radius);
-            renderer.setColor(new Color(50, 50, 50, 255));
-            renderer.circle(stars.get(i).position.x+8 , stars.get(i).position.y, stars.get(i).radius);
+            if(!keepMoving) {
+                if(GlobalShipVariables.generatorHealth * GlobalShipVariables.generatorFuel >= 0.2f) {
+                    renderer.circle(stars.get(i).position.x+2 , stars.get(i).position.y, stars.get(i).radius);
+                    renderer.setColor(new Color(150, 150, 150, 255));
+                    renderer.circle(stars.get(i).position.x+4 , stars.get(i).position.y, stars.get(i).radius);
+                    renderer.setColor(new Color(100, 100, 100, 255));
+                    renderer.circle(stars.get(i).position.x+6 , stars.get(i).position.y, stars.get(i).radius);
+                    renderer.setColor(new Color(50, 50, 50, 255));
+                    renderer.circle(stars.get(i).position.x+8 , stars.get(i).position.y, stars.get(i).radius);
+                }
+            }
+            else if(keepMoving) {
+                renderer.circle(stars.get(i).position.x+2 , stars.get(i).position.y, stars.get(i).radius);
+                renderer.setColor(new Color(150, 150, 150, 255));
+                renderer.circle(stars.get(i).position.x+4 , stars.get(i).position.y, stars.get(i).radius);
+                renderer.setColor(new Color(100, 100, 100, 255));
+                renderer.circle(stars.get(i).position.x+6 , stars.get(i).position.y, stars.get(i).radius);
+                renderer.setColor(new Color(50, 50, 50, 255));
+                renderer.circle(stars.get(i).position.x+8 , stars.get(i).position.y, stars.get(i).radius);
+            }
         }
 
         renderer.end();
