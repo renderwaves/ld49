@@ -293,6 +293,9 @@ public class TemplateScene implements Screen {
                     if (gameEventSystem.numEvents() - DoorEvent.numberOfDoorEvents < 4)
                         update(delta);
                 }
+                else if(MenuScene.difficulty == 4) {
+                    update(delta);
+                }
             }
         }
 

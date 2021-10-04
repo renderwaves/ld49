@@ -115,6 +115,9 @@ public class PlayerEntity extends TexturedEntity {
             else if(difficulty == 3) {
                 GlobalShipVariables.navigationHealth += Gdx.graphics.getDeltaTime() / 4;
             }
+            else if(difficulty == 4) {
+                GlobalShipVariables.navigationHealth += Gdx.graphics.getDeltaTime() / 6;
+            }
         }
         else if (nearComms) {
             //FontManager.font_droidBb_20.draw(spriteBatch, "REPARING COMMUNICATION", Gdx.graphics.getWidth() / 2 - "REPARING COMMUNICATION".length() * 4, 100);

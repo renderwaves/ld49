@@ -175,12 +175,15 @@ public class MenuScene implements Screen {
         TextButton easyModeButton = new TextButton("Easy", uiSkin);
         TextButton mediumModeButton = new TextButton("Medium", uiSkin);
         TextButton hardModeButton = new TextButton("Hard", uiSkin);
+        TextButton hardCoreModeButton = new TextButton("Ultra Hardcore!!", uiSkin);
 
         difficultyTable.add(easyModeButton).spaceTop(5);
         difficultyTable.row();
         difficultyTable.add(mediumModeButton).spaceTop(5);
         difficultyTable.row();
         difficultyTable.add(hardModeButton).spaceTop(5);
+        difficultyTable.row();
+        difficultyTable.add(hardCoreModeButton).spaceTop(5);
 
         easyModeButton.addListener(new ChangeListener() {
             @Override
@@ -205,6 +208,15 @@ public class MenuScene implements Screen {
                 callbackStartGame();
             }
         });
+
+        hardCoreModeButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                difficulty = 4;
+                callbackStartGame();
+            }
+        });
+
 
         videoAtlas = new TextureAtlas(Gdx.files.internal("textures/atlas/mainloop/mainloop.atlas"));
         video = videoAtlas.createSprites();

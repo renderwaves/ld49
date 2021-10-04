@@ -39,6 +39,9 @@ public class Generator extends TexturedEntity {
         else if(difficulty == 3) {
             GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 50;
         }
+        else if(difficulty == 4) {
+            GlobalShipVariables.generatorFuel -= Gdx.graphics.getDeltaTime() / 75;
+        }
 
         if(GlobalShipVariables.generatorFuel < 0) {
             GlobalShipVariables.generatorFuel = 0.0f;

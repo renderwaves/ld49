@@ -69,6 +69,9 @@ public class CommunicationMenu {
                 else if(difficulty == 1) {
                     cooldown = 5;
                 }
+                else if(difficulty == 4) {
+                    cooldown = 30;
+                }
             }
         });
 
@@ -95,6 +98,9 @@ public class CommunicationMenu {
                 }
                 else if(difficulty == 1) {
                     cooldown = 5;
+                }
+                else if(difficulty == 4) {
+                    cooldown = 20;
                 }
             }
         });

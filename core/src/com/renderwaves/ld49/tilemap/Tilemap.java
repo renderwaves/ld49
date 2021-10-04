@@ -324,6 +324,9 @@ public class Tilemap {
         else if(difficulty == 3) {
             t = 10;
         }
+        else if(difficulty == 4) {
+            t = 7;
+        }
         if(fireTimer >= t) {
             Vector2 pos = new Vector2((int)((float)Math.random() * width), (int)((float)Math.random() * height));
             if(getTileByPosition((int)pos.x, (int)pos.y).tileID == Tile.GroundTile.tileID) {
