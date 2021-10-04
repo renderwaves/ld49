@@ -1,6 +1,7 @@
 package com.renderwaves.ld49.entity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.renderwaves.ld49.entity.entities.FireExtinguisher;
 import com.renderwaves.ld49.entity.entities.PlayerEntity;
 import com.renderwaves.ld49.scenes.TemplateScene;
 
@@ -15,6 +16,7 @@ public class EntityManager extends ArrayList<Entity> {
     }
 
     PlayerEntity playerEntity;
+    FireExtinguisher fireExtinguisher;
     public void handleEntities(SpriteBatch batch) {
         for (int i = 0; i < this.size(); i++) {
             get(i).update();
@@ -23,6 +25,9 @@ public class EntityManager extends ArrayList<Entity> {
         for (int i = 0; i < this.size(); i++) {
             if(get(i) instanceof PlayerEntity) {
                 playerEntity = (PlayerEntity) get(i);
+            }
+            else if(get(i) instanceof FireExtinguisher) {
+                fireExtinguisher = (FireExtinguisher) get(i);
             }
             else {
                 get(i).render(batch);
@@ -37,6 +42,7 @@ public class EntityManager extends ArrayList<Entity> {
         }
 
         playerEntity.render(batch);
+        fireExtinguisher.render(batch);
     }
 
     public Entity addEntity(Entity entity) {

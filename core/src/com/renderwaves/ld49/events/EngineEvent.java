@@ -54,6 +54,9 @@ public class EngineEvent extends GameEvent {
     @Override
     public void onEnd() {
         TemplateScene.warningLabels.remove(warningLabel);
+        if(getEventTook() > 0) {
+            GlobalShipVariables.score += 300 / getEventTook();
+        }
     }
 
     @Override

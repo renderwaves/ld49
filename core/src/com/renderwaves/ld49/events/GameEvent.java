@@ -216,4 +216,7 @@ public abstract class GameEvent {
     public void setComplete(boolean s) { this.isComplete = s; }
     public String getName() { return this.name; }
     public Texture getIcon() {return this.icon; }
+    public Integer getEventTook() {
+        return eventTook;
+    }
 }

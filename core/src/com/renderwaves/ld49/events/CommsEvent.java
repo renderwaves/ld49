@@ -23,7 +23,9 @@ public class CommsEvent extends GameEvent {
 
     @Override
     public void onEnd() {
-
+        if(getEventTook() > 0) {
+            GlobalShipVariables.score += 300 / getEventTook();
+        }
     }
 
     @Override

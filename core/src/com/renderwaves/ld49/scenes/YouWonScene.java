@@ -84,7 +84,12 @@ public class YouWonScene implements Screen {
             }
         });
 
+        Label scoreLabel = new Label("Your score: " + String.valueOf(GlobalShipVariables.score),gameNameStyle);
+        scoreLabel.setAlignment(Align.center);
+
         table.add(winText).width(150);
+        table.row();
+        table.add(scoreLabel);
         table.row();
         table.add(restartButton).spaceTop(20).width(100).height(30);
         table.row();
@@ -111,6 +116,8 @@ public class YouWonScene implements Screen {
         GlobalShipVariables.generatorFuel = 1.0f;
         GlobalShipVariables.generatorHealth = 1.0f;
         GlobalShipVariables.engine2Health = 1.0f;
+        GlobalShipVariables.score = 0;
+        GlobalShipVariables.globalShipTimer = 25000;
 
         this.game.setScreen(new TemplateScene((com.renderwaves.ld49.Game) game));
     }

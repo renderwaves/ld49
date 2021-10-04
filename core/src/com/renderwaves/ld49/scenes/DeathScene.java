@@ -91,6 +91,8 @@ public class DeathScene implements Screen {
         GlobalShipVariables.generatorFuel = 1.0f;
         GlobalShipVariables.generatorHealth = 1.0f;
         GlobalShipVariables.engine2Health = 1.0f;
+        GlobalShipVariables.score = 0;
+        GlobalShipVariables.globalShipTimer = 25000;
 
         this.game.setScreen(new TemplateScene((com.renderwaves.ld49.Game) game));
     }

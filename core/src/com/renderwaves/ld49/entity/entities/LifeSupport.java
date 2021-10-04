@@ -21,6 +21,7 @@ public class LifeSupport extends TexturedEntity {
 
     @Override
     public void update() {
+        GlobalShipVariables.oxygenLevel -= Gdx.graphics.getDeltaTime() / 50;
         GlobalShipVariables.oxygenLevel +=  Gdx.graphics.getDeltaTime() / 10 * GlobalShipVariables.lifeSupportHealth * GlobalShipVariables.generatorFuel * GlobalShipVariables.generatorHealth;
 
         for(int i = 0; i < TemplateScene.shipTilemap.fireHandler.size(); i++) {
