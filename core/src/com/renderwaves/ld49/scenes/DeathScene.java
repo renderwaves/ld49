@@ -120,7 +120,7 @@ public class DeathScene implements Screen {
 
     private void nextFrame(float delta){
         time += delta;
-        if(time > 0.1f){
+        if(time > 0.05f){
             vidCurFrame++;
             time = 0;
         }
