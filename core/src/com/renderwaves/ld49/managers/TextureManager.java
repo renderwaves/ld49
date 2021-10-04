@@ -30,6 +30,9 @@ public class TextureManager {
     public static Texture navigationicon = new Texture("textures/ui/navigationicon.png");
     public static Texture oxygenIcon = new Texture("textures/ui/oxygenIcon.png");
     public static Texture uraniumRod = new Texture("textures/entities/uraniumRod.png");
+    public static Texture playerLeft = new Texture("textures/entities/player_left.png");
+    public static Texture playerRight = new Texture("textures/entities/player_right.png");
+    public static Texture playerBack = new Texture("textures/entities/player_back.png");
 
     public static void disposeAllTextures() {
         img.dispose();
@@ -58,5 +61,8 @@ public class TextureManager {
         navigationicon.dispose();
         oxygenIcon.dispose();
         uraniumRod.dispose();
+        playerLeft.dispose();
+        playerRight.dispose();
+        playerBack.dispose();
     }
 }

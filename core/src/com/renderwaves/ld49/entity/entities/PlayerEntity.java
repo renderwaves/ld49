@@ -216,6 +216,23 @@ public class PlayerEntity extends TexturedEntity {
         position.x += velocity.x * sprint;
         position.y += velocity.y * sprint;
 
+        if(velocity.x > 0) {
+            sprite.setTexture(TextureManager.playerLeft);
+            sprite.setSize(TextureManager.playerLeft.getWidth(), TextureManager.playerLeft.getHeight());
+        }
+        else if(velocity.x < 0) {
+            sprite.setTexture(TextureManager.playerRight);
+            sprite.setSize(TextureManager.playerRight.getWidth(), TextureManager.playerRight.getHeight());
+        }
+        else if(velocity.y > 0) {
+            sprite.setTexture(TextureManager.playerBack);
+            sprite.setSize(TextureManager.playerBack.getWidth(), TextureManager.playerBack.getHeight());
+        }
+        else if(velocity.y < 0) {
+            sprite.setTexture(TextureManager.playerEntity);
+            sprite.setSize(TextureManager.playerEntity.getWidth(), TextureManager.playerEntity.getHeight());
+        }
+
         velocity.x = 0;
         velocity.y = 0;
 
