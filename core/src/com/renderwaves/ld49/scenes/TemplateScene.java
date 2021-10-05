@@ -24,6 +24,7 @@ import com.renderwaves.ld49.events.*;
 import com.renderwaves.ld49.managers.*;
 import com.renderwaves.ld49.tilemap.Tile;
 import com.renderwaves.ld49.tilemap.Tilemap;
+import com.renderwaves.ld49.ui.Arrow;
 import com.renderwaves.ld49.ui.CommunicationMenu;
 import com.renderwaves.ld49.ui.StatusBar;
 import com.renderwaves.ld49.ui.WarningLabel;
@@ -68,6 +69,8 @@ public class TemplateScene implements Screen {
         return instance;
     }
 
+    private Arrow arrow;
+
     /*
      */
     public TemplateScene(Game game) {
@@ -76,6 +79,9 @@ public class TemplateScene implements Screen {
         this.gameEventSystem = new GameEventSystem();
         this.gameSound = new SoundManager();
         //this.stage = new Stage();
+
+        arrow = new Arrow();
+        arrow.position = new Vector2(-100, -100);
 
         this.batch = game.batch;
 
@@ -127,17 +133,26 @@ public class TemplateScene implements Screen {
     public static String tutorialText = "";
     private GlyphLayout glyphLayout = new GlyphLayout(FontManager.font_droidBb_40, tutorialText);
     private boolean tempBool = false;
+    private boolean left = false, right = false, up = false, down = false, shift = false;
     public void update(float delta) {
+        System.out.println("x = " + Gdx.input.getX());
+        System.out.println("y = " + Gdx.input.getY());
+
         if(GlobalShipVariables.tutorialMode) {
-            if(tutorialStage == 0) {
-                tutorialStage++;
+            if(tutorialStage == 0  && !tempBool) {
+                tutorialText = "YOU CAN MOVE USING WASD AND SPRINT USING SHIFT.";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+                tempBool = true;
             }
             else if(tutorialStage == 1) {
                 tutorialStage++;
+                tempBool = false;
             }
             else if(tutorialStage == 2 && !tempBool) {
                 gameEventSystem.addEvent(new GeneratorEvent(0.5f));
-                tutorialText = "YOU CAN FIX THE GENERATOR BY COMING NEAR IT.";
+                tutorialText = "YOU CAN FIX THE REACTOR BY COMING NEAR IT.";
+                arrow.position.x = 600-8;
+                arrow.position.y = 255+32;
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tempBool = true;
             }
@@ -149,6 +164,8 @@ public class TemplateScene implements Screen {
             }
             else if(tutorialStage == 4 && !tempBool) {
                 tutorialText = "LOOKS LIKE NAVIGATION BROKE DOWN. GO FIX IT.";
+                arrow.position.x = 1028-8;
+                arrow.position.y = 285+32;
                 gameEventSystem.addEvent(new NavigationEvent(0.5f));
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tempBool = true;
@@ -161,6 +178,8 @@ public class TemplateScene implements Screen {
             }
             else if(tutorialStage == 6 && !tempBool) {
                 tutorialText = "LOOKS LIKE COMMUNICATION BROKE DOWN. GO FIX IT.";
+                arrow.position.x = 853+4;
+                arrow.position.y = 288+32;
                 gameEventSystem.addEvent(new CommsEvent(0.5f));
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tempBool = true;
@@ -173,6 +192,8 @@ public class TemplateScene implements Screen {
             }
             else if(tutorialStage == 8 && !tempBool) {
                 tutorialText = "LOOKS LIKE LIFE SUPPORT BROKE DOWN. GO FIX IT.";
+                arrow.position.x = 372+4;
+                arrow.position.y = 288+32;
                 gameEventSystem.addEvent(new LifesupportEvent(0.5f));
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tempBool = true;
@@ -186,6 +207,14 @@ public class TemplateScene implements Screen {
             else if(tutorialStage == 10 && !tempBool) {
                 tutorialText = "LOOKS LIKE ENGINE BROKE DOWN. GO FIX IT.";
                 gameEventSystem.addEvent(new EngineEvent(0.5f));
+                if(GlobalShipVariables.engineFailed == 1) {
+                    arrow.position.x = 342;
+                    arrow.position.y = 130+32;
+                }
+                else if(GlobalShipVariables.engineFailed == 2) {
+                    arrow.position.x = 340;
+                    arrow.position.y = 450+32;
+                }
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tempBool = true;
             }
@@ -197,7 +226,9 @@ public class TemplateScene implements Screen {
             }
             else if(tutorialStage == 12 && !tempBool) {
                 GlobalShipVariables.generatorFuel = 0.2f;
-                tutorialText = "LOOKS LIKE FUEL IS RUNNING OUT. GO TO COMMUNICATION AND BUY URANIUM.";
+                arrow.position.x = 600-8;
+                arrow.position.y = 255+32;
+                tutorialText = "LOOKS LIKE REACTOR FUEL IS RUNNING OUT.\nGO TO COMMUNICATION AND BUY URANIUM.";
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tempBool = true;
             }
@@ -216,6 +247,8 @@ public class TemplateScene implements Screen {
                         placeFire = false;
                     }
                 }
+                arrow.position.x = -100;
+                arrow.position.y = -100;
                 tutorialText = "FIRE BROKE OUT. PICK UP EXTINGUISHER AND EXTINGUISH IT BY COMING NEAR IT.";
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tempBool = true;
@@ -313,7 +346,18 @@ public class TemplateScene implements Screen {
     public void render(float delta) {
         //background.renderShape(shapeRenderer);
 
-        System.out.println(tutorialStage);
+        if(tutorialStage == 0) {
+            if(!left) left = Gdx.input.isKeyPressed(InputManager.MoveLeft.key1);
+            if(!right) right = Gdx.input.isKeyPressed(InputManager.MoveRight.key1);
+            if(!up) up = Gdx.input.isKeyPressed(InputManager.MoveUp.key1);
+            if(!down) down = Gdx.input.isKeyPressed(InputManager.MoveDown.key1);
+            if(!shift) shift = Gdx.input.isKeyPressed(InputManager.Sprint.key1);
+
+            if(left && right && up && down && shift) {
+                tutorialStage++;
+            }
+        }
+
         if(tutorialStage >= 15 && GlobalShipVariables.tutorialMode) {
             if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
                 TemplateScene.shipTilemap.doorHandler.clear();
@@ -464,6 +508,10 @@ public class TemplateScene implements Screen {
 
             oxygenManager.renderSprite(batch);
             shipHealthBar.renderSprite(batch);
+
+            if(GlobalShipVariables.tutorialMode) {
+                arrow.render(batch);
+            }
         batch.end();
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);

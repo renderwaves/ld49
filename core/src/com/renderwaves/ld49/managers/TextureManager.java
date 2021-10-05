@@ -45,8 +45,11 @@ public class TextureManager {
     public static Texture planetMerkur = new Texture("textures/planet_merkur.png");
     public static Texture planetVenuse = new Texture("textures/planet_venuse.png");
 
+    public static Texture arrow = new Texture("textures/arrow.png");
+
     public static void disposeAllTextures() {
         img.dispose();
+        arrow.dispose();
         planetEarth.dispose();
         planetEarthFict1.dispose();
         planetEarthFict2.dispose();
