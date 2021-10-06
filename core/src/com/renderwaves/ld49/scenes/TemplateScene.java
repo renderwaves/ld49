@@ -151,7 +151,7 @@ public class TemplateScene implements Screen {
             else if(tutorialStage == 2 && !tempBool) {
                 gameEventSystem.addEvent(new GeneratorEvent(0.5f));
                 tutorialText = "YOU CAN FIX THE REACTOR BY COMING NEAR IT.";
-                arrow.position.x = 600-8;
+                arrow.position.x = 600-16;
                 arrow.position.y = 255+32;
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tempBool = true;
@@ -160,11 +160,13 @@ public class TemplateScene implements Screen {
                 tutorialText = "";
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tutorialStage++;
+                arrow.position.x = -100;
+                arrow.position.y = -100;
                 tempBool = false;
             }
             else if(tutorialStage == 4 && !tempBool) {
                 tutorialText = "LOOKS LIKE NAVIGATION BROKE DOWN. GO FIX IT.";
-                arrow.position.x = 1028-8;
+                arrow.position.x = 1028-16;
                 arrow.position.y = 285+32;
                 gameEventSystem.addEvent(new NavigationEvent(0.5f));
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
@@ -174,11 +176,13 @@ public class TemplateScene implements Screen {
                 tutorialText = "";
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tutorialStage++;
+                arrow.position.x = -100;
+                arrow.position.y = -100;
                 tempBool = false;
             }
             else if(tutorialStage == 6 && !tempBool) {
                 tutorialText = "LOOKS LIKE COMMUNICATION BROKE DOWN. GO FIX IT.";
-                arrow.position.x = 853+4;
+                arrow.position.x = 853;
                 arrow.position.y = 288+32;
                 gameEventSystem.addEvent(new CommsEvent(0.5f));
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
@@ -188,6 +192,8 @@ public class TemplateScene implements Screen {
                 tutorialText = "";
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tutorialStage++;
+                arrow.position.x = -100;
+                arrow.position.y = -100;
                 tempBool = false;
             }
             else if(tutorialStage == 8 && !tempBool) {
@@ -202,6 +208,8 @@ public class TemplateScene implements Screen {
                 tutorialText = "";
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tutorialStage++;
+                arrow.position.x = -100;
+                arrow.position.y = -100;
                 tempBool = false;
             }
             else if(tutorialStage == 10 && !tempBool) {
@@ -222,11 +230,13 @@ public class TemplateScene implements Screen {
                 tutorialText = "";
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tutorialStage++;
+                arrow.position.x = -100;
+                arrow.position.y = -100;
                 tempBool = false;
             }
             else if(tutorialStage == 12 && !tempBool) {
                 GlobalShipVariables.generatorFuel = 0.2f;
-                arrow.position.x = 600-8;
+                arrow.position.x = 600-16;
                 arrow.position.y = 255+32;
                 tutorialText = "LOOKS LIKE REACTOR FUEL IS RUNNING OUT.\nGO TO COMMUNICATION AND BUY URANIUM.";
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
@@ -236,6 +246,8 @@ public class TemplateScene implements Screen {
                 tutorialText = "";
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tutorialStage++;
+                arrow.position.x = -100;
+                arrow.position.y = -100;
                 tempBool = false;
             }
             else if(tutorialStage == 14 && !tempBool) {
@@ -253,7 +265,7 @@ public class TemplateScene implements Screen {
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tempBool = true;
             }
-            else if(tutorialStage == 15) {
+            else if(tutorialStage >= 15) {
                 tutorialText = "GOOD JOB! YOU FINISHED TUTORIAL. PRESS SPACE FOR MENU.";
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
             }

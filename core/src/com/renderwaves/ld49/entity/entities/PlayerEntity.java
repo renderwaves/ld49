@@ -373,12 +373,10 @@ public class PlayerEntity extends TexturedEntity {
             else {
                 nearEngine2 = false;
             }
+            nearUranium = null;
             for(int i = 0; i < uraniumList.size(); i++) {
                 if(uraniumList.get(i).rectangle.overlaps((rectangle))){
                     nearUranium = uraniumList.get(i);
-                }
-                else {
-                    nearUranium = null;
                 }
             }
         }
