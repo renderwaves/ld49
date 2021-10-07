@@ -1,6 +1,7 @@
 package com.renderwaves.ld49.scenes;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -55,6 +56,8 @@ public class MenuScene implements Screen {
         this.game = game;
         spriteBatch = new SpriteBatch();
         shapeRenderer = new ShapeRenderer();
+
+        startingGame = false;
 
         background = new Background();
         background.keepMoving = true;
@@ -268,6 +271,10 @@ public class MenuScene implements Screen {
     private boolean toGame = false;
 
     private void nextFrame(float delta){
+        if(startingGame && Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            game.setScreen(new TutorialScene(game));
+        }
+
         time += delta;
         if(time > 0.1f){
             vidCurFrame++;
@@ -283,6 +290,7 @@ public class MenuScene implements Screen {
         vidCurSprite.setScale(5,5);
     }
 
+    private boolean startingGame = false;
     private void callbackStartGame() {
         stage.clear();
         video.clear();
@@ -291,6 +299,7 @@ public class MenuScene implements Screen {
         video = videoAtlas.createSprites();
         vidCurFrame = 0;
         GlobalShipVariables.tutorialMode = false;
+        startingGame = true;
         toGame = true;
     }
 
@@ -303,6 +312,7 @@ public class MenuScene implements Screen {
         vidCurFrame = 0;
         TemplateScene.tutorialStage = 0;
         GlobalShipVariables.tutorialMode = true;
+        startingGame = true;
         toGame = true;
     }
 

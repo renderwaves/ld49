@@ -34,18 +34,17 @@ public class WarningLabel {
 
     private boolean switchColors = false;
     public void render(SpriteBatch spriteBatch, float offsetY) {
-        timer += Gdx.graphics.getRawDeltaTime();
+        timer += Gdx.graphics.getDeltaTime();
         if (timer > time) {
-            timer -= time;
-            if (font != null)
-                event();
+            timer = 0;
+            switchColors = !switchColors;
+            System.out.println(switchColors);
         }
 
-        if (font != null) font.draw(spriteBatch, this.glyphLayout, ((float)Gdx.graphics.getWidth()/2) - (glyphLayout.width/2), this.y - (offsetY * 42));
-    }
-
-    private void event() {
-        font.setColor(switchColors ? color2 : color1);
-        switchColors = !switchColors;
+        if (font != null) {
+            spriteBatch.setColor(switchColors ? color1 : color2);
+            font.draw(spriteBatch, this.glyphLayout, ((float)Gdx.graphics.getWidth()/2) - (glyphLayout.width/2), this.y - (offsetY * 42));
+            spriteBatch.setColor(Color.WHITE);
+        }
     }
 }

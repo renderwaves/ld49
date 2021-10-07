@@ -26,7 +26,7 @@ public class TutorialScene implements Screen {
     @Override
     public void show() {
         Skin uiSkin = new Skin();
-        uiSkin.add("default-font", FontManager.font_droidBb_20);
+        uiSkin.add("default-font", FontManager.font_droidBb_40);
 
         uiSkin.addRegions(new TextureAtlas(Gdx.files.internal("uiskin.atlas")));
         uiSkin.load(Gdx.files.internal("skins/skin.json"));
@@ -44,7 +44,7 @@ public class TutorialScene implements Screen {
 
         Table table = new Table();
         table.add(startGameButton).right().top();
-        table.setPosition(Gdx.graphics.getWidth() - 55, Gdx.graphics.getHeight() - 20);
+        table.setPosition(Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 30);
 
         stage.addActor(table);
     }

@@ -72,6 +72,8 @@ public class CommunicationMenu {
                 else if(difficulty == 4) {
                     cooldown = 30;
                 }
+
+                window.setVisible(false);
             }
         });
 
@@ -102,6 +104,8 @@ public class CommunicationMenu {
                 else if(difficulty == 4) {
                     cooldown = 20;
                 }
+
+                window.setVisible(false);
             }
         });
         

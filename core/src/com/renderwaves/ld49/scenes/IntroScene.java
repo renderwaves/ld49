@@ -1,6 +1,7 @@
 package com.renderwaves.ld49.scenes;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -68,6 +69,10 @@ public class IntroScene implements Screen {
 
     @Override
     public void render(float delta) {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            game.setScreen(new MenuScene(game));
+        }
+
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         nextFrame(delta);
         background.renderShape(shapeRenderer);

@@ -40,7 +40,7 @@ public class PlayerEntity extends TexturedEntity {
     private boolean nearNavigation = false;
 
     private boolean hasSpacesuit = false;
-    private boolean hasFireExtinguisher = false;
+    public boolean hasFireExtinguisher = false;
 
     private boolean touchingFire = false;
 
@@ -163,7 +163,6 @@ public class PlayerEntity extends TexturedEntity {
         healthBar.renderSprite(spriteBatch);
 
         if (touchingFire) {
-            System.out.println(hasSpacesuit);
             if(!hasSpacesuit) health -= Gdx.graphics.getDeltaTime() / 5;
         }
 

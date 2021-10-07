@@ -69,7 +69,7 @@ public class TemplateScene implements Screen {
         return instance;
     }
 
-    private Arrow arrow;
+    public Arrow arrow;
 
     /*
      */
@@ -251,22 +251,38 @@ public class TemplateScene implements Screen {
                 tempBool = false;
             }
             else if(tutorialStage == 14 && !tempBool) {
+                if(!shipTilemap.player.hasFireExtinguisher) {
+                    arrow.position.x = entityManager.fireExtinguisher.position.x;
+                    arrow.position.y = Gdx.graphics.getHeight()-entityManager.fireExtinguisher.position.y-32;
+                }
+                else {
+                    tutorialStage++;
+                }
+                tutorialText = "PICK UP EXTINGUISHER.";
+                glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
+            }
+            else if (tutorialStage == 15 && !tempBool) {
                 boolean placeFire = true;
                 while(placeFire) {
                     Vector2 pos = new Vector2((int)((float)Math.random() * shipTilemap.getWidth()), (int)((float)Math.random() * shipTilemap.getHeight()));
                     if(shipTilemap.getTileByPosition((int)pos.x, (int)pos.y).tileID == Tile.GroundTile.tileID) {
-                        shipTilemap.fireHandler.add(new Fire(new Vector2(pos.x*32+shipTilemap.offset.x-4, pos.y*32+shipTilemap.offset.y)));
+                        shipTilemap.fireHandler.add(new Fire(new Vector2(pos.x*32+shipTilemap.offset.x, pos.y*32+shipTilemap.offset.y)));
                         placeFire = false;
+
+                        if(shipTilemap.player.hasFireExtinguisher) {
+                            arrow.position.x = pos.x*32+shipTilemap.offset.x;
+                            arrow.position.y = Gdx.graphics.getHeight()-(pos.y*32+shipTilemap.offset.y+32);
+                        }
                     }
                 }
-                arrow.position.x = -100;
-                arrow.position.y = -100;
-                tutorialText = "FIRE BROKE OUT. PICK UP EXTINGUISHER AND EXTINGUISH IT BY COMING NEAR IT.";
+                tutorialText = "FIRE BROKE OUT. EXTINGUISH IT BY COMING NEAR IT.";
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
                 tempBool = true;
             }
-            else if(tutorialStage >= 15) {
+            else if(tutorialStage >= 16) {
                 tutorialText = "GOOD JOB! YOU FINISHED TUTORIAL. PRESS SPACE FOR MENU.";
+                arrow.position.x = -100;
+                arrow.position.y = -100;
                 glyphLayout.setText(FontManager.font_droidBb_40, tutorialText);
             }
             return;
@@ -370,7 +386,7 @@ public class TemplateScene implements Screen {
             }
         }
 
-        if(tutorialStage >= 15 && GlobalShipVariables.tutorialMode) {
+        if(tutorialStage >= 16 && GlobalShipVariables.tutorialMode) {
             if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
                 TemplateScene.shipTilemap.doorHandler.clear();
                 TemplateScene.shipTilemap.fireHandler.clear();

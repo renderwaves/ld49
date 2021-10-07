@@ -16,7 +16,7 @@ public class EntityManager extends ArrayList<Entity> {
     }
 
     PlayerEntity playerEntity;
-    FireExtinguisher fireExtinguisher;
+    public FireExtinguisher fireExtinguisher;
     public void handleEntities(SpriteBatch batch) {
         for (int i = 0; i < this.size(); i++) {
             get(i).update();
